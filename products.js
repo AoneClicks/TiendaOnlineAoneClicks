@@ -1,16 +1,16 @@
-// Edita aquí tus productos. Coloca las imágenes en la carpeta /images
+﻿// Edita aquí tus productos. Coloca las imágenes en la carpeta /images
 // prices: precio total en COP (sin puntos ni símbolos) según unidades: 1, 2 o 3.
 // badge: "Verificado" | "Premium" | "Exclusivo"
 const PRODUCTS = [
-  { id: 1, name: "Glucora Berberine Gotero", category: "Belleza", stock: 1000, badge: "Premium", prices: { 1: 74900, 2: 100900, 3: 125900 }, image: "images/glucora-berberine-gotero.jpg" },
-  { id: 2, name: "Pala Ultrasonica Facial Jh", category: "Hogar", stock: 100, badge: "Verificado", prices: { 1: 90900, 2: 131900, 3: 173900 }, image: "images/pala-ultrasonica-facial-jh.jpg" },
-  { id: 3, name: "Tensorix Ojeras Bolsas Y Lineas", category: "Salud", stock: 280, badge: "Verificado", prices: { 1: 80900, 2: 113900, 3: 144900 }, image: "images/tensorix-ojeras.jpg" },
-  { id: 4, name: "Reflector Solar 500 W", category: "Hogar", stock: 193, badge: "Verificado", prices: { 1: 326900, 2: 622900, 3: 923900 }, image: "images/reflector-solar-500w.jpg" },
-  { id: 5, name: "Limpiador A Vapor Para El Hogar", category: "Tecnología", stock: 68, badge: "Verificado", prices: { 1: 270900, 2: 505900, 3: 744900 }, image: "images/limpiador-a-vapor.jpg" },
-  { id: 6, name: "Cepillo De Cabello Restaurador", category: "Belleza", stock: 48, badge: "Exclusivo", prices: { 1: 95900, 2: 143900, 3: 191900 }, image: "images/cepillo-restaurador.jpg" },
-  { id: 7, name: "Mini Rastreador Gps", category: "Tecnología", stock: 170, badge: "Exclusivo", prices: { 1: 79900, 2: 109900, 3: 139900 }, image: "images/mini-rastreador-gps.jpg" },
-  { id: 8, name: "Organizador Perchero Y Zapatero 4 In 1", category: "Hogar", stock: 192, badge: "Verificado", prices: { 1: 104900, 2: 162900, 3: 219900 }, image: "images/organizador-perchero-zapatero.jpg" },
-  { id: 9, name: "Cepillo Alisador De Cabello Fh909", category: "Belleza", stock: 225, badge: "Premium", prices: { 1: 71900, 2: 94900, 3: 116900 }, image: "images/cepillo-alisador-fh909.jpg" }
+  { id: 1, name: "Glucora Berberine Gotero", category: "Belleza", stock: 1000, badge: "Premium", prices: { 1: 74900, 2: 100900, 3: 125900 }, image: "glucora-berberine-gotero.jpg" },
+  { id: 2, name: "Pala Ultrasonica Facial Jh", category: "Hogar", stock: 100, badge: "Verificado", prices: { 1: 90900, 2: 131900, 3: 173900 }, image: "pala-ultrasonica-facial-jh.jpg" },
+  { id: 3, name: "Tensorix Ojeras Bolsas Y Lineas", category: "Salud", stock: 280, badge: "Verificado", prices: { 1: 80900, 2: 113900, 3: 144900 }, image: "tensorix-ojeras.jpg" },
+  { id: 4, name: "Reflector Solar 500 W", category: "Hogar", stock: 193, badge: "Verificado", prices: { 1: 326900, 2: 622900, 3: 923900 }, image: "reflector-solar-500w.jpg" },
+  { id: 5, name: "Limpiador A Vapor Para El Hogar", category: "Tecnología", stock: 68, badge: "Verificado", prices: { 1: 270900, 2: 505900, 3: 744900 }, image: "limpiador-a-vapor.jpg" },
+  { id: 6, name: "Cepillo De Cabello Restaurador", category: "Belleza", stock: 48, badge: "Exclusivo", prices: { 1: 95900, 2: 143900, 3: 191900 }, image: "cepillo-restaurador.jpg" },
+  { id: 7, name: "Mini Rastreador Gps", category: "Tecnología", stock: 170, badge: "Exclusivo", prices: { 1: 79900, 2: 109900, 3: 139900 }, image: "mini-rastreador-gps.jpg" },
+  { id: 8, name: "Organizador Perchero Y Zapatero 4 In 1", category: "Hogar", stock: 192, badge: "Verificado", prices: { 1: 104900, 2: 162900, 3: 219900 }, image: "organizador-perchero-zapatero.jpg" },
+  { id: 9, name: "Cepillo Alisador De Cabello Fh909", category: "Belleza", stock: 225, badge: "Premium", prices: { 1: 71900, 2: 94900, 3: 116900 }, image: "cepillo-alisador-fh909.jpg" }
 ];
 
 // Configuración general
