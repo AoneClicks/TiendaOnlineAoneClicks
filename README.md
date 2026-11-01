@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AoneClicks Shopping | Tu tienda online en Colombia</title>
+  <meta name="description" content="AoneClicks Shopping: compra online en Colombia y finaliza tu pedido por WhatsApp. Envíos a todo el país.">
+  <meta name="theme-color" content="#6c2bd9">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="canonical" href="https://aoneclicks.com.co/">
+  <meta property="og:title" content="AoneClicks Shopping">
+  <meta property="og:description" content="Compra fácil y rápido. Pide por WhatsApp.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aoneclicks.com.co/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#catalogo">Saltar al contenido</a>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a href="#inicio" class="logo" aria-label="AoneClicks Shopping - Inicio">
+        <img class="logo__image" src="images/logo-aoneclicks.png" alt="AoneClicks Shopping" width="1124" height="738">
+      </a>
+
+      <nav class="nav" id="mainNav" aria-label="Principal">
+        <a href="#inicio" data-nav="inicio">Inicio</a>
+        <a href="#productos" data-nav="productos">Productos</a>
+        <a href="#contacto" data-nav="contacto">Contacto</a>
+        <a href="#politicas" data-nav="politicas">Políticas</a>
+      </nav>
+
+      <div class="header__actions">
+        <a class="header-wa" href="https://wa.me/573027350151" target="_blank" rel="noopener noreferrer" aria-label="Escríbenos por WhatsApp">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.300 8.700 3.300 15.700c0 2.300.6 4.400 1.700 6.300L3 29l7.200-1.900c1.800 1 3.800 1.500 5.800 1.500 7 0 12.700-5.700 12.700-12.700S23 3 16 3zm0 23.100c-1.800 0-3.600-.5-5.100-1.400l-.4-.2-4.300 1.100 1.100-4.200-.3-.4a10.400 10.400 0 1 1 9 5.100zm5.700-7.800c-.3-.2-1.800-.9-2.100-1-.3-.1-.5-.2-.7.200-.2.300-.8 1-1 1.200-.2.200-.4.200-.7.100-.3-.2-1.300-.5-2.400-1.500-.9-.8-1.500-1.800-1.700-2.100-.2-.3 0-.5.100-.6l.5-.5c.2-.2.200-.3.300-.5.100-.2.100-.4 0-.5-.1-.2-.7-1.700-1-2.300-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.100-.8.400-.3.300-1.100 1.100-1.100 2.600s1.100 3 1.300 3.200c.2.200 2.200 3.400 5.300 4.700.7.300 1.300.5 1.700.6.700.2 1.400.2 1.900.1.600-.1 1.800-.7 2-1.400.3-.7.300-1.300.2-1.400-.1-.1-.3-.2-.6-.4z"/></svg>
+          <span>Pide por WhatsApp</span>
+        </a>
+
+        <button class="cart-btn" id="cartToggle" type="button" aria-label="Abrir carrito">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM3 2v2h2l3.600 7.600-1.400 2.400A2 2 0 0 0 9 17h11v-2H9.400l1.100-2h7.500a2 2 0 0 0 1.700-1l3.600-6.500A1 1 0 0 0 22.400 4H6.200l-.9-2H3z"/></svg>
+          <span class="cart-count" id="cartCount" aria-live="polite">0</span>
+        </button>
+        <button class="menu-btn" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainNav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero" data-view="inicio">
+      <div class="container hero__inner">
+        <p class="hero__eyebrow">Compra fácil · Pide por WhatsApp</p>
+        <h1>Bienvenido a <span>AoneClicks Shopping</span></h1>
+        <p class="hero__lead">Elige tus productos, indica las unidades y finaliza tu pedido en un solo clic.</p>
+        <ul class="perks" aria-label="Beneficios de compra">
+          <li class="perks__item"><i class="ic ic-truck" aria-hidden="true"></i> Envío GRATIS a todo Colombia</li>
+                    <li class="perks__item"><i class="ic ic-cash" aria-hidden="true"></i> Pago contraentrega</li>
+        </ul>
+        <a class="btn btn--light" href="#productos">Ver productos</a>
+      </div>
+    </section>
+
+    <section id="catalogo" class="section container" data-view="inicio" aria-labelledby="tituloCatalogo">
+      <h2 id="tituloCatalogo" class="section__title">Nuestros productos</h2>
+      <div class="promo-bar">
+        <p><strong><i class="ic ic-truck" aria-hidden="true"></i> Envío GRATIS a nivel nacional</strong> · <strong><i class="ic ic-cash" aria-hidden="true"></i> Pago contraentrega</strong>: pagas cuando recibes tu pedido.</p>
+                <p class="promo-bar__tip"><i class="ic ic-cart" aria-hidden="true"></i> Los productos que agregues se guardan en tu <strong>carrito</strong>, arriba a la derecha. Allí finalizas tu compra.</p>
+      </div>
+      <div class="grid" id="productGrid"></div>
+    </section>
+
+    <section class="trust container" data-view="inicio" aria-label="Por qué comprar con nosotros">
+      <ul class="trust__card reveal">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6h11v10H2zM13 9h4l3 3v4h-7"/><circle cx="6.500" cy="17.500" r="1.800"/><circle cx="16.500" cy="17.500" r="1.800"/></svg>
+          <h3>Envíos a Colombia</h3><p>Enviamos a diferentes regiones del país</p>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8L3 12z"/><circle cx="8" cy="9" r="1.500"/></svg>
+          <h3>Pago al recibir</h3><p>Disponible según la cobertura de entrega</p>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 4v7a4 4 0 0 1-4 4H4M8 11l-4 4 4 4"/></svg>
+          <h3>Atención cercana</h3><p>Estamos aquí para ayudarte</p>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.800 5.700 6.200.9-4.500 4.400 1.100 6.200L12 17.200 6.400 20.200l1.100-6.200L3 9.600l6.200-.9z"/></svg>
+          <h3>Compra segura</h3><p>Tu satisfacción es nuestra prioridad</p>
+        </li>
+      </ul>
+
+      <blockquote class="quote reveal">
+        <span class="quote__mark" aria-hidden="true">“</span>
+        <p>Lo que necesitas, lo que te sorprende y eso que te encanta: todo está a un clic.</p>
+        <cite>AOneClicks Shopping</cite>
+      </blockquote>
+    </section>
+
+    <section id="soporte" class="cs" data-view="contacto" hidden aria-labelledby="csTitulo">
+      <div class="container">
+        <header class="cs__head">
+          <h2 id="csTitulo">Estamos aquí para ayudarte</h2>
+          <p>¿Tienes dudas sobre un producto, el estado de tu guía o deseas gestionar una novedad con tu entrega? Comunícate con nosotros por cualquiera de nuestros canales oficiales.</p>
+        </header>
+
+        <div class="cs__grid">
+          <div class="cs__channels">
+            <article class="cs-card">
+              <span class="cs-card__icon cs-card__icon--wa" aria-hidden="true">
+                <svg viewBox="0 0 32 32"><path d="M16 3C9 3 3.300 8.700 3.300 15.700c0 2.300.6 4.400 1.700 6.300L3 29l7.200-1.900c1.800 1 3.800 1.500 5.800 1.500 7 0 12.700-5.700 12.700-12.700S23 3 16 3zm0 23.100c-1.800 0-3.600-.5-5.100-1.400l-.4-.2-4.300 1.100 1.100-4.200-.3-.4a10.400 10.400 0 1 1 9 5.100zm5.700-7.800c-.3-.2-1.800-.9-2.100-1-.3-.1-.5-.2-.7.200-.2.300-.8 1-1 1.200-.2.200-.4.200-.7.100-.3-.2-1.300-.5-2.400-1.500-.9-.8-1.500-1.800-1.700-2.100-.2-.3 0-.5.100-.6l.5-.5c.2-.2.200-.3.300-.5.100-.2.100-.4 0-.5-.1-.2-.7-1.700-1-2.300-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.100-.8.400-.3.300-1.100 1.100-1.100 2.600s1.100 3 1.300 3.200c.2.200 2.200 3.400 5.300 4.700.7.300 1.300.5 1.700.6.700.2 1.400.2 1.900.1.600-.1 1.800-.7 2-1.400.3-.7.300-1.300.2-1.400-.1-.1-.3-.2-.6-.4z"/></svg>
+              </span>
+              <div class="cs-card__body">
+                <h3>Atención prioritaria por WhatsApp</h3>
+                <p>Confirmación de pedidos, rastreo de guías contra entrega y consultas rápidas.</p>
+                <a class="cs-btn" href="https://wa.me/573027350151" target="_blank" rel="noopener noreferrer">Chatear por WhatsApp (+57 302 735 0151)</a>
+              </div>
+            </article>
+
+            <article class="cs-card">
+              <span class="cs-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
+              </span>
+              <div class="cs-card__body">
+                <h3>Correo de soporte</h3>
+                <p>Trámites de garantías, solicitudes formales y peticiones (PQRS).</p>
+                <a class="cs-link" href="mailto:aunclickadmin@gmail.com">aunclickadmin@gmail.com</a>
+              </div>
+            </article>
+
+            <article class="cs-card">
+              <span class="cs-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              </span>
+              <div class="cs-card__body">
+                <h3>Horario de atención</h3>
+                <ul class="cs-hours">
+                  <li><span>Lunes a viernes</span><strong>8:00 a.m. – 6:00 p.m.</strong></li>
+                  <li><span>Sábados</span><strong>8:00 a.m. – 1:00 p.m.</strong></li>
+                  <li><span>Domingos y festivos</span><strong>Cerrado</strong></li>
+                </ul>
+                <p class="cs-note">Domingos y festivos: atención al siguiente día hábil.</p>
+              </div>
+            </article>
+
+            <div class="cs-corp">
+              <p><span>Razón social</span> AoneClicks Shopping SAS</p>
+              <p><span>NIT</span> 902.116.187-1</p>
+              <p><span>Ubicación</span> Bogotá, Colombia</p>
+            </div>
+          </div>
+
+          <form class="cs-form" id="contactForm" novalidate>
+            <h3>Envíanos un mensaje</h3>
+            <div class="cs-field">
+              <label for="csNombre">Nombre completo</label>
+              <input id="csNombre" name="nombre" type="text" autocomplete="name" required minlength="3" placeholder="Tu nombre">
+              <small class="cs-error" aria-live="polite"></small>
+            </div>
+            <div class="cs-field">
+              <label for="csEmail">Correo electrónico</label>
+              <input id="csEmail" name="email" type="email" autocomplete="email" required placeholder="tucorreo@ejemplo.com">
+              <small class="cs-error" aria-live="polite"></small>
+            </div>
+            <div class="cs-field">
+              <label for="csTel">Teléfono / WhatsApp</label>
+              <input id="csTel" name="telefono" type="tel" autocomplete="tel" inputmode="tel" required placeholder="3001234567">
+              <small class="cs-error" aria-live="polite"></small>
+            </div>
+            <div class="cs-field">
+              <label for="csMensaje">Mensaje / Inquietud</label>
+              <textarea id="csMensaje" name="mensaje" rows="5" required minlength="10" placeholder="Cuéntanos en qué podemos ayudarte"></textarea>
+              <small class="cs-error" aria-live="polite"></small>
+            </div>
+            <button class="cs-btn cs-btn--block" type="submit" id="csSubmit">Enviar mensaje</button>
+            <p class="cs-status" id="csStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="politicas" class="cs" data-view="politicas" hidden aria-labelledby="polTitulo">
+      <div class="container">
+        <header class="cs__head">
+          <h2 id="polTitulo">Políticas</h2>
+          <p>Conoce las condiciones que rigen tus compras en AoneClicks Shopping.</p>
+        </header>
+        <div class="pol-grid">
+          <button type="button" class="pol-card" data-policy="envios"><strong>Políticas de Envíos</strong><span>Cobertura, tiempos y costos de entrega.</span></button>
+          <button type="button" class="pol-card" data-policy="garantias"><strong>Devoluciones y Garantía</strong><span>Retracto, garantía y promociones.</span></button>
+<button type="button" class="pol-card" data-policy="pagos"><strong>Pagos y Reversión</strong><span>Contra entrega y reembolsos.</span></button>
+<button type="button" class="pol-card" data-policy="despacho"><strong>Despacho Condicionado</strong><span>Cuándo y por qué aplica.</span></button>
+<button type="button" class="pol-card" data-policy="legal"><strong>Aviso Legal</strong><span>Propiedad, uso y responsabilidad.</span></button>
+<button type="button" class="pol-card" data-policy="contacto"><strong>Datos de Contacto</strong><span>Razón social, NIT y canales.</span></button>
+          <button type="button" class="pol-card" data-policy="datos"><strong>Tratamiento de Datos</strong><span>Cómo protegemos tu información.</span></button>
+          <button type="button" class="pol-card" data-policy="cookies"><strong>Política de Cookies</strong><span>Qué cookies usamos y por qué.</span></button>
+          <button type="button" class="pol-card" data-policy="terminos"><strong>Términos y Condiciones</strong><span>Reglas de uso de la tienda.</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="cs" aria-labelledby="faqTitulo">
+      <div class="container">
+        <div class="cs-faq" style="margin-top:0">
+          <h3 id="faqTitulo">Preguntas frecuentes</h3>
+          <details class="cs-faq__item">
+            <summary>¿Cómo rastreo mi pedido?</summary>
+            <p>Una vez despachado el paquete, te enviaremos el número de guía de Coordinadora, Servientrega, Envía o Inter Rapidísimo a través de WhatsApp y correo electrónico para seguimiento en tiempo real.</p>
+          </details>
+          <details class="cs-faq__item">
+            <summary>¿Cuánto tarda en llegar mi paquete?</summary>
+            <p>Las entregas tardan en promedio 3 días hábiles en ciudades principales y de 4 a 8 días hábiles en el resto del país, contados desde la confirmación del pedido.</p>
+          </details>
+          <details class="cs-faq__item">
+            <summary>¿Cómo funciona el pago contra entrega?</summary>
+            <p>Pagas en efectivo directamente al transportador en el momento exacto en que recibes el paquete en tu puerta. Ten listo el valor exacto del pedido.</p>
+          </details>
+          <details class="cs-faq__item">
+            <summary>¿El envío tiene costo?</summary>
+            <p>No. El envío es <strong>gratis a nivel nacional</strong> en todos nuestros productos.</p>
+          </details>
+          <details class="cs-faq__item">
+            <summary>¿Cómo hago mi pedido?</summary>
+            <p>Elige tu producto y la cantidad, agrégalo al carrito, pulsa «Finalizar compra» y llena el formulario con tus datos de entrega. Al enviarlo, nos llega tu pedido completo por WhatsApp para confirmarlo contigo.</p>
+          </details>
+          <details class="cs-faq__item">
+            <summary>¿Qué pasa después de enviar el formulario?</summary>
+            <p>Te contactamos por WhatsApp o llamada para confirmar tus datos. Una vez confirmado, despachamos el pedido y te enviamos el número de guía. Recuerda que el pedido solo se despacha cuando lo confirmas con nosotros.</p>
+          </details>
+          <details class="cs-faq__item">
+            <summary>¿Puedo comprar más de una unidad o varios productos?</summary>
+            <p>Sí. Puedes combinar productos en el mismo pedido. Además, cada producto tiene precios especiales por volumen (2 o 3 unidades) que se calculan automáticamente en tu carrito.</p>
+          </details>
+          <details class="cs-faq__item">
+            <summary>¿Hacen envíos a todo Colombia?</summary>
+            <p>Sí, llegamos a todo el país según la cobertura de las transportadoras aliadas. Si tu zona no tuviera cobertura, te lo avisamos de inmediato y puedes cancelar sin costo.</p>
+          </details>
+          <details class="cs-faq__item">
+            <summary>¿Puedo cambiar la dirección o cancelar mi pedido?</summary>
+            <p>Sí, siempre que aún no haya sido despachado. Escríbenos cuanto antes por WhatsApp al +57 302 735 0151 con tu nombre y producto.</p>
+          </details>
+          <details class="cs-faq__item">
+            <summary>¿Qué hago si no estoy cuando llega el paquete?</summary>
+            <p>La transportadora realiza hasta 2 intentos de entrega. Si no logran ubicarte, el paquete regresa a bodega y el pedido se cancela, por eso es importante dejar datos correctos y un teléfono activo.</p>
+          </details>
+          <details class="cs-faq__item">
+            <summary>¿Puedo revisar el paquete antes de pagar?</summary>
+            <p>Puedes revisar que la caja esté sellada y sin daños. Si notas que está rota o manipulada, puedes rechazarla y avisarnos de inmediato.</p>
+          </details>
+          <details class="cs-faq__item">
+            <summary>¿Los productos son originales y tienen garantía?</summary>
+            <p>Sí. Todos nuestros productos cuentan con garantía por defectos de fábrica. Si llega con fallas o no corresponde a lo publicado, lo reparamos, cambiamos o devolvemos tu dinero sin costo de transporte para ti.</p>
+          </details>
+          <details class="cs-faq__item">
+            <summary>¿Cómo solicito una garantía?</summary>
+            <p>Escríbenos por WhatsApp o a aunclickadmin@gmail.com con tu número de pedido, cédula, una descripción de la falla y fotos o videos del producto. Respondemos en máximo 15 días hábiles.</p>
+          </details>
+          <details class="cs-faq__item">
+            <summary>¿Puedo devolver un producto si me arrepentí?</summary>
+            <p>Sí, dentro de los 5 días hábiles siguientes a la entrega, con el producto nuevo, sin uso y en su empaque original. El flete de devolución corre por tu cuenta. Por higiene, no aplica a productos de uso personal o cosméticos abiertos.</p>
+          </details>
+          <details class="cs-faq__item">
+            <summary>¿Las fotos son exactamente como el producto?</summary>
+            <p>Las imágenes son de referencia; pueden existir pequeñas variaciones de empaque o tono, pero el producto es el mismo que ves publicado.</p>
+          </details>
+          <details class="cs-faq__item">
+            <summary>¿Cómo sé cómo usar mi producto?</summary>
+            <p>En la ficha técnica de cada producto (al hacer clic sobre él) encontrarás su descripción, beneficios, modo de uso y especificaciones. Recomendamos seguir siempre las instrucciones y advertencias del empaque.</p>
+          </details>
+          <details class="cs-faq__item">
+            <summary>¿Mis datos están seguros?</summary>
+            <p>Sí. Usamos tus datos solo para gestionar tu pedido y entrega, conforme a la Ley 1581 de 2012. Puedes leer nuestra política de privacidad en la sección Políticas.</p>
+          </details>
+          <details class="cs-faq__item">
+            <summary>¿Cómo me comunico con ustedes?</summary>
+            <p>Por WhatsApp al +57 302 735 0151 o por correo a aunclickadmin@gmail.com. Atendemos de lunes a viernes de 8:00 a.m. a 6:00 p.m. y sábados de 8:00 a.m. a 1:00 p.m.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="pie">
+    <div class="footer__waves" aria-hidden="true">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <defs>
+          <path id="footer-wave" d="M-1440 60 C-1080 0 -720 120 -360 60 S360 0 720 60 S1080 120 1440 60 S2160 0 2520 60 V120 H-1440 Z"/>
+        </defs>
+        <use href="#footer-wave" class="wave wave--1"/>
+        <use href="#footer-wave" class="wave wave--2"/>
+        <use href="#footer-wave" class="wave wave--3"/>
+      </svg>
+    </div>
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a href="#inicio" aria-label="AoneClicks Shopping - Ir al inicio">
+          <img class="footer__logo" src="images/logo-aoneclicks-footer.png" alt="AoneClicks Shopping" width="1207" height="738" loading="lazy">
+        </a>
+        <p class="footer__slogan">¡Lo quieres, Lo tienes!</p>
+        <p>Tu tienda online de confianza en Colombia.</p>
+      </div>
+      <div>
+        <h3>Contacto</h3>
+        <p><a href="https://api.whatsapp.com/send?phone=573027350151" target="_blank" rel="noopener noreferrer">WhatsApp: +57 302 735 0151</a></p>
+        <p><a href="https://aoneclicks.com.co">aoneclicks.com.co</a></p>
+      </div>
+      <div>
+        <h3>Políticas</h3>
+        <ul class="footer__links">
+          <li><button type="button" class="link-btn" data-policy="envios">Políticas de Envíos</button></li>
+          <li><button type="button" class="link-btn"           data-policy="garantias">Devoluciones y Garantía</button></li>
+                    <li><button type="button" class="link-btn" data-policy="pagos">Pagos y Reversión</button></li>
+                    <li><button type="button" class="link-btn" data-policy="despacho">Despacho Condicionado</button></li>
+                    <li><button type="button" class="link-btn" data-policy="terminos">Términos y Condiciones</button></li>
+                    <li><button type="button" class="link-btn" data-policy="datos">Privacidad y Datos</button></li>
+                    <li><button type="button" class="link-btn" data-policy="cookies">Política de Cookies</button></li>
+                    <li><button type="button" class="link-btn" data-cookie-settings>Configurar cookies</button></li>
+                    <li><button type="button" class="link-btn" data-policy="legal">Aviso Legal</button></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Síguenos</h3>
+        <ul class="social social--footer" aria-label="Redes sociales">
+          <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" data-social="facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.600c0-.9.3-1.500 1.600-1.500h1.600V4.400c-.3 0-1.200-.1-2.300-.1-2.300 0-3.900 1.400-3.900 4v2.200H7.900v3h2.600V21h3z"/></svg></a></li>
+          <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" data-social="instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/><circle cx="17.500" cy="6.500" r="1.200"/></svg></a></li>
+          <li><a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" aria-label="TikTok" data-social="tiktok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.600 3h-3v12.200a2.600 2.600 0 1 1-2.600-2.600c.3 0 .5 0 .8.100V9.600a5.700 5.700 0 1 0 4.900 5.600V9a7 7 0 0 0 4 1.300V7.300A4.100 4.100 0 0 1 16.600 3z"/></svg></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__legal container">
+      <p>&copy; <span id="year"></span> AoneClicks Shopping. Todos los derechos reservados. Precios en COP e incluyen impuestos cuando aplique. Imágenes de referencia.</p>
+      <p>AoneClicks Shopping SAS &middot; NIT 902.116.187-1 &middot; Bogotá, Colombia &middot; aunclickadmin@gmail.com</p>
+    </div>
+  </footer>
+
+  <a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener noreferrer" aria-label="Chatear por WhatsApp">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#fff" d="M16 3C9 3 3.300 8.700 3.300 15.700c0 2.300.6 4.400 1.700 6.300L3 29l7.200-1.900c1.800 1 3.800 1.500 5.800 1.500 7 0 12.700-5.700 12.700-12.700S23 3 16 3zm0 23.100c-1.800 0-3.600-.5-5.100-1.400l-.4-.2-4.300 1.100 1.100-4.200-.3-.4a10.400 10.400 0 1 1 9 5.100zm5.700-7.800c-.3-.2-1.800-.9-2.100-1-.3-.1-.5-.2-.7.200-.2.300-.8 1-1 1.200-.2.200-.4.200-.7.100-.3-.2-1.300-.5-2.400-1.500-.9-.8-1.500-1.800-1.700-2.100-.2-.3 0-.5.100-.6l.5-.5c.2-.2.200-.3.300-.5.100-.2.100-.4 0-.5-.1-.2-.7-1.700-1-2.300-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.100-.8.400-.3.300-1.100 1.100-1.100 2.600s1.100 3 1.300 3.200c.2.200 2.200 3.400 5.300 4.700.7.300 1.300.5 1.700.6.700.2 1.400.2 1.900.1.600-.1 1.800-.7 2-1.400.3-.7.300-1.300.2-1.400-.1-.1-.3-.2-.6-.4z"/></svg>
+  </a>
+
+  <div class="overlay" id="overlay" hidden></div>
+
+  <aside class="drawer" id="cartDrawer" aria-label="Carrito de compras" aria-hidden="true">
+    <div class="drawer__head">
+      <h2>Tu carrito</h2>
+      <button type="button" class="icon-btn" data-close aria-label="Cerrar carrito">&times;</button>
+    </div>
+    <ul class="cart-list" id="cartList"></ul>
+    <p class="cart-empty" id="cartEmpty">Tu carrito está vacío.</p>
+    <div class="drawer__foot">
+      <div class="total-row"><span>Total</span><strong id="cartTotal">$0</strong></div>
+      <button type="button" class="btn btn--primary btn--block" id="checkoutOpen" disabled>Continuar con el pedido</button>
+    </div>
+  </aside>
+
+  <div class="modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle" hidden>
+    <div class="modal__box">
+      <button type="button" class="icon-btn modal__close" data-close aria-label="Cerrar">&times;</button>
+      <h2 id="checkoutTitle"><i class="ic ic-form" aria-hidden="true"></i> Finalizar pedido</h2>
+      <div class="checkout-perks">
+        <span><i class="ic ic-truck" aria-hidden="true"></i> Envío GRATIS a todo el país</span>
+                <span><i class="ic ic-cash" aria-hidden="true"></i> Pago contraentrega</span>
+      </div>
+      <p class="checkout-note"><i class="ic ic-cart" aria-hidden="true"></i> Tus productos están guardados en el <strong>carrito</strong> (arriba a la derecha). Puedes revisarlos o cambiar las unidades allí antes de enviar.</p>
+      <div class="summary">
+        <h3>Resumen de tu orden</h3>
+        <ul id="summaryList"></ul>
+        <div class="total-row"><span>Total</span><strong id="summaryTotal">$0</strong></div>
+      </div>
+
+      <form id="orderForm" novalidate>
+        <div class="field">
+          <label for="nombre"><i class="ic ic-user" aria-hidden="true"></i> Nombre y apellido *</label>
+          <input id="nombre" name="nombre" type="text" autocomplete="name" maxlength="80" placeholder="Ej: María Gómez" required>
+          <small class="error" data-error-for="nombre"></small>
+        </div>
+        <div class="field">
+          <label for="telefono"><i class="ic ic-phone" aria-hidden="true"></i> Número de celular *</label>
+          <input id="telefono" name="telefono" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="Ej: 3001234567" required>
+          <small class="error" data-error-for="telefono"></small>
+        </div>
+        <div class="field">
+          <label for="whatsapp"><i class="ic ic-chat" aria-hidden="true"></i> Otro número para WhatsApp (opcional)</label>
+          <input id="whatsapp" name="whatsapp" type="tel" inputmode="tel" maxlength="20" placeholder="Ej: 3109876543">
+          <small class="error" data-error-for="whatsapp"></small>
+        </div>
+        <div class="field">
+          <label for="ciudad"><i class="ic ic-city" aria-hidden="true"></i> Ciudad *</label>
+          <input id="ciudad" name="ciudad" type="text" autocomplete="address-level2" maxlength="60" placeholder="Ej: Bogotá" required>
+          <small class="error" data-error-for="ciudad"></small>
+        </div>
+        <div class="field">
+          <label for="departamento"><i class="ic ic-map" aria-hidden="true"></i> Departamento *</label>
+          <input id="departamento" name="departamento" type="text" autocomplete="address-level1" maxlength="60" placeholder="Ej: Cundinamarca" required>
+          <small class="error" data-error-for="departamento"></small>
+        </div>
+        <div class="field">
+          <label for="direccion"><i class="ic ic-home" aria-hidden="true"></i> Dirección exacta *</label>
+          <input id="direccion" name="direccion" type="text" autocomplete="street-address" maxlength="150" placeholder="Ej: Calle 45 # 12-30, Apto 301" required>
+          <small class="error" data-error-for="direccion"></small>
+        </div>
+        <div class="field">
+          <label for="barrio"><i class="ic ic-sign" aria-hidden="true"></i> Nombre del barrio *</label>
+          <input id="barrio" name="barrio" type="text" maxlength="80" placeholder="Ej: Chapinero" required>
+          <small class="error" data-error-for="barrio"></small>
+        </div>
+        <div class="field">
+          <label for="referencia"><i class="ic ic-pin" aria-hidden="true"></i> Punto de referencia *</label>
+          <input id="referencia" name="referencia" type="text" maxlength="200" placeholder="Ej: Frente al parque, casa de dos pisos azul" required>
+          <small class="error" data-error-for="referencia"></small>
+        </div>
+
+        <div class="field field--check">
+          <input id="terminos" name="terminos" type="checkbox" required>
+          <label for="terminos">Autorizo el tratamiento de datos y acepto los
+            <button type="button" class="link-btn" data-policy="terminos">Términos y Condiciones</button>.
+            Consulta también las
+            <button type="button" class="link-btn" data-policy="envios">Políticas de Envíos</button>,
+            <button type="button" class="link-btn" data-policy="garantias">Devoluciones y Garantía</button> y
+            <button type="button" class="link-btn" data-policy="datos">Tratamiento de Datos</button>.
+          </label>
+          <small class="error" data-error-for="terminos"></small>
+        </div>
+
+        <p class="checkout-note checkout-note--wa"><i class="ic ic-check" aria-hidden="true"></i> Al enviar, tu pedido con todos tus datos y las unidades seleccionadas llega directo a nuestro WhatsApp. Te contactaremos para confirmarlo.</p>
+        <button type="submit" class="btn btn--wa btn--block">Finalizar Pedido por WhatsApp</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="pdTitle" hidden>
+    <div class="modal__box modal__box--wide">
+      <button type="button" class="icon-btn modal__close" data-close aria-label="Cerrar">&times;</button>
+      <div class="pd" id="pdBody"></div>
+    </div>
+  </div>
+
+  <div class="modal modal--top" id="policyModal" role="dialog" aria-modal="true" aria-labelledby="policyTitle" hidden>
+    <div class="modal__box">
+      <button type="button" class="icon-btn modal__close" data-close aria-label="Cerrar">&times;</button>
+      <h2 id="policyTitle"></h2>
+      <div id="policyBody" class="policy"></div>
+    </div>
+  </div>
+
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Aviso de cookies" hidden>
+    <p><i class="ic ic-cookie" aria-hidden="true"></i>       Usamos cookies necesarias para que la tienda funcione y, con tu consentimiento, cookies analíticas y publicitarias. Conoce más en nuestra
+      <button type="button" class="link-btn" data-policy="cookies">Política de Cookies</button> y en la
+      <button type="button" class="link-btn" data-policy="datos">Política de Privacidad</button>.</p>
+    <div class="cookie-banner__actions">
+      <button type="button" class="cookie-btn cookie-btn--ghost" data-cookie="rejected">Rechazar</button>
+      <button type="button" class="cookie-btn" data-cookie="accepted">Aceptar</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="products.js"></script>
+  <script src="policies.js"></script>
+  <script src="details.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
