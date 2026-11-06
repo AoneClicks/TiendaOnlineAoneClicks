@@ -10,12 +10,13 @@ const PRODUCTS = [
   { id: 6, name: "Cepillo De Cabello Restaurador", category: "Belleza", stock: 48, badge: "Exclusivo", prices: { 1: 95900, 2: 143900, 3: 191900 }, image: "cepillo-restaurador.jpg" },
   { id: 7, name: "Mini Rastreador Gps", category: "Tecnología", stock: 170, badge: "Exclusivo", prices: { 1: 79900, 2: 109900, 3: 139900 }, image: "mini-rastreador-gps.jpg" },
   { id: 8, name: "Organizador Perchero Y Zapatero 4 In 1", category: "Hogar", stock: 192, badge: "Verificado", prices: { 1: 104900, 2: 162900, 3: 219900 }, image: "organizador-perchero-zapatero.jpg" },
-  { id: 9, name: "Cepillo Alisador De Cabello Fh909", category: "Belleza", stock: 225, badge: "Premium", prices: { 1: 71900, 2: 94900, 3: 116900 }, image: "cepillo-alisador-fh909.jpg" }
+  { id: 9, name: "Cepillo Alisador De Cabello Fh909", category: "Belleza", stock: 225, badge: "Premium", prices: { 1: 71900, 2: 94900, 3: 116900 }, image: "cepillo-alisador-fh909.jpg" },
+  { id: 10, name: "Vyxion Pure Soursop", category: "Salud", stock: 100, badge: "Premium", prices: { 1: 95900, 2: 134800, 3: 173700 }, image: "vyxion-pure-soursop.jpeg" }
 ];
 
 // Configuración general
 const STORE_CONFIG = {
-  whatsappNumber: "573027350151",
+  whatsappNumber: "573238849321",
   supportMessage: "¡Hola AoneClicks Shopping! Deseo más información y asesoría sobre un producto.",
   social: {
     facebook: "https://www.facebook.com/aonecliks.shopping",

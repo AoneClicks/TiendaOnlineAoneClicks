@@ -9,6 +9,18 @@
   const fmt = new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP", maximumFractionDigits: 0 });
   const money = (n) => fmt.format(n);
 
+  // ---------- Meta Pixel (solo con cookies aceptadas) ----------
+  const META_PIXEL_ID = "2907640152948509";
+  function loadPixel() {
+    if (window.fbq) return;
+    /* eslint-disable */
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    /* eslint-enable */
+    window.fbq("init", META_PIXEL_ID);
+    window.fbq("track", "PageView");
+  }
+  const track = (event, params) => { if (window.fbq) window.fbq("track", event, params); };
+
   // Precio total por volumen: paquetes de 3 + resto (1 o 2) con su tarifa
   const lineTotal = (p, qty) => Math.floor(qty / 3) * p.prices[3] + (qty % 3 ? p.prices[qty % 3] : 0);
 
@@ -160,6 +172,8 @@
   function addToCart(id, qty) {
     cart[id] = Math.min(MAX_QTY, (cart[id] || 0) + qty);
     saveCart(); renderCart();
+    const added = PRODUCTS.find((x) => x.id === id);
+    if (added) track("AddToCart", { content_ids: [String(id)], content_name: added.name, content_type: "product", contents: [{ id: String(id), quantity: qty }], num_items: qty, value: lineTotal(added, qty), currency: "COP" });
     const badge = $("#cartCount");
     badge.classList.remove("bump"); void badge.offsetWidth; badge.classList.add("bump");
     toast("Producto agregado al carrito");
@@ -219,11 +233,24 @@
     }
     $("#summaryTotal").textContent = money(cartTotal());
     checkoutModal.hidden = false; syncScrollLock();
+    track("InitiateCheckout", cartParams());
     $("#nombre").focus();
   }
   function closeCheckout() { checkoutModal.hidden = true; syncScrollLock(); }
 
+  function cartParams() {
+    return {
+      content_ids: cartLines().map((l) => String(l.product.id)),
+      content_type: "product",
+      contents: cartLines().map((l) => ({ id: String(l.product.id), quantity: l.qty })),
+      num_items: cartUnits(),
+      value: cartTotal(),
+      currency: "COP"
+    };
+  }
+
   function openProduct(p) {
+    track("ViewContent", { content_ids: [String(p.id)], content_name: p.name, content_type: "product", contents: [{ id: String(p.id), quantity: 1 }], value: p.prices[1], currency: "COP" });
     const d = (typeof PRODUCT_DETAILS !== "undefined" && PRODUCT_DETAILS[p.id]) || { description: "", specs: [], note: "" };
     const badge = BADGES[p.badge];
     let units = 1;
@@ -366,6 +393,7 @@
     if (!cartLines().length) { toast("Tu carrito está vacío."); return; }
     if (!validateForm(form)) return;
     const data = Object.fromEntries(new FormData(form).entries());
+    track("Lead", cartParams());
     const win = window.open(waUrl(buildMessage(data)), "_blank", "noopener,noreferrer");
     if (!win) window.location.href = waUrl(buildMessage(data));
     cart = {}; saveCart(); renderCart(); form.reset(); closeCheckout();
@@ -465,7 +493,7 @@
       const btn = $("#csSubmit");
       btn.disabled = true; btn.textContent = "Enviando…";
       setTimeout(() => {
-        window.open(`https://wa.me/573027350151?text=${encodeURIComponent(text)}`, "_blank", "noopener");
+        window.open(waUrl(text), "_blank", "noopener");
         status.textContent = "¡Listo! Continúa el envío en WhatsApp. Te responderemos pronto.";
         status.classList.add("ok");
         contactForm.reset();
@@ -475,17 +503,29 @@
 
     const cookieBanner = $("#cookieBanner");
     const COOKIE_KEY = "aoneclicks_cookies";
+    const lockables = ["header", "main", "footer"].map((s) => $(s));
+    // Mientras no se acepten las cookies, la tienda queda bloqueada (muro de cookies)
+    const setCookieWall = (on) => {
+      cookieBanner.hidden = !on;
+      document.body.classList.toggle("no-scroll", on);
+      lockables.forEach((n) => n && (on ? n.setAttribute("inert", "") : n.removeAttribute("inert")));
+      if (on) $("#cookieAccept").focus();
+    };
     let cookieChoice = null;
     try { cookieChoice = localStorage.getItem(COOKIE_KEY); } catch (e) { /* almacenamiento no disponible */ }
-    if (!cookieChoice) cookieBanner.hidden = false;
+    if (cookieChoice === "accepted") loadPixel();
+    else if (!cookieChoice) setCookieWall(true);
     cookieBanner.addEventListener("click", (e) => {
       const choice = e.target.closest("[data-cookie]")?.dataset.cookie;
       if (!choice) return;
       try { localStorage.setItem(COOKIE_KEY, choice); } catch (err) { /* ignorar */ }
-      cookieBanner.hidden = true;
+      setCookieWall(false);
+      if (choice === "accepted") loadPixel();
+      else if (cookieChoice === "accepted") location.reload(); // retira el Píxel ya cargado
+      cookieChoice = choice;
     });
     document.addEventListener("click", (e) => {
-      if (e.target.closest("[data-cookie-settings]")) cookieBanner.hidden = false;
+      if (e.target.closest("[data-cookie-settings]")) setCookieWall(true);
     });
 
     const form = $("#orderForm");

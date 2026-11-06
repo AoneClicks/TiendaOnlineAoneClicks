@@ -73,5 +73,13 @@ const PRODUCT_DETAILS = {
     howto: "Con el cabello seco, conecta el cepillo, espera que caliente y pásalo por secciones de la raíz a las puntas.",
     specs: [["Modelo", "FH909"], ["Tipo", "Cepillo alisador"], ["Uso", "Cabello seco"], ["Incluye", "1 cepillo por unidad"]],
     note: "Evita el contacto con agua mientras está conectado y no lo dejes encendido sin supervisión."
+  },
+  10: {
+    headline: "Mezcla líquida de ingredientes naturales en presentación con gotero",
+    description: "Vyxion Pure Soursop es un suplemento líquido que combina guanábana (soursop), sea moss, moringa, orégano, cúrcuma y aceite de semilla negra. Su presentación con gotero de 60 ml es práctica para incorporar a tu rutina diaria.",
+    benefits: ["Fórmula con seis ingredientes", "Presentación líquida con gotero", "Frasco de 60 ml (2 fl oz)", "Fácil de llevar y almacenar"],
+    howto: "Úsalo siguiendo las instrucciones y la porción recomendada que aparecen en el empaque.",
+    specs: [["Tipo", "Suplemento líquido"], ["Ingredientes", "Guanábana, sea moss, moringa, orégano, cúrcuma y aceite de semilla negra"], ["Contenido", "60 ml (2 fl oz)"], ["Incluye", "1 frasco con gotero por unidad"]],
+    note: "Suplemento dietario: no es un medicamento ni reemplaza un tratamiento médico. Consulta a un profesional de la salud antes de usarlo, especialmente si estás embarazada, lactando o tomas medicamentos."
   }
 };

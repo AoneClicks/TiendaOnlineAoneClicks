@@ -106,9 +106,9 @@ const POLICIES = {
       <li><strong>aoneclicks_favs_v1</strong> (preferencia): guarda tus productos favoritos.</li>
       <li><strong>Cookies de terceros</strong> (analíticas y publicitarias): solo si aceptas, las plataformas de analítica y publicidad (por ejemplo Google o Meta) pueden almacenar sus propias cookies, regidas por sus políticas de privacidad.</li></ul>
       <h3>Consentimiento</h3>
-      <p>Al aceptar en el aviso, nos autorizas a usar las cookies analíticas y publicitarias. Si las rechazas, solo usaremos las estrictamente necesarias para el funcionamiento de la tienda. Puedes cambiar tu decisión en cualquier momento desde el enlace <strong>«Configurar cookies»</strong> al pie de la página.</p>
+      <p>Para ver la tienda te pedimos elegir una opción en el aviso que aparece al entrar: <strong>Aceptar</strong> (cookies necesarias, analíticas y publicitarias) o <strong>Rechazar</strong> (solo las estrictamente necesarias). En ambos casos puedes comprar con normalidad. Puedes cambiar tu decisión en cualquier momento desde el enlace <strong>«Configurar cookies»</strong> al pie de la página.</p>
       <h3>¿Cómo puedo configurar o desactivar las cookies?</h3>
-      <p>Puedes aceptarlas o rechazarlas desde el aviso que aparece al entrar a la tienda o directamente en las opciones de configuración de tu navegador (Chrome, Edge, Safari, Firefox), donde también puedes borrar las ya almacenadas. Desactivar las necesarias puede afectar el funcionamiento del carrito.</p>
+      <p>Además del aviso, puedes borrar las cookies ya almacenadas desde las opciones de tu navegador (Chrome, Edge, Safari, Firefox); si lo haces, el aviso volverá a mostrarse. Desactivar las necesarias puede afectar el funcionamiento del carrito.</p>
       <h3>Tratamiento de datos</h3>
       <p>Si las cookies recogen datos personales, se tratan según nuestra Política de Privacidad y la Ley 1581 de 2012. Responsable: AoneClicks Shopping SAS, aunclickadmin@gmail.com.</p>${LEGAL_UPDATED}`
   },
@@ -135,6 +135,7 @@ const POLICIES = {
       <li><strong>NIT:</strong> 902.116.187-1</li>
       <li><strong>Dirección:</strong> Transversal 73 # 11B - 33, Apartamento 203, Bogotá, Cundinamarca, Colombia</li>
       <li><strong>Correo de atención:</strong> aunclickadmin@gmail.com</li>
+      <li><strong>WhatsApp de pedidos:</strong> 323 884 9321</li>
       <li><strong>WhatsApp de soporte:</strong> 302 735 0151</li>
       <li><strong>Tienda virtual:</strong> aoneclicks.com.co</li></ul>${LEGAL_UPDATED}`
   },
