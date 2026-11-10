@@ -4,13 +4,13 @@
 // El orden de esta lista es el orden del catálogo: los productos similares van seguidos.
 const PRODUCTS = [
   // Suplementos
-  { id: 1, name: "Glucora Berberine Gotero", category: "Belleza", stock: 1000, badge: "Premium", prices: { 1: 74900, 2: 100900, 3: 125900 }, image: "glucora-berberine-gotero.jpg" },
+  { id: 1, name: "Glucora Berberine Gotero", category: "Salud", stock: 1000, badge: "Premium", prices: { 1: 74900, 2: 100900, 3: 125900 }, image: "glucora-berberine-gotero.jpg" },
   { id: 10, name: "Vyxion Pure Soursop", category: "Salud", stock: 100, badge: "Premium", prices: { 1: 95900, 2: 134800, 3: 173700 }, image: "vyxion-pure-soursop.jpeg" },
   { id: 11, name: "Drenaje Linfatico Gotas", category: "Salud", stock: 150, badge: "Premium", prices: { 1: 90900, 2: 126900, 3: 152900 }, image: "drenaje-linfatico-gotas.jpg" },
   { id: 13, name: "Magnesium Citrate", category: "Salud", stock: 150, badge: "Premium", prices: { 1: 94000, 2: 132900, 3: 161900 }, image: "magnesium-citrate.jpg" },
   // Cuidado facial y del cabello
-  { id: 3, name: "Tensorix Ojeras Bolsas Y Lineas", category: "Salud", stock: 280, badge: "Verificado", prices: { 1: 80900, 2: 113900, 3: 144900 }, image: "tensorix-ojeras.jpg" },
-  { id: 2, name: "Pala Ultrasonica Facial Jh", category: "Hogar", stock: 100, badge: "Verificado", prices: { 1: 90900, 2: 131900, 3: 173900 }, image: "pala-ultrasonica-facial-jh.jpg" },
+  { id: 3, name: "Tensorix Ojeras Bolsas Y Lineas", category: "Belleza", stock: 280, badge: "Verificado", prices: { 1: 80900, 2: 113900, 3: 144900 }, image: "tensorix-ojeras.jpg" },
+  { id: 2, name: "Pala Ultrasonica Facial Jh", category: "Belleza", stock: 100, badge: "Verificado", prices: { 1: 90900, 2: 131900, 3: 173900 }, image: "pala-ultrasonica-facial-jh.jpg" },
   { id: 6, name: "Cepillo De Cabello Restaurador", category: "Belleza", stock: 48, badge: "Exclusivo", prices: { 1: 95900, 2: 143900, 3: 191900 }, image: "cepillo-restaurador.jpg" },
   { id: 9, name: "Cepillo Alisador De Cabello Fh909", category: "Belleza", stock: 225, badge: "Premium", prices: { 1: 71900, 2: 94900, 3: 116900 }, image: "cepillo-alisador-fh909.jpg" },
   // Iluminación solar
