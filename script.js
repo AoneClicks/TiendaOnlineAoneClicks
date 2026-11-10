@@ -22,7 +22,12 @@
   const track = (event, params) => { if (window.fbq) window.fbq("track", event, params); };
 
   // Precio total por volumen: paquetes de 3 + resto (1 o 2) con su tarifa
-  const lineTotal = (p, qty) => Math.floor(qty / 3) * p.prices[3] + (qty % 3 ? p.prices[qty % 3] : 0);
+  // Si un producto no tiene precio para 3 unidades, se usa su paquete más grande disponible
+  const packSizes = (p) => [1, 2, 3].filter((n) => p.prices[n]);
+  const lineTotal = (p, qty) => {
+    const max = Math.max(...packSizes(p));
+    return Math.floor(qty / max) * p.prices[max] + (qty % max ? p.prices[qty % max] : 0);
+  };
 
   const FALLBACK_IMG = "data:image/svg+xml;utf8," + encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300"><rect width="100%" height="100%" fill="#ece9f7"/>' +
@@ -103,7 +108,7 @@
       const priceEl = el("span", { class: "card__price" });
       const unitEl = el("span", { class: "card__unit" });
       const saveEl = el("span", { class: "card__save" });
-      const packs = [1, 2, 3].map((n) => el("button", {
+      const packs = packSizes(p).map((n) => el("button", {
         type: "button", class: "pack", "aria-pressed": "false", "data-units": String(n),
         onclick: () => setUnits(n)
       }, `${n} ${n === 1 ? "unidad" : "unidades"}`));
@@ -257,7 +262,7 @@
     const priceEl = el("span", { class: "card__price" });
     const unitEl = el("span", { class: "card__unit" });
     const saveEl = el("span", { class: "card__save" });
-    const packs = [1, 2, 3].map((n) => el("button", {
+    const packs = packSizes(p).map((n) => el("button", {
       type: "button", class: "pack", "data-units": String(n), onclick: () => setUnits(n)
     }, `${n} ${n === 1 ? "unidad" : "unidades"}`));
     function setUnits(n) {

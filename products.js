@@ -11,7 +11,10 @@ const PRODUCTS = [
   { id: 7, name: "Mini Rastreador Gps", category: "Tecnología", stock: 170, badge: "Exclusivo", prices: { 1: 79900, 2: 109900, 3: 139900 }, image: "mini-rastreador-gps.jpg" },
   { id: 8, name: "Organizador Perchero Y Zapatero 4 In 1", category: "Hogar", stock: 192, badge: "Verificado", prices: { 1: 104900, 2: 162900, 3: 219900 }, image: "organizador-perchero-zapatero.jpg" },
   { id: 9, name: "Cepillo Alisador De Cabello Fh909", category: "Belleza", stock: 225, badge: "Premium", prices: { 1: 71900, 2: 94900, 3: 116900 }, image: "cepillo-alisador-fh909.jpg" },
-  { id: 10, name: "Vyxion Pure Soursop", category: "Salud", stock: 100, badge: "Premium", prices: { 1: 95900, 2: 134800, 3: 173700 }, image: "vyxion-pure-soursop.jpeg" }
+  { id: 10, name: "Vyxion Pure Soursop", category: "Salud", stock: 100, badge: "Premium", prices: { 1: 95900, 2: 134800, 3: 173700 }, image: "vyxion-pure-soursop.jpeg" },
+  { id: 11, name: "Drenaje Linfatico Gotas", category: "Salud", stock: 150, badge: "Premium", prices: { 1: 90900, 2: 126900, 3: 152900 }, image: "drenaje-linfatico-gotas.jpg" },
+  { id: 12, name: "Luces Led X200 Bombillos (Solar)", category: "Hogar", stock: 120, badge: "Verificado", prices: { 1: 99900, 2: 139900 }, image: "luces-led-solar-x200.jpg" },
+  { id: 13, name: "Magnesium Citrate", category: "Salud", stock: 150, badge: "Premium", prices: { 1: 94000, 2: 132900, 3: 161900 }, image: "magnesium-citrate.jpg" }
 ];
 
 // Configuración general

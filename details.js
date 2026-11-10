@@ -81,5 +81,29 @@ const PRODUCT_DETAILS = {
     howto: "Úsalo siguiendo las instrucciones y la porción recomendada que aparecen en el empaque.",
     specs: [["Tipo", "Suplemento líquido"], ["Ingredientes", "Guanábana, sea moss, moringa, orégano, cúrcuma y aceite de semilla negra"], ["Contenido", "60 ml (2 fl oz)"], ["Incluye", "1 frasco con gotero por unidad"]],
     note: "Suplemento dietario: no es un medicamento ni reemplaza un tratamiento médico. Consulta a un profesional de la salud antes de usarlo, especialmente si estás embarazada, lactando o tomas medicamentos."
+  },
+  11: {
+    headline: "Siente tu cuerpo más ligero, libre de pesadez",
+    description: "Drenaje Linfático de Linfovit es un complemento alimenticio en gotas orales a base de extractos líquidos de plantas, pensado como apoyo linfático tradicional. Su presentación con gotero de 60 ml es práctica para incluirlo en tu rutina diaria y acompañar hábitos que te ayuden a sentirte con menos pesadez y retención.",
+    benefits: ["Fomenta el drenaje linfático", "Apoya una buena circulación", "Ayuda a reducir la sensación de hinchazón", "Contribuye al equilibrio de los líquidos del cuerpo"],
+    howto: "Toma las gotas indicadas en el empaque, directamente o diluidas en agua, siguiendo la porción recomendada.",
+    specs: [["Marca", "Linfovit"], ["Presentación", "Frasco con gotero"], ["Contenido", "60 ml (2 fl oz)"], ["Tipo", "Extractos de plantas líquidas, gotas orales"], ["Incluye", "1 frasco por unidad"]],
+    note: "Suplemento alimenticio: no es un medicamento ni reemplaza un tratamiento médico. Consulta a un profesional de la salud antes de usarlo, especialmente si estás embarazada, lactando o tomas medicamentos."
+  },
+  12: {
+    headline: "Ilumina tu hogar sin gastar en electricidad",
+    description: "Guirnalda de 200 bombillos LED multicolor que funciona con energía solar: su panel se carga con el sol durante el día y las luces se encienden solas al anochecer. Es resistente a la lluvia, ideal para decorar patios, jardines, balcones, terrazas y fachadas, sin cables a la toma ni costos en tu factura de luz.",
+    benefits: ["Carga solar automática: 100% ecológica", "Encendido inteligente al anochecer", "Resistente a la lluvia, ideal para exteriores", "200 bombillos LED multicolor para una decoración llamativa"],
+    howto: "Ubica el panel en un lugar donde reciba sol directo, distribuye la guirnalda donde quieras decorar y déjala cargar durante el día.",
+    specs: [["Bombillos", "200 LED"], ["Color", "Multicolor"], ["Energía", "Solar, con encendido automático"], ["Uso", "Exteriores e interiores, resistente a la lluvia"], ["Incluye", "Guirnalda y panel solar"]],
+    note: "La duración de la luz depende de las horas de sol recibidas durante el día."
+  },
+  13: {
+    headline: "El mineral esencial que tu cuerpo necesita",
+    description: "Magnesium Citrate es un suplemento de citrato de magnesio de 500 mg en cápsulas, una de las formas de magnesio más usadas en rutinas de bienestar. El magnesio participa en el funcionamiento normal de músculos y nervios, por eso es un buen aliado si buscas sentir menos fatiga y tensión muscular en tu día a día.",
+    benefits: ["Apoya el funcionamiento normal de músculos y nervios", "Ayuda a disminuir la sensación de cansancio y fatiga", "Citrato de magnesio de 500 mg por porción", "Frasco de 100 cápsulas, fácil de tomar y de llevar"],
+    howto: "Toma las cápsulas indicadas en el empaque con un vaso de agua, preferiblemente junto con las comidas.",
+    specs: [["Tipo", "Citrato de magnesio"], ["Concentración", "500 mg"], ["Presentación", "Cápsulas"], ["Contenido", "100 cápsulas"], ["Incluye", "1 frasco por unidad"]],
+    note: "Suplemento dietario: no es un medicamento ni reemplaza un tratamiento médico. Consulta a un profesional de la salud antes de usarlo, especialmente si estás embarazada, lactando, tienes problemas renales o tomas medicamentos."
   }
 };
