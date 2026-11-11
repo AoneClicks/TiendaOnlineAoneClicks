@@ -459,8 +459,47 @@
     toast("Pedido enviado a WhatsApp");
   }
 
+  // ---------- Datos para Google (lista de productos) ----------
+  function addProductSchema() {
+    const base = "https://aoneclicks.com.co/";
+    const data = {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Productos AoneClicks Shopping",
+      itemListElement: PRODUCTS.map((p, i) => {
+        const d = (typeof PRODUCT_DETAILS !== "undefined" && PRODUCT_DETAILS[p.id]) || {};
+        return {
+          "@type": "ListItem",
+          position: i + 1,
+          item: {
+            "@type": "Product",
+            name: p.name,
+            image: base + p.image,
+            description: d.description || p.name,
+            category: p.category,
+            brand: { "@type": "Brand", name: "AoneClicks Shopping" },
+            offers: {
+              "@type": "Offer",
+              url: base + "#productos",
+              priceCurrency: "COP",
+              price: p.prices[1],
+              availability: p.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+              itemCondition: "https://schema.org/NewCondition",
+              seller: { "@id": base + "#store" }
+            }
+          }
+        };
+      })
+    };
+    const s = document.createElement("script");
+    s.type = "application/ld+json";
+    s.textContent = JSON.stringify(data);
+    document.head.append(s);
+  }
+
   // ---------- Inicialización ----------
   function init() {
+    addProductSchema();
     $("#year").textContent = new Date().getFullYear();
 
     document.querySelectorAll("[data-social]").forEach((a) => {
