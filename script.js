@@ -89,6 +89,57 @@
     img.addEventListener("error", () => { img.src = FALLBACK_IMG; }, { once: true });
     return img;
   }
+  // ---------- Galería deslizable: foto + "¿Para qué sirve?" ----------
+  const INFO_ICONS = { "Sirve para": "🎯", "Cómo se toma": "💧", "Cómo se usa": "👉", "Cuándo": "⏰", "Dónde": "📍", "Ideal para": "👥" };
+  function infoSlide(p, full) {
+    const info = typeof PRODUCT_INFO !== "undefined" && PRODUCT_INFO[p.id];
+    if (!info) return null;
+    const rows = info.filas.map(([k, short, long]) => el("tr", {}, [
+      el("th", { scope: "row" }, [el("span", { class: "info__ic", "aria-hidden": "true", text: INFO_ICONS[k] || "•" }), el("span", { text: k })]),
+      el("td", { text: full ? long : short })
+    ]));
+    const table = el("table", { class: "info__table" }, [el("tbody", {}, rows)]);
+    // Versión completa: tabla dentro de la ficha del producto
+    if (full) return el("div", { class: "info info--full" }, [
+      el("p", { class: "info__rutina-line" }, [el("span", { text: "Rutina ideal: " }), el("strong", { text: info.rutina })]),
+      table
+    ]);
+    // Versión corta: segunda imagen deslizable
+    return el("div", { class: "info" }, [
+      el("div", { class: "info__top" }, [
+        el("span", { class: "info__kicker", text: "¿Para qué sirve?" }),
+        el("strong", { class: "info__rutina", text: info.rutina })
+      ]),
+      table,
+      el("span", { class: "info__more", text: "Toca para ver más detalles" })
+    ]);
+  }
+  function gallery(p) {
+    const slides = [el("div", { class: "gal__slide" }, [productImg(p)])];
+    const info = infoSlide(p, false);
+    if (info) slides.push(el("div", { class: "gal__slide gal__slide--info", role: "group", "aria-label": "Para qué sirve y cómo se usa" }, [info]));
+    const track = el("div", { class: "gal__track" }, slides);
+    const wrap = el("div", { class: "gal" }, [track]);
+    if (slides.length < 2) return wrap;
+    const stop = (fn) => (e) => { e.stopPropagation(); fn(); };
+    const go = (i) => track.scrollTo({ left: i * track.clientWidth, behavior: "smooth" });
+    const dots = slides.map((_, i) => el("button", { type: "button", class: "gal__dot", "aria-label": `Ver imagen ${i + 1} de ${slides.length}`, onclick: stop(() => go(i)) }));
+    const prev = el("button", { type: "button", class: "gal__arrow gal__arrow--prev", "aria-label": "Imagen anterior", onclick: stop(() => go(0)) }, "‹");
+    const next = el("button", { type: "button", class: "gal__arrow gal__arrow--next", "aria-label": "Ver para qué sirve", onclick: stop(() => go(1)) }, "›");
+    const hint = el("button", { type: "button", class: "gal__hint", onclick: stop(() => go(1)) }, "¿Para qué sirve? ›");
+    wrap.append(prev, next, hint, el("div", { class: "gal__dots" }, dots));
+    const sync = () => {
+      const i = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
+      dots.forEach((d, j) => d.classList.toggle("on", i === j));
+      const onInfo = i === 1;
+      wrap.classList.toggle("on-info", onInfo);
+      wrap.parentElement && wrap.parentElement.classList.toggle("on-info", onInfo);
+    };
+    track.addEventListener("scroll", sync, { passive: true });
+    sync();
+    return wrap;
+  }
+
   let toastTimer;
   function toast(msg) {
     const t = $("#toast");
@@ -146,7 +197,7 @@
       const addBtn = el("button", { type: "button", class: "card__add", onclick: () => addToCart(p.id, units) });
       addBtn.innerHTML = CART_ICON + "<span>Agregar</span>";
 
-      const imgBox = el("div", { class: "card__img" }, [productImg(p)]);
+      const imgBox = el("div", { class: "card__img" }, [gallery(p)]);
       if (badge) {
         const b = el("span", { class: "badge badge--" + badge.cls });
         b.innerHTML = badge.icon + "<span></span>";
@@ -278,7 +329,7 @@
     const addBtn = el("button", { type: "button", class: "card__add", onclick: () => { addToCart(p.id, units); closeProduct(); } });
     addBtn.innerHTML = CART_ICON + "<span>Agregar al carrito</span>";
 
-    const imgBox = el("div", { class: "pd__img" }, [productImg(p)]);
+    const imgBox = el("div", { class: "pd__img" }, [gallery(p)]);
     if (badge) {
       const b = el("span", { class: "badge badge--" + badge.cls });
       b.innerHTML = badge.icon + "<span></span>";
@@ -289,11 +340,14 @@
       el("div", {}, [el("dt", { text: k }), el("dd", { text: v })])));
     const benefits = (d.benefits || []).length
       ? el("ul", { class: "pd__benefits" }, d.benefits.map((b) => el("li", { text: b }))) : null;
+    const guide = infoSlide(p, true);
     const info = el("div", { class: "pd__info" }, [
       el("span", { class: "pd__cat", text: p.category }),
       el("h2", { class: "pd__title", id: "pdTitle", text: p.name }),
       d.headline ? el("p", { class: "pd__headline", text: d.headline }) : "",
       el("p", { class: "pd__desc", text: d.description || "" }),
+      guide ? el("h3", { class: "pd__h", text: "¿Para qué sirve y cómo se usa?" }) : "",
+      guide || "",
       benefits ? el("h3", { class: "pd__h", text: "¿Por qué te va a encantar?" }) : "",
       benefits || "",
       d.howto ? el("h3", { class: "pd__h", text: "¿Cómo se usa?" }) : "",

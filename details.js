@@ -107,3 +107,88 @@ const PRODUCT_DETAILS = {
     note: "Suplemento dietario: no es un medicamento ni reemplaza un tratamiento médico. Consulta a un profesional de la salud antes de usarlo, especialmente si estás embarazada, lactando, tienes problemas renales o tomas medicamentos."
   }
 };
+
+// Segunda imagen deslizable de cada producto: "¿Para qué sirve y cómo se usa?"
+// rutina: frase corta que responde "¿para qué tipo de rutina es?"
+// filas: [etiqueta, texto corto (tarjeta del catálogo), texto completo (ficha del producto)]
+// IMPORTANTE: confirma las dosis de los suplementos con la etiqueta o el proveedor.
+const PRODUCT_INFO = {
+  1: { rutina: "Control de azúcar y metabolismo", filas: [
+    ["Sirve para", "Cuidar el azúcar y el metabolismo", "Apoyar niveles saludables de azúcar en la sangre y el metabolismo de las comidas."],
+    ["Cómo se toma", "1 gotero en agua, 2 veces al día", "1 gotero (aprox. 1 ml) directo o en medio vaso de agua, 2 veces al día."],
+    ["Cuándo", "Antes del desayuno y la cena", "15 a 30 minutos antes del desayuno y de la cena."],
+    ["Ideal para", "Adultos que cuidan su azúcar o peso", "Adultos que cuidan su azúcar o su peso. Si tomas medicamentos para la diabetes, consulta antes a tu médico."]
+  ]},
+  10: { rutina: "Defensas y bienestar diario", filas: [
+    ["Sirve para", "Reforzar defensas y antioxidantes", "Aportar antioxidantes de guanábana, moringa y cúrcuma para apoyar tus defensas."],
+    ["Cómo se toma", "1 gotero en agua o jugo", "1 gotero (aprox. 1 ml) en agua o jugo, 1 o 2 veces al día."],
+    ["Cuándo", "En la mañana", "En la mañana, con o sin comida. Lo ideal es tomarlo todos los días."],
+    ["Ideal para", "Adultos que se enferman seguido", "Adultos que quieren reforzar sus defensas. Adultos mayores: consulta antes a tu médico."]
+  ]},
+  11: { rutina: "Desinflamar y sentirte ligero", filas: [
+    ["Sirve para", "Menos hinchazón y retención", "Ayudar a reducir la hinchazón, la pesadez y la retención de líquidos."],
+    ["Cómo se toma", "1 gotero en medio vaso de agua", "1 gotero (aprox. 1 ml) en medio vaso de agua, 2 veces al día."],
+    ["Cuándo", "Mañana y tarde", "En la mañana y en la tarde. Toma bastante agua durante el día."],
+    ["Ideal para", "Piernas cansadas o hinchadas", "Personas con piernas cansadas o hinchadas, o que pasan muchas horas de pie o sentadas."]
+  ]},
+  13: { rutina: "Descanso, relajación y músculos", filas: [
+    ["Sirve para", "Menos cansancio, calambres y tensión", "Apoyar músculos y nervios: menos cansancio, calambres y tensión. Ayuda a relajarte."],
+    ["Cómo se toma", "1 cápsula con un vaso de agua", "1 cápsula con un vaso de agua, 1 o 2 veces al día."],
+    ["Cuándo", "Con la comida o en la noche", "Con las comidas. Si buscas dormir mejor, tómala en la noche."],
+    ["Ideal para", "Adultos y adultos mayores", "Adultos con estrés, mucha actividad o calambres. Muy usado por adultos mayores (consulta si tienes problemas renales)."]
+  ]},
+  3: { rutina: "Cuidado de ojeras, mañana y noche", filas: [
+    ["Sirve para", "Ojeras, bolsas y líneas finas", "Hidratar el contorno de ojos y mejorar la apariencia de ojeras, bolsas y líneas finas."],
+    ["Cómo se usa", "Toquecitos suaves bajo el ojo", "Aplica una pequeña cantidad y extiende con toquecitos suaves, sin frotar."],
+    ["Cuándo", "Mañana y noche", "Mañana y noche, con la piel limpia y seca."],
+    ["Ideal para", "Si duermes poco o te ves cansado", "Quien duerme poco, trabaja frente a pantallas o nota la mirada cansada."]
+  ]},
+  2: { rutina: "Limpieza facial profunda en casa", filas: [
+    ["Sirve para", "Limpiar poros y puntos negros", "Limpiar los poros a fondo, retirar impurezas y ayudar a que tus cremas penetren mejor."],
+    ["Cómo se usa", "Piel húmeda, deslizar suave", "Con la piel húmeda, desliza la pala inclinada suavemente sobre el rostro durante 3 a 5 minutos."],
+    ["Cuándo", "2 a 3 veces por semana", "2 o 3 veces por semana, preferiblemente en la noche."],
+    ["Ideal para", "Piel grasa o con poros abiertos", "Piel grasa, mixta, con puntos negros o poros abiertos."]
+  ]},
+  6: { rutina: "Peinado diario sin tirones", filas: [
+    ["Sirve para", "Desenredar y dar brillo", "Desenredar sin jalones y dejar el cabello más suave y con brillo."],
+    ["Cómo se usa", "De las puntas hacia la raíz", "Cepilla de las puntas hacia la raíz con movimientos suaves, en seco o en húmedo."],
+    ["Cuándo", "Todos los días", "Todos los días, después del baño o antes de salir."],
+    ["Ideal para", "Cabello largo, rizado o enredado", "Toda la familia, en especial cabello largo, rizado o que se enreda fácil."]
+  ]},
+  9: { rutina: "Liso rápido antes de salir", filas: [
+    ["Sirve para", "Alisar y peinar a la vez", "Alisar y peinar en un solo paso, sin necesidad de plancha."],
+    ["Cómo se usa", "Cabello seco, por mechones", "Con el cabello seco, pasa el cepillo caliente por mechones de la raíz a las puntas."],
+    ["Cuándo", "En minutos, antes de salir", "Cuando quieras un liso rápido: listo en pocos minutos."],
+    ["Ideal para", "Quien no tiene tiempo para plancha", "Quien quiere el cabello liso y arreglado sin complicarse."]
+  ]},
+  4: { rutina: "Iluminación exterior sin pagar luz", filas: [
+    ["Sirve para", "Iluminar patios, fachadas y lotes", "Iluminar patios, fachadas, parqueaderos y lotes sin gastar en electricidad."],
+    ["Cómo se usa", "Panel al sol, reflector donde quieras", "Pon el panel donde reciba sol directo y el reflector donde necesites luz. Sin cables a la red."],
+    ["Cuándo", "Carga de día, alumbra de noche", "Se carga con el sol durante el día y alumbra en la noche."],
+    ["Ideal para", "Casas, fincas y negocios", "Casas, fincas, negocios y parqueaderos que quieren más seguridad."]
+  ]},
+  12: { rutina: "Decoración solar para tus noches", filas: [
+    ["Sirve para", "Decorar patios, balcones y jardines", "Decorar patios, balcones, jardines y fachadas con 200 luces de colores."],
+    ["Cómo se usa", "Panel al sol y listo", "Pon el panel al sol y distribuye la guirnalda. Se encienden solas al anochecer."],
+    ["Cuándo", "Todas las noches y en fiestas", "Todas las noches, en fiestas, reuniones y Navidad."],
+    ["Ideal para", "Hogares, terrazas y eventos", "Hogares, terrazas, negocios y eventos al aire libre (resiste la lluvia)."]
+  ]},
+  5: { rutina: "Limpieza profunda sin químicos", filas: [
+    ["Sirve para", "Limpiar y desinfectar con solo agua", "Quitar grasa y mugre pegada, y desinfectar usando solo agua."],
+    ["Cómo se usa", "Agua, esperar vapor y pasar", "Llena el depósito con agua, espera a que salga vapor y pasa el accesorio por la superficie."],
+    ["Dónde", "Cocina, baños, pisos y muebles", "Cocina, baños, pisos, vidrios, colchones y muebles tapizados."],
+    ["Ideal para", "Hogares con niños o mascotas", "Hogares con niños o mascotas que prefieren limpiar sin químicos fuertes."]
+  ]},
+  8: { rutina: "Orden en espacios pequeños", filas: [
+    ["Sirve para", "Ropa, zapatos y bolsos en un mueble", "Organizar ropa, zapatos, bolsos y accesorios en un solo mueble."],
+    ["Cómo se usa", "Se arma fácil en casa", "Se arma en casa siguiendo las instrucciones incluidas."],
+    ["Dónde", "Habitación o entrada", "Habitaciones, entradas, pasillos y apartaestudios."],
+    ["Ideal para", "Espacios pequeños", "Quien tiene poco espacio o no tiene clóset."]
+  ]},
+  7: { rutina: "Seguridad y tranquilidad", filas: [
+    ["Sirve para", "Ubicar carro, moto, mascota u objetos", "Saber dónde están tu vehículo, moto, mascota, maleta u objetos de valor."],
+    ["Cómo se usa", "Cárgalo y míralo en tu celular", "Cárgalo, actívalo y consulta la ubicación desde tu celular. Te ayudamos por WhatsApp."],
+    ["Cuándo", "Viajes, parqueo y día a día", "En viajes, al dejar el carro parqueado o para cuidar a tu mascota."],
+    ["Ideal para", "Conductores, familias y mascotas", "Conductores, familias y dueños de mascotas."]
+  ]}
+};
