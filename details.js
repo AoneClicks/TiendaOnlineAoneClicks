@@ -43,20 +43,20 @@ const PRODUCT_DETAILS = {
     note: "No usar sobre superficies sensibles al calor. Sigue las instrucciones del manual."
   },
   6: {
-    headline: "Cabello más suave, cuidado y fácil de peinar",
-    description: "El cepillo restaurador está diseñado para desenredar sin tirones y distribuir mejor los aceites naturales del cabello, ayudando a que luzca más suave, brillante y saludable. Perfecto para tu rutina diaria, en cabello seco o húmedo.",
-    benefits: ["Desenreda con suavidad, sin jalones", "Ayuda a dar brillo y suavidad al cabello", "Cómodo de sostener y fácil de usar a diario", "Sirve para cabello seco o húmedo"],
-    howto: "Cepilla de las puntas hacia la raíz con movimientos suaves, y luego peina de forma normal.",
-    specs: [["Tipo", "Cepillo restaurador"], ["Uso", "Cabello seco o húmedo"], ["Categoría", "Belleza"], ["Incluye", "1 cepillo por unidad"]],
-    note: ""
+    headline: "Tu rutina capilar con luz LED, en casa",
+    description: "Este cepillo capilar combina cepillado, luz LED roja y azul en el cabezal y un rociador de vapor frío para aplicar tus tónicos o aceites mientras peinas. Es inalámbrico y recargable por USB tipo C, así que lo usas donde quieras sin cables ni pilas. Tiene tres botones para encender, cambiar la luz y activar el rociador.",
+    benefits: ["Luz LED roja y azul integrada en el cabezal", "Rociador de vapor para aplicar tónicos o aceites", "Inalámbrico y recargable por USB tipo C: no usa pilas", "Incluye guía digital de uso y beneficios"],
+    howto: "Carga el cepillo, llena el depósito con tu tónico si quieres usar el rociador, enciéndelo, elige la luz y cepilla suavemente por secciones.",
+    specs: [["Tipo", "Cepillo capilar LED con rociador"], ["Luz", "LED roja y azul"], ["Alimentación", "Batería recargable, no usa pilas"], ["Carga", "Puerto USB tipo C (cargador de celular)"], ["Controles", "3 botones: encendido, luz y rociador"], ["Uso", "Cabello seco o húmedo"], ["Incluye", "Cepillo, cable de carga y guía digital"], ["Garantía", "30 días"]],
+    note: "Herramienta de cuidado personal: no promete crecimiento del cabello ni reducción de la caída. Si tienes dudas sobre tu salud capilar, consulta a un profesional."
   },
   7: {
     headline: "Ten siempre a la vista lo que más te importa",
-    description: "El Mini Rastreador GPS es un localizador pequeño y discreto que te permite saber dónde están tus cosas más valiosas. Colócalo en tu vehículo, moto, maleta, llaves o incluso en el collar de tu mascota y consulta su ubicación desde tu celular.",
-    benefits: ["Tamaño mini: fácil de ocultar y de llevar", "Localiza vehículos, mascotas, equipaje y objetos", "Consulta la ubicación desde tu celular", "Tranquilidad para ti y tu familia"],
-    howto: "Carga el equipo, actívalo y colócalo en el objeto que quieres rastrear. Te ayudamos con la configuración por WhatsApp.",
-    specs: [["Tipo", "Rastreador GPS compacto"], ["Uso", "Vehículos, mascotas, equipaje y objetos"], ["Tamaño", "Mini"], ["Incluye", "Equipo y cable de carga"]],
-    note: "Algunos modelos requieren SIM o aplicación para funcionar."
+    description: "El Mini Rastreador GPS GF-07 es un localizador del tamaño de un llavero que te permite saber dónde están tus cosas más valiosas. Trae un imán fuerte incorporado para pegarlo en la carrocería o el chasis, y es fácil de esconder en tu carro, moto, maleta o pertenencias. Funciona con una tarjeta SIM y consultas la ubicación desde tu celular.",
+    benefits: ["Tamaño mini: cabe en la palma de la mano y es fácil de ocultar", "Imán fuerte incorporado: se pega en superficies metálicas sin tornillos", "Localiza vehículos, motos, equipaje y objetos", "Te ayudamos a configurarlo por WhatsApp"],
+    howto: "Inserta una tarjeta SIM, carga el equipo, actívalo y colócalo en el objeto que quieres rastrear. Te ayudamos con la configuración por WhatsApp.",
+    specs: [["Modelo", "GF-07"], ["Tipo", "Rastreador GPS compacto con imán"], ["Funciona con", "Tarjeta SIM de un operador compatible (no incluida)"], ["Fijación", "Imán incorporado"], ["Alimentación", "Batería recargable"], ["Uso", "Vehículos, motos, equipaje y objetos"], ["Incluye", "Equipo y cable de carga"], ["Garantía", "Por defectos de fábrica"]],
+    note: "Requiere una tarjeta SIM de un operador compatible. Las funciones disponibles dependen de la versión del dispositivo."
   },
   8: {
     headline: "Orden y espacio en un solo mueble",
@@ -68,10 +68,10 @@ const PRODUCT_DETAILS = {
   },
   9: {
     headline: "Cabello liso y arreglado en minutos",
-    description: "El cepillo alisador FH909 combina cepillo y calor en un solo accesorio: mientras peinas, el calor ayuda a alisar y dar forma al cabello. Es una forma rápida y práctica de lucir un look liso y arreglado sin complicaciones.",
-    benefits: ["Alisa y peina al mismo tiempo", "Calentamiento rápido para ahorrar tiempo", "Fácil de usar, ideal para principiantes", "Look liso y pulido desde casa"],
-    howto: "Con el cabello seco, conecta el cepillo, espera que caliente y pásalo por secciones de la raíz a las puntas.",
-    specs: [["Modelo", "FH909"], ["Tipo", "Cepillo alisador"], ["Uso", "Cabello seco"], ["Incluye", "1 cepillo por unidad"]],
+    description: "El cepillo alisador FH909 es peinilla y plancha en un solo equipo: mientras peinas, sus dientes calientes separan, desenredan y alisan el cabello en una sola pasada. Calienta en 20 segundos, tiene 5 niveles de temperatura para tu tipo de cabello y una cubierta antiquemaduras para que no te quemes el cuero cabelludo. Se apaga solo a los 30 minutos.",
+    benefits: ["Calienta en solo 20 segundos", "5 niveles de temperatura: elige el ideal para tu cabello", "Cubierta antiquemaduras y calentamiento PTC interno", "Apagado automático a los 30 minutos: sales tranquila"],
+    howto: "Con el cabello seco, conecta el cepillo, elige el nivel de temperatura y pásalo por mechones de la raíz a las puntas. Usa protector térmico.",
+    specs: [["Modelo", "FH909"], ["Tipo", "Cepillo alisador (peinilla + plancha)"], ["Alimentación", "Con cable, se conecta a la corriente"], ["Calentamiento", "Listo en 20 segundos (PTC)"], ["Temperatura", "5 niveles ajustables"], ["Seguridad", "Cubierta antiquemaduras y apagado automático a los 30 min"], ["Uso", "Cabello seco"], ["Incluye", "1 cepillo con su cable"], ["Garantía", "15 días"]],
     note: "Evita el contacto con agua mientras está conectado y no lo dejes encendido sin supervisión."
   },
   10: {
@@ -92,10 +92,10 @@ const PRODUCT_DETAILS = {
   },
   12: {
     headline: "Ilumina tu hogar sin gastar en electricidad",
-    description: "Guirnalda de 200 bombillos LED multicolor que funciona con energía solar: su panel se carga con el sol durante el día y las luces se encienden solas al anochecer. Es resistente a la lluvia, ideal para decorar patios, jardines, balcones, terrazas y fachadas, sin cables a la toma ni costos en tu factura de luz.",
-    benefits: ["Carga solar automática: 100% ecológica", "Encendido inteligente al anochecer", "Resistente a la lluvia, ideal para exteriores", "200 bombillos LED multicolor para una decoración llamativa"],
+    description: "Cadena de 200 bombillos LED de luz cálida que funciona con energía solar: su panel se carga con el sol durante el día y las luces se encienden solas al anochecer. Es resistente a la lluvia, ideal para decorar patios, jardines, balcones, terrazas y fachadas, sin cables a la toma ni costos en tu factura de luz.",
+    benefits: ["Carga solar automática: 100% ecológica", "Encendido inteligente al anochecer", "Resistente a la lluvia, ideal para exteriores", "200 bombillos LED de luz cálida para una decoración llamativa"],
     howto: "Ubica el panel en un lugar donde reciba sol directo, distribuye la guirnalda donde quieras decorar y déjala cargar durante el día.",
-    specs: [["Bombillos", "200 LED"], ["Color", "Multicolor"], ["Energía", "Solar, con encendido automático"], ["Uso", "Exteriores e interiores, resistente a la lluvia"], ["Incluye", "Guirnalda y panel solar"]],
+    specs: [["Bombillos", "200 LED"], ["Color", "Luz cálida (amarilla)"], ["Energía", "Solar, con encendido automático"], ["Uso", "Exteriores e interiores, resistente a la lluvia"], ["Incluye", "Guirnalda y panel solar"]],
     note: "La duración de la luz depende de las horas de sol recibidas durante el día."
   },
   13: {
@@ -149,11 +149,11 @@ const PRODUCT_INFO = {
     ["Cuándo", "2 a 3 veces por semana", "2 o 3 veces por semana, preferiblemente en la noche."],
     ["Ideal para", "Piel grasa o con poros abiertos", "Piel grasa, mixta, con puntos negros o poros abiertos."]
   ]},
-  6: { rutina: "Peinado diario sin tirones", filas: [
-    ["Sirve para", "Desenredar y dar brillo", "Desenredar sin jalones y dejar el cabello más suave y con brillo."],
-    ["Cómo se usa", "De las puntas hacia la raíz", "Cepilla de las puntas hacia la raíz con movimientos suaves, en seco o en húmedo."],
-    ["Cuándo", "Todos los días", "Todos los días, después del baño o antes de salir."],
-    ["Ideal para", "Cabello largo, rizado o enredado", "Toda la familia, en especial cabello largo, rizado o que se enreda fácil."]
+  6: { rutina: "Cuidado capilar con luz LED", filas: [
+    ["Sirve para", "Cepillar con luz LED y tónico", "Cepillar el cabello mientras usas la luz LED y aplicas tu tónico o aceite con el rociador."],
+    ["Cómo se usa", "Enciéndelo y cepilla por secciones", "Enciéndelo, elige la luz, activa el rociador si quieres y cepilla suavemente por secciones."],
+    ["Cuándo", "Unos minutos al día", "Unos minutos al día, en tu rutina de la mañana o de la noche."],
+    ["Ideal para", "Quien cuida su cabello en casa", "Quien quiere una rutina capilar práctica en casa, sin cables ni pilas."]
   ]},
   9: { rutina: "Liso rápido antes de salir", filas: [
     ["Sirve para", "Alisar y peinar a la vez", "Alisar y peinar en un solo paso, sin necesidad de plancha."],
@@ -168,7 +168,7 @@ const PRODUCT_INFO = {
     ["Ideal para", "Casas, fincas y negocios", "Casas, fincas, negocios y parqueaderos que quieren más seguridad."]
   ]},
   12: { rutina: "Decoración solar para tus noches", filas: [
-    ["Sirve para", "Decorar patios, balcones y jardines", "Decorar patios, balcones, jardines y fachadas con 200 luces de colores."],
+    ["Sirve para", "Decorar patios, balcones y jardines", "Decorar patios, balcones, jardines y fachadas con 200 luces LED de luz cálida."],
     ["Cómo se usa", "Panel al sol y listo", "Pon el panel al sol y distribuye la guirnalda. Se encienden solas al anochecer."],
     ["Cuándo", "Todas las noches y en fiestas", "Todas las noches, en fiestas, reuniones y Navidad."],
     ["Ideal para", "Hogares, terrazas y eventos", "Hogares, terrazas, negocios y eventos al aire libre (resiste la lluvia)."]

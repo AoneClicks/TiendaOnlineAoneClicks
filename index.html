@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="d-rPbn0fi5zLzLHPVZ3DEbxFA4YQOaOjO_tDmvjPRPg" />
-  <title>AoneClicks Shopping | Tienda online en Colombia · Envío gratis y pago contraentrega</title>
+  <title>AoneClicks Shopping | Descubre, elige y disfruta · Tienda online en Colombia</title>
   <meta name="description" content="AoneClicks Shopping (AoneClicks) es una tienda online en Colombia: suplementos, belleza, hogar, iluminación solar y tecnología. Envío GRATIS a todo el país y pago contraentrega. Pide por WhatsApp.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#6c2bd9">
@@ -65,6 +65,7 @@
     <div class="container header__inner">
       <a href="#inicio" class="logo" aria-label="AoneClicks Shopping - Inicio">
         <img class="logo__image" src="logo-aoneclicks.png" alt="AoneClicks Shopping" width="1124" height="738">
+        <span class="logo__tag">Descubre, elige<br>y disfruta</span>
       </a>
 
       <nav class="nav" id="mainNav" aria-label="Principal">
@@ -75,9 +76,9 @@
       </nav>
 
       <div class="header__actions">
-        <a class="header-wa" href="https://wa.me/573238849321" target="_blank" rel="noopener noreferrer" aria-label="Escríbenos por WhatsApp">
+        <a class="header-wa" href="https://wa.me/573238849321" target="_blank" rel="noopener noreferrer" aria-label="Comprar por WhatsApp">
           <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.300 8.700 3.300 15.700c0 2.300.6 4.400 1.700 6.300L3 29l7.200-1.900c1.800 1 3.800 1.500 5.800 1.500 7 0 12.700-5.700 12.700-12.700S23 3 16 3zm0 23.100c-1.800 0-3.600-.5-5.100-1.400l-.4-.2-4.300 1.100 1.100-4.200-.3-.4a10.400 10.400 0 1 1 9 5.100zm5.700-7.800c-.3-.2-1.800-.9-2.100-1-.3-.1-.5-.2-.7.200-.2.300-.8 1-1 1.200-.2.200-.4.200-.7.100-.3-.2-1.300-.5-2.400-1.500-.9-.8-1.500-1.800-1.700-2.100-.2-.3 0-.5.100-.6l.5-.5c.2-.2.200-.3.300-.5.100-.2.100-.4 0-.5-.1-.2-.7-1.700-1-2.300-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.100-.8.400-.3.300-1.100 1.100-1.100 2.600s1.100 3 1.300 3.200c.2.200 2.200 3.400 5.300 4.700.7.300 1.300.5 1.700.6.700.2 1.400.2 1.900.1.600-.1 1.800-.7 2-1.400.3-.7.300-1.300.2-1.400-.1-.1-.3-.2-.6-.4z"/></svg>
-          <span>Pide por WhatsApp</span>
+          <span>Comprar por WhatsApp</span>
         </a>
 
         <button class="cart-btn" id="cartToggle" type="button" aria-label="Abrir carrito">
@@ -94,21 +95,25 @@
   <main id="inicio">
     <section class="hero" data-view="inicio">
       <div class="container hero__inner">
-        <p class="hero__eyebrow">Compra fácil · Pide por WhatsApp</p>
+        <p class="hero__eyebrow">Descubre, elige y disfruta</p>
         <h1>Bienvenido a <span>AoneClicks Shopping</span></h1>
-        <p class="hero__lead">Elige tus productos, indica las unidades y finaliza tu pedido en un solo clic.</p>
+        <p class="hero__lead">Productos para tu hogar, tu belleza y tu bienestar, con envío GRATIS a toda Colombia y pago al recibir. Compra en un clic.</p>
         <ul class="perks" aria-label="Beneficios de compra">
           <li class="perks__item"><i class="ic ic-truck" aria-hidden="true"></i> Envío GRATIS a todo Colombia</li>
                     <li class="perks__item"><i class="ic ic-cash" aria-hidden="true"></i> Pago contraentrega</li>
         </ul>
-        <a class="btn btn--light" href="#productos">Ver productos</a>
+        <div class="hero__ctas">
+          <a class="btn btn--primary" href="#productos">Ver productos</a>
+        </div>
+        <div id="featured" class="hero__featured"></div>
       </div>
     </section>
 
     <section id="catalogo" class="section container" data-view="inicio" aria-labelledby="tituloCatalogo">
-      <h2 id="tituloCatalogo" class="section__title">Nuestros productos</h2>
+      <h2 id="tituloCatalogo" class="section__title">Descubre nuestros productos</h2>
       <div class="promo-bar">
         <p><strong><i class="ic ic-truck" aria-hidden="true"></i> Envío GRATIS a nivel nacional</strong> · <strong><i class="ic ic-cash" aria-hidden="true"></i> Pago contraentrega</strong>: pagas cuando recibes tu pedido.</p>
+                <p class="promo-bar__deal"><span aria-hidden="true">🔥</span> <strong>Entre más unidades lleves, más ahorras.</strong> Elige 2 o 3 unidades y el descuento se aplica solo. ¿Compras al por mayor? <a href="https://wa.me/573238849321?text=%C2%A1Hola%20AoneClicks!%20Quiero%20precio%20por%20mayor." target="_blank" rel="noopener noreferrer">Pide tu precio especial por WhatsApp</a>.</p>
                 <p class="promo-bar__tip"><i class="ic ic-cart" aria-hidden="true"></i> Los productos que agregues se guardan en tu <strong>carrito</strong>, arriba a la derecha. Allí finalizas tu compra.</p>
       </div>
       <div class="grid" id="productGrid"></div>
@@ -137,7 +142,7 @@
       <blockquote class="quote reveal">
         <span class="quote__mark" aria-hidden="true">“</span>
         <p>Lo que necesitas, lo que te sorprende y eso que te encanta: todo está a un clic.</p>
-        <cite>AOneClicks Shopping</cite>
+        <cite>AoneClicks Shopping · Descubre, elige y disfruta</cite>
       </blockquote>
     </section>
 
@@ -403,7 +408,7 @@
         </div>
 
         <p class="checkout-note checkout-note--wa"><i class="ic ic-check" aria-hidden="true"></i> Al enviar, tu pedido con todos tus datos y las unidades seleccionadas llega directo a nuestro WhatsApp. Te contactaremos para confirmarlo.</p>
-        <button type="submit" class="btn btn--wa btn--block">Finalizar Pedido por WhatsApp</button>
+        <button type="submit" class="btn btn--wa btn--block">Finalizar compra por WhatsApp</button>
       </form>
     </div>
   </div>

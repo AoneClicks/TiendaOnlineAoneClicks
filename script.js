@@ -84,56 +84,120 @@
     for (const c of [].concat(children)) node.append(c);
     return node;
   }
-  function productImg(p) {
-    const img = el("img", { src: p.image, alt: p.name, loading: "lazy", width: "400", height: "300" });
+  function productImg(p, src) {
+    const img = el("img", { src: src || p.image, alt: p.name, loading: "lazy", width: "400", height: "300" });
     img.addEventListener("error", () => { img.src = FALLBACK_IMG; }, { once: true });
     return img;
   }
-  // ---------- Galería deslizable: foto + "¿Para qué sirve?" ----------
+  const productPhotos = (p) => [p.image].concat(p.gallery || []);
+
+  // ---------- "¿Para qué sirve?" ----------
   const INFO_ICONS = { "Sirve para": "🎯", "Cómo se toma": "💧", "Cómo se usa": "👉", "Cuándo": "⏰", "Dónde": "📍", "Ideal para": "👥" };
-  function infoSlide(p, full) {
-    const info = typeof PRODUCT_INFO !== "undefined" && PRODUCT_INFO[p.id];
+  const getInfo = (p) => (typeof PRODUCT_INFO !== "undefined" && PRODUCT_INFO[p.id]) || null;
+  // Diapositiva corta (se desliza después de las fotos)
+  function infoSlide(p) {
+    const info = getInfo(p);
     if (!info) return null;
-    const rows = info.filas.map(([k, short, long]) => el("tr", {}, [
-      el("th", { scope: "row" }, [el("span", { class: "info__ic", "aria-hidden": "true", text: INFO_ICONS[k] || "•" }), el("span", { text: k })]),
-      el("td", { text: full ? long : short })
-    ]));
-    const table = el("table", { class: "info__table" }, [el("tbody", {}, rows)]);
-    // Versión completa: tabla dentro de la ficha del producto
-    if (full) return el("div", { class: "info info--full" }, [
-      el("p", { class: "info__rutina-line" }, [el("span", { text: "Rutina ideal: " }), el("strong", { text: info.rutina })]),
-      table
-    ]);
-    // Versión corta: segunda imagen deslizable
     return el("div", { class: "info" }, [
-      el("div", { class: "info__top" }, [
-        el("span", { class: "info__kicker", text: "¿Para qué sirve?" }),
-        el("strong", { class: "info__rutina", text: info.rutina })
-      ]),
-      table,
-      el("span", { class: "info__more", text: "Toca para ver más detalles" })
+      el("span", { class: "info__kicker", text: "¿Para qué sirve?" }),
+      el("strong", { class: "info__rutina", text: info.rutina }),
+      el("ul", { class: "info__list" }, info.filas.map(([k, short]) => el("li", {}, [
+        el("span", { class: "info__ic", "aria-hidden": "true", text: INFO_ICONS[k] || "•" }),
+        el("span", { class: "info__txt" }, [el("small", { text: k }), el("span", { text: short })])
+      ])))
     ]);
   }
-  function gallery(p) {
-    const slides = [el("div", { class: "gal__slide" }, [productImg(p)])];
-    const info = infoSlide(p, false);
+  // Texto completo dentro de la descripción del producto
+  function infoText(p) {
+    const info = getInfo(p);
+    if (!info) return null;
+    return el("div", { class: "pd__uses" }, [
+      el("p", { class: "pd__rutina" }, [el("span", { text: "Rutina ideal: " }), el("strong", { text: info.rutina })]),
+      ...info.filas.map(([k, , long]) => el("p", { class: "pd__use" }, [
+        el("span", { class: "info__ic", "aria-hidden": "true", text: INFO_ICONS[k] || "•" }),
+        el("span", {}, [el("strong", { text: k + ": " }), long])
+      ]))
+    ]);
+  }
+
+  // ---------- Visor de fotos ampliadas ----------
+  let lightbox;
+  let lbStep = () => {};
+  function openLightbox(p, index) {
+    const photos = productPhotos(p);
+    let i = index;
+    if (!lightbox) {
+      lightbox = el("div", { class: "lb", role: "dialog", "aria-modal": "true", "aria-label": "Foto ampliada", hidden: "" });
+      document.body.append(lightbox);
+      document.addEventListener("keydown", (e) => {
+        if (lightbox.hidden) return;
+        if (e.key === "Escape") { e.stopImmediatePropagation(); lightbox.hidden = true; }
+        if (e.key === "ArrowRight") lbStep(1);
+        if (e.key === "ArrowLeft") lbStep(-1);
+      }, true);
+    }
+    const img = el("img", { class: "lb__img", alt: p.name });
+    const count = el("span", { class: "lb__count" });
+    const show = () => {
+      img.src = photos[i];
+      img.classList.remove("zoom");
+      count.textContent = photos.length > 1 ? `${i + 1} / ${photos.length}` : "";
+    };
+    const step = (d) => { i = (i + d + photos.length) % photos.length; show(); };
+    img.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const r = img.getBoundingClientRect();
+      img.style.transformOrigin = `${((e.clientX - r.left) / r.width) * 100}% ${((e.clientY - r.top) / r.height) * 100}%`;
+      img.classList.toggle("zoom");
+    });
+    const close = el("button", { type: "button", class: "lb__close", "aria-label": "Cerrar", onclick: () => { lightbox.hidden = true; } }, "×");
+    const kids = [el("div", { class: "lb__stage", onclick: () => { lightbox.hidden = true; } }, [img]), close, count,
+      el("p", { class: "lb__tip", text: "Toca la foto para acercar · pellizca para hacer zoom" })];
+    if (photos.length > 1) kids.push(
+      el("button", { type: "button", class: "lb__nav lb__nav--prev", "aria-label": "Foto anterior", onclick: () => step(-1) }, "‹"),
+      el("button", { type: "button", class: "lb__nav lb__nav--next", "aria-label": "Foto siguiente", onclick: () => step(1) }, "›"));
+    lightbox.replaceChildren(...kids);
+    lbStep = step;
+    show();
+    lightbox.hidden = false;
+    close.focus();
+  }
+
+  // ---------- Galería deslizable: fotos + "¿Para qué sirve?" ----------
+  function gallery(p, zoomable) {
+    const photos = productPhotos(p);
+    const slides = photos.map((src, n) => {
+      const s = el("div", { class: "gal__slide" }, [productImg(p, src)]);
+      if (zoomable) s.addEventListener("click", () => openLightbox(p, n));
+      return s;
+    });
+    const info = infoSlide(p);
+    const infoIndex = info ? slides.length : -1;
     if (info) slides.push(el("div", { class: "gal__slide gal__slide--info", role: "group", "aria-label": "Para qué sirve y cómo se usa" }, [info]));
     const track = el("div", { class: "gal__track" }, slides);
-    const wrap = el("div", { class: "gal" }, [track]);
+    const wrap = el("div", { class: "gal" + (zoomable ? " gal--zoom" : "") }, [track]);
     if (slides.length < 2) return wrap;
+    let cur = 0;
     const stop = (fn) => (e) => { e.stopPropagation(); fn(); };
-    const go = (i) => track.scrollTo({ left: i * track.clientWidth, behavior: "smooth" });
-    const dots = slides.map((_, i) => el("button", { type: "button", class: "gal__dot", "aria-label": `Ver imagen ${i + 1} de ${slides.length}`, onclick: stop(() => go(i)) }));
-    const prev = el("button", { type: "button", class: "gal__arrow gal__arrow--prev", "aria-label": "Imagen anterior", onclick: stop(() => go(0)) }, "‹");
-    const next = el("button", { type: "button", class: "gal__arrow gal__arrow--next", "aria-label": "Ver para qué sirve", onclick: stop(() => go(1)) }, "›");
-    const hint = el("button", { type: "button", class: "gal__hint", onclick: stop(() => go(1)) }, "¿Para qué sirve? ›");
-    wrap.append(prev, next, hint, el("div", { class: "gal__dots" }, dots));
+    const go = (i) => track.scrollTo({ left: Math.max(0, Math.min(slides.length - 1, i)) * track.clientWidth, behavior: "smooth" });
+    const dots = slides.map((_, i) => el("button", { type: "button", class: "gal__dot" + (i === infoIndex ? " gal__dot--info" : ""), "aria-label": i === infoIndex ? "Ver para qué sirve" : `Ver foto ${i + 1}`, onclick: stop(() => go(i)) }));
+    const prev = el("button", { type: "button", class: "gal__arrow gal__arrow--prev", "aria-label": "Anterior", onclick: stop(() => go(cur - 1)) }, "‹");
+    const next = el("button", { type: "button", class: "gal__arrow gal__arrow--next", "aria-label": "Siguiente", onclick: stop(() => go(cur + 1)) }, "›");
+    wrap.append(prev, next, el("div", { class: "gal__dots" }, dots));
+    let hint = null;
+    if (info) {
+      hint = el("button", { type: "button", class: "gal__hint", onclick: stop(() => go(infoIndex)) }, "¿Para qué sirve? ›");
+      wrap.append(hint);
+    }
+    if (photos.length > 1) wrap.append(el("span", { class: "gal__count", text: `📷 ${photos.length} fotos` }));
+    if (zoomable) wrap.append(el("span", { class: "gal__zoomtip", "aria-hidden": "true", text: "🔍 Toca para ampliar" }));
     const sync = () => {
-      const i = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
-      dots.forEach((d, j) => d.classList.toggle("on", i === j));
-      const onInfo = i === 1;
-      wrap.classList.toggle("on-info", onInfo);
-      wrap.parentElement && wrap.parentElement.classList.toggle("on-info", onInfo);
+      cur = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
+      dots.forEach((d, j) => d.classList.toggle("on", cur === j));
+      wrap.classList.toggle("at-start", cur === 0);
+      wrap.classList.toggle("at-end", cur === slides.length - 1);
+      wrap.classList.toggle("on-info", cur === infoIndex);
+      wrap.parentElement && wrap.parentElement.classList.toggle("not-first", cur > 0);
     };
     track.addEventListener("scroll", sync, { passive: true });
     sync();
@@ -149,6 +213,22 @@
     toastTimer = setTimeout(() => t.classList.remove("show"), 2200);
   }
   const clampQty = (v) => Math.min(MAX_QTY, Math.max(1, parseInt(v, 10) || 1));
+
+  // ---------- Descuentos por cantidad ----------
+  function dealLine(p) {
+    const max = Math.max(...packSizes(p));
+    const saving = p.prices[1] * max - p.prices[max];
+    if (saving <= 0) return null;
+    return el("p", { class: "card__deal" }, [el("span", { "aria-hidden": "true", text: "🔥 " }), `Lleva ${max} y ahorra ${money(saving)}`]);
+  }
+  function wholesaleLink(p) {
+    const from = (STORE_CONFIG.wholesaleFrom || 4);
+    const msg = `¡Hola AoneClicks! Quiero precio por mayor de "${p.name}". Necesito ${from} o más unidades.`;
+    return el("a", { class: "pd__wholesale", href: waUrl(msg), target: "_blank", rel: "noopener noreferrer" }, [
+      el("span", { "aria-hidden": "true", text: "📦 " }),
+      el("span", {}, [`¿Necesitas ${from} o más unidades? `, el("strong", { text: "Pide precio por mayor por WhatsApp" })])
+    ]);
+  }
 
   // ---------- Catálogo ----------
   function renderCatalog() {
@@ -205,6 +285,7 @@
         imgBox.append(b);
       }
       imgBox.append(heart);
+      if (STORE_CONFIG.featured && STORE_CONFIG.featured.id === p.id) imgBox.append(el("span", { class: "card__star", text: "⭐ Producto del mes" }));
       imgBox.addEventListener("click", () => openProduct(p));
 
       grid.append(el("article", { class: "card", style: `animation-delay:${i * 60}ms` }, [
@@ -212,16 +293,44 @@
         el("div", { class: "card__body" }, [
           el("div", { class: "card__meta" }, [
             el("span", { class: "card__cat", text: p.category }),
-            el("button", { type: "button", class: "card__more", onclick: () => openProduct(p) }, "Ver ficha técnica")
+            el("button", { type: "button", class: "card__more", onclick: () => openProduct(p) }, "Ver detalles")
           ]),
           el("h3", { class: "card__title", text: p.name, onclick: () => openProduct(p) }),
           el("div", { class: "packs", role: "group", "aria-label": "Unidades de " + p.name }, packs),
+          dealLine(p) || "",
           el("div", { class: "card__pricing" }, [priceEl, saveEl, unitEl]),
           addBtn
         ])
       ]));
       setUnits(1);
     });
+  }
+
+  // ---------- Producto del mes (portada) ----------
+  function renderFeatured() {
+    const box = $("#featured");
+    const f = STORE_CONFIG.featured;
+    const p = f && PRODUCTS.find((x) => x.id === f.id);
+    if (!box || !p) return;
+    const max = Math.max(...packSizes(p));
+    const addBtn = el("button", { type: "button", class: "btn btn--primary", onclick: () => { addToCart(p.id, 1); openDrawer(); } });
+    addBtn.innerHTML = CART_ICON + "<span>Comprar ahora</span>";
+    box.replaceChildren(el("article", { class: "feat" }, [
+      el("button", { type: "button", class: "feat__img", "aria-label": "Ver " + p.name, onclick: () => openProduct(p) }, [productImg(p, f.image)]),
+      el("div", { class: "feat__body" }, [
+        el("span", { class: "feat__label" }, [el("span", { "aria-hidden": "true", text: "⭐ " }), f.label]),
+        el("h2", { class: "feat__title", text: f.title }),
+        el("p", { class: "feat__text", text: f.text }),
+        el("p", { class: "feat__price" }, [
+          el("strong", { text: money(p.prices[1]) }),
+          max > 1 ? el("span", { text: ` · ${max} por ${money(p.prices[max])}` }) : ""
+        ]),
+        el("div", { class: "feat__actions" }, [
+          addBtn,
+          el("button", { type: "button", class: "btn btn--ghost", onclick: () => openProduct(p) }, "Más información")
+        ])
+      ])
+    ]));
   }
 
   // ---------- Carrito ----------
@@ -329,7 +438,7 @@
     const addBtn = el("button", { type: "button", class: "card__add", onclick: () => { addToCart(p.id, units); closeProduct(); } });
     addBtn.innerHTML = CART_ICON + "<span>Agregar al carrito</span>";
 
-    const imgBox = el("div", { class: "pd__img" }, [gallery(p)]);
+    const imgBox = el("div", { class: "pd__img" }, [gallery(p, true)]);
     if (badge) {
       const b = el("span", { class: "badge badge--" + badge.cls });
       b.innerHTML = badge.icon + "<span></span>";
@@ -340,26 +449,28 @@
       el("div", {}, [el("dt", { text: k }), el("dd", { text: v })])));
     const benefits = (d.benefits || []).length
       ? el("ul", { class: "pd__benefits" }, d.benefits.map((b) => el("li", { text: b }))) : null;
-    const guide = infoSlide(p, true);
+    const uses = infoText(p);
     const info = el("div", { class: "pd__info" }, [
       el("span", { class: "pd__cat", text: p.category }),
       el("h2", { class: "pd__title", id: "pdTitle", text: p.name }),
       d.headline ? el("p", { class: "pd__headline", text: d.headline }) : "",
+      el("h3", { class: "pd__h", text: "Descripción" }),
       el("p", { class: "pd__desc", text: d.description || "" }),
-      guide ? el("h3", { class: "pd__h", text: "¿Para qué sirve y cómo se usa?" }) : "",
-      guide || "",
+      uses || "",
       benefits ? el("h3", { class: "pd__h", text: "¿Por qué te va a encantar?" }) : "",
       benefits || "",
-      d.howto ? el("h3", { class: "pd__h", text: "¿Cómo se usa?" }) : "",
-      d.howto ? el("p", { class: "pd__text", text: d.howto }) : "",
+      !uses && d.howto ? el("h3", { class: "pd__h", text: "¿Cómo se usa?" }) : "",
+      !uses && d.howto ? el("p", { class: "pd__text", text: d.howto }) : "",
       el("h3", { class: "pd__h", text: "Ficha técnica" }),
       specs
     ]);
     if (d.note) info.append(el("p", { class: "pd__note", text: d.note }));
     info.append(
       el("div", { class: "packs", role: "group", "aria-label": "Unidades de " + p.name }, packs),
+      dealLine(p) || "",
       el("div", { class: "card__pricing" }, [priceEl, saveEl, unitEl]),
-      addBtn
+      addBtn,
+      wholesaleLink(p)
     );
     $("#pdBody").replaceChildren(imgBox, info);
     setUnits(1);
@@ -509,6 +620,7 @@
     $("#waFloat").href = waUrl(STORE_CONFIG.supportMessage);
 
     renderCatalog();
+    renderFeatured();
     renderCart();
 
     $("#cartToggle").addEventListener("click", openDrawer);

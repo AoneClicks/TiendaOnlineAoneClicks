@@ -1,6 +1,7 @@
 ﻿// Edita aquí tus productos. Coloca las imágenes en la carpeta /images
 // prices: precio total en COP (sin puntos ni símbolos) según unidades: 1, 2 o 3.
 // badge: "Verificado" | "Premium" | "Exclusivo"
+// gallery: fotos adicionales (opcional). Se ven al deslizar la foto principal.
 // El orden de esta lista es el orden del catálogo: los productos similares van seguidos.
 const PRODUCTS = [
   // Suplementos
@@ -11,19 +12,29 @@ const PRODUCTS = [
   // Cuidado facial y del cabello
   { id: 3, name: "Tensorix Ojeras Bolsas Y Lineas", category: "Belleza", stock: 280, badge: "Verificado", prices: { 1: 80900, 2: 113900, 3: 144900 }, image: "tensorix-ojeras.jpg" },
   { id: 2, name: "Pala Ultrasonica Facial Jh", category: "Belleza", stock: 100, badge: "Verificado", prices: { 1: 90900, 2: 131900, 3: 173900 }, image: "pala-ultrasonica-facial-jh.jpg" },
-  { id: 6, name: "Cepillo De Cabello Restaurador", category: "Belleza", stock: 48, badge: "Exclusivo", prices: { 1: 95900, 2: 143900, 3: 191900 }, image: "cepillo-restaurador.jpg" },
-  { id: 9, name: "Cepillo Alisador De Cabello Fh909", category: "Belleza", stock: 225, badge: "Premium", prices: { 1: 71900, 2: 94900, 3: 116900 }, image: "cepillo-alisador-fh909.jpg" },
+  { id: 6, name: "Cepillo De Cabello Restaurador", category: "Belleza", stock: 48, badge: "Exclusivo", prices: { 1: 95900, 2: 143900, 3: 191900 }, image: "cepillo-restaurador.jpg", gallery: ["cepillo-restaurador-2.jpg", "cepillo-restaurador-3.jpg", "cepillo-restaurador-4.jpg"] },
+  { id: 9, name: "Cepillo Alisador De Cabello Fh909", category: "Belleza", stock: 225, badge: "Premium", prices: { 1: 71900, 2: 94900, 3: 116900 }, image: "cepillo-alisador-fh909.jpg", gallery: ["cepillo-alisador-fh909-2.jpg", "cepillo-alisador-fh909-3.jpg"] },
   // Iluminación solar
   { id: 4, name: "Reflector Solar 500 W", category: "Hogar", stock: 193, badge: "Verificado", prices: { 1: 326900, 2: 622900, 3: 923900 }, image: "reflector-solar-500w.jpg" },
-  { id: 12, name: "Luces Led X200 Bombillos (Solar)", category: "Hogar", stock: 120, badge: "Verificado", prices: { 1: 99900, 2: 139900 }, image: "luces-led-solar-x200.jpg" },
+  { id: 12, name: "Luces Led X200 Bombillos (Solar)", category: "Hogar", stock: 120, badge: "Verificado", prices: { 1: 99900, 2: 139900 }, image: "luces-led-solar-hd.jpg", gallery: ["luces-led-solar-real.jpg", "luces-led-solar-panel.jpg", "luces-led-solar-control.jpg"] },
   // Hogar y tecnología
   { id: 5, name: "Limpiador A Vapor Para El Hogar", category: "Tecnología", stock: 68, badge: "Verificado", prices: { 1: 270900, 2: 505900, 3: 744900 }, image: "limpiador-a-vapor.jpg" },
   { id: 8, name: "Organizador Perchero Y Zapatero 4 In 1", category: "Hogar", stock: 192, badge: "Verificado", prices: { 1: 104900, 2: 162900, 3: 219900 }, image: "organizador-perchero-zapatero.jpg" },
-  { id: 7, name: "Mini Rastreador Gps", category: "Tecnología", stock: 170, badge: "Exclusivo", prices: { 1: 79900, 2: 109900, 3: 139900 }, image: "mini-rastreador-gps.jpg" }
+  { id: 7, name: "Mini Rastreador Gps", category: "Tecnología", stock: 170, badge: "Exclusivo", prices: { 1: 79900, 2: 109900, 3: 139900 }, image: "mini-rastreador-gps.jpg", gallery: ["mini-rastreador-gps-2.webp", "mini-rastreador-gps-3.webp", "mini-rastreador-gps-4.webp"] }
 ];
 
 // Configuración general
 const STORE_CONFIG = {
+  // Producto destacado en la portada (cámbialo cada mes)
+  featured: {
+    id: 12,
+    image: "luces-led-solar-hd.jpg",
+    label: "Producto del mes · Especial de Navidad",
+    title: "Ilumina tu Navidad con energía solar",
+    text: "200 luces LED que se cargan con el sol y se encienden solas al anochecer. Sin cables y sin pagar luz."
+  },
+  // Desde cuántas unidades se ofrece precio por mayor (por WhatsApp)
+  wholesaleFrom: 4,
   whatsappNumber: "573238849321",
   supportMessage: "¡Hola AoneClicks Shopping! Deseo más información y asesoría sobre un producto.",
   social: {
