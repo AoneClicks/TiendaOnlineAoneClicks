@@ -56,19 +56,35 @@
   // ---------- Estado ----------
   let cart = loadCart();
 
+  // Colores disponibles de un producto (los agotados no se pueden pedir)
+  const availableColors = (p) => (p.colors || []).filter((c) => !c.soldOut);
+  const cartKey = (id, color) => (color ? `${id}|${color}` : String(id));
+  function parseKey(key) {
+    const [idPart, color] = String(key).split("|");
+    const product = PRODUCTS.find((p) => String(p.id) === idPart);
+    if (!product) return null;
+    if (product.colors && product.colors.length) {
+      if (!availableColors(product).some((c) => c.name === color)) return null;
+    } else if (color) return null;
+    return { product, color: color || "" };
+  }
   function loadCart() {
     try {
       const raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
       const clean = {};
-      for (const p of PRODUCTS) {
-        const q = Number(raw[p.id]);
-        if (Number.isInteger(q) && q > 0) clean[p.id] = Math.min(q, MAX_QTY);
+      for (const [key, val] of Object.entries(raw)) {
+        const q = Number(val);
+        if (parseKey(key) && Number.isInteger(q) && q > 0) clean[key] = Math.min(q, MAX_QTY);
       }
       return clean;
     } catch { return {}; }
   }
   const saveCart = () => { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(cart)); } catch { /* sin almacenamiento */ } };
-  const cartLines = () => PRODUCTS.filter((p) => cart[p.id]).map((p) => ({ product: p, qty: cart[p.id] }));
+  const lineName = (l) => l.product.name + (l.color ? ` – Color ${l.color}` : "");
+  const cartLines = () => Object.entries(cart)
+    .map(([key, qty]) => { const k = parseKey(key); return k && { key, product: k.product, color: k.color, qty }; })
+    .filter(Boolean)
+    .sort((a, b) => PRODUCTS.indexOf(a.product) - PRODUCTS.indexOf(b.product));
   const cartTotal = () => cartLines().reduce((s, l) => s + lineTotal(l.product, l.qty), 0);
   const cartUnits = () => cartLines().reduce((s, l) => s + l.qty, 0);
 
@@ -230,6 +246,36 @@
     ]);
   }
 
+  // ---------- Selector de color ----------
+  function colorPicker(p, onChange) {
+    if (!p.colors || !p.colors.length) return { el: "", get: () => "" };
+    let current = (availableColors(p)[0] || {}).name || "";
+    const label = el("strong", { text: current });
+    const swatches = p.colors.map((c) => {
+      const b = el("button", {
+        type: "button", class: "swatch" + (c.soldOut ? " swatch--out" : ""),
+        title: c.soldOut ? `${c.name} – Agotado` : c.name,
+        "aria-label": c.soldOut ? `${c.name}, agotado` : `Color ${c.name}`,
+        "aria-pressed": String(c.name === current), style: `--sw:${c.swatch}`,
+        onclick: (e) => {
+          e.stopPropagation();
+          if (c.soldOut) { toast(`El color ${c.name} está agotado por alta demanda`); return; }
+          current = c.name; label.textContent = current;
+          swatches.forEach((x, i) => x.setAttribute("aria-pressed", String(p.colors[i].name === current)));
+          onChange && onChange(current);
+        }
+      });
+      return b;
+    });
+    const out = p.colors.filter((c) => c.soldOut).map((c) => c.name);
+    const box = el("div", { class: "colors" }, [
+      el("span", { class: "colors__label" }, ["Color: ", label]),
+      el("div", { class: "colors__opts", role: "group", "aria-label": "Color de " + p.name }, swatches),
+      out.length ? el("span", { class: "colors__out", text: `🔥 ${out.join(", ")} agotado por alta demanda` }) : ""
+    ]);
+    return { el: box, get: () => current };
+  }
+
   // ---------- Catálogo ----------
   function renderCatalog() {
     const grid = $("#productGrid");
@@ -274,7 +320,8 @@
         heart.setAttribute("aria-pressed", String(on));
       });
 
-      const addBtn = el("button", { type: "button", class: "card__add", onclick: () => addToCart(p.id, units) });
+      const picker = colorPicker(p);
+      const addBtn = el("button", { type: "button", class: "card__add", onclick: () => addToCart(p.id, units, picker.get()) });
       addBtn.innerHTML = CART_ICON + "<span>Agregar</span>";
 
       const imgBox = el("div", { class: "card__img" }, [gallery(p)]);
@@ -296,6 +343,7 @@
             el("button", { type: "button", class: "card__more", onclick: () => openProduct(p) }, "Ver detalles")
           ]),
           el("h3", { class: "card__title", text: p.name, onclick: () => openProduct(p) }),
+          picker.el,
           el("div", { class: "packs", role: "group", "aria-label": "Unidades de " + p.name }, packs),
           dealLine(p) || "",
           el("div", { class: "card__pricing" }, [priceEl, saveEl, unitEl]),
@@ -313,7 +361,10 @@
     const p = f && PRODUCTS.find((x) => x.id === f.id);
     if (!box || !p) return;
     const max = Math.max(...packSizes(p));
-    const addBtn = el("button", { type: "button", class: "btn btn--primary", onclick: () => { addToCart(p.id, 1); openDrawer(); } });
+    const addBtn = el("button", { type: "button", class: "btn btn--primary", onclick: () => {
+      if (p.colors && p.colors.length) { openProduct(p); return; }
+      addToCart(p.id, 1); openDrawer();
+    } });
     addBtn.innerHTML = CART_ICON + "<span>Comprar ahora</span>";
     box.replaceChildren(el("article", { class: "feat" }, [
       el("button", { type: "button", class: "feat__img", "aria-label": "Ver " + p.name, onclick: () => openProduct(p) }, [productImg(p, f.image)]),
@@ -334,11 +385,13 @@
   }
 
   // ---------- Carrito ----------
-  function addToCart(id, qty) {
-    cart[id] = Math.min(MAX_QTY, (cart[id] || 0) + qty);
+  function addToCart(id, qty, color) {
+    const key = cartKey(id, color);
+    if (!parseKey(key)) { toast("Elige un color disponible"); return; }
+    cart[key] = Math.min(MAX_QTY, (cart[key] || 0) + qty);
     saveCart(); renderCart();
     const added = PRODUCTS.find((x) => x.id === id);
-    if (added) track("AddToCart", { content_ids: [String(id)], content_name: added.name, content_type: "product", contents: [{ id: String(id), quantity: qty }], num_items: qty, value: lineTotal(added, qty), currency: "COP" });
+    if (added) track("AddToCart", { content_ids: [String(id)], content_name: added.name + (color ? " – " + color : ""), content_type: "product", contents: [{ id: String(id), quantity: qty }], num_items: qty, value: lineTotal(added, qty), currency: "COP" });
     const badge = $("#cartCount");
     badge.classList.remove("bump"); void badge.offsetWidth; badge.classList.add("bump");
     toast("Producto agregado al carrito");
@@ -353,16 +406,17 @@
 
     const list = $("#cartList");
     list.replaceChildren();
-    for (const { product: p, qty } of lines) {
-      const input = el("input", { type: "number", min: "1", max: String(MAX_QTY), value: String(qty), "aria-label": "Unidades de " + p.name });
-      const setQty = (v) => { cart[p.id] = clampQty(v); saveCart(); renderCart(); };
+    for (const line of lines) {
+      const { product: p, qty, key } = line;
+      const input = el("input", { type: "number", min: "1", max: String(MAX_QTY), value: String(qty), "aria-label": "Unidades de " + lineName(line) });
+      const setQty = (v) => { cart[key] = clampQty(v); saveCart(); renderCart(); };
       input.addEventListener("change", () => setQty(input.value));
       list.append(el("li", { class: "cart-item" }, [
         productImg(p),
         el("div", {}, [
-          el("div", { class: "cart-item__name", text: p.name }),
+          el("div", { class: "cart-item__name", text: lineName(line) }),
           el("div", { class: "cart-item__sub", text: `${qty} ${qty === 1 ? "unidad" : "unidades"} = ${money(lineTotal(p, qty))}` }),
-          el("button", { type: "button", class: "cart-item__remove", onclick: () => { delete cart[p.id]; saveCart(); renderCart(); } }, "Eliminar")
+          el("button", { type: "button", class: "cart-item__remove", onclick: () => { delete cart[key]; saveCart(); renderCart(); } }, "Eliminar")
         ]),
         el("div", { class: "qty" }, [
           el("button", { type: "button", "aria-label": "Quitar una unidad", onclick: () => setQty(qty - 1) }, "−"),
@@ -393,8 +447,9 @@
     closeDrawer();
     const list = $("#summaryList");
     list.replaceChildren();
-    for (const { product: p, qty } of cartLines()) {
-      list.append(el("li", {}, [el("span", { text: `${qty} × ${p.name}` }), el("span", { text: money(lineTotal(p, qty)) })]));
+    for (const line of cartLines()) {
+      const { product: p, qty } = line;
+      list.append(el("li", {}, [el("span", { text: `${qty} × ${lineName(line)}` }), el("span", { text: money(lineTotal(p, qty)) })]));
     }
     $("#summaryTotal").textContent = money(cartTotal());
     checkoutModal.hidden = false; syncScrollLock();
@@ -435,7 +490,8 @@
       saveEl.hidden = saving <= 0;
       packs.forEach((b) => b.classList.toggle("active", Number(b.dataset.units) === n));
     }
-    const addBtn = el("button", { type: "button", class: "card__add", onclick: () => { addToCart(p.id, units); closeProduct(); } });
+    const pdPicker = colorPicker(p);
+    const addBtn = el("button", { type: "button", class: "card__add", onclick: () => { addToCart(p.id, units, pdPicker.get()); closeProduct(); } });
     addBtn.innerHTML = CART_ICON + "<span>Agregar al carrito</span>";
 
     const imgBox = el("div", { class: "pd__img" }, [gallery(p, true)]);
@@ -466,6 +522,7 @@
     ]);
     if (d.note) info.append(el("p", { class: "pd__note", text: d.note }));
     info.append(
+      pdPicker.el,
       el("div", { class: "packs", role: "group", "aria-label": "Unidades de " + p.name }, packs),
       dealLine(p) || "",
       el("div", { class: "card__pricing" }, [priceEl, saveEl, unitEl]),
@@ -526,7 +583,7 @@
   const oneLine = (s) => s.replace(/[\r\n]+/g, " ").trim();
 
   function buildMessage(data) {
-    const lines = cartLines().map(({ product: p, qty }) => `• ${qty} ${qty === 1 ? "unidad" : "unidades"} de ${p.name} — ${money(lineTotal(p, qty))}`);
+    const lines = cartLines().map((l) => `• ${l.qty} ${l.qty === 1 ? "unidad" : "unidades"} de ${lineName(l)} — ${money(lineTotal(l.product, l.qty))}`);
     return [
       "🛍️ *NUEVO PEDIDO - AoneClicks Shopping*",
       "",

@@ -1,0 +1,121 @@
+/* ===== Tema navideño (complemento). Solo aplica cuando navidad.js agrega la clase .xmas =====
+   Paleta elegante: azul noche, dorado y vino. */
+:root { --x-gold: #e9c46a; --x-gold-2: #c9a24a; --x-wine: #8b1e2d; --x-navy: #0b1530; }
+
+/* Nieve */
+.xmas-snow { position: fixed; inset: 0; z-index: 45; pointer-events: none; }
+.xmas-snow[hidden] { display: none; }
+
+/* Gorro de Papá Noel sobre el cuadro azul del logo (posición calculada en navidad.js) */
+.xmas .logo { position: relative; }
+.xmas-hat { position: absolute; left: 0; top: 0; width: 30px; transform: rotate(22deg); transform-origin: 50% 50%; pointer-events: none; z-index: 2; filter: drop-shadow(0 2px 2px rgba(11, 21, 48, .25)); }
+.xmas-hat svg { display: block; width: 100%; height: auto; }
+
+/* Guirnalda dorada bajo el menú */
+.xmas-garland { position: absolute; left: 0; right: 0; top: 100%; height: 30px; pointer-events: none; overflow: hidden; }
+.xmas-garland svg { display: block; }
+.xmas-gbulb__glass { fill: #ffe9a8; }
+.xmas-gbulb--1 .xmas-gbulb__glass { fill: #fff6dc; }
+.xmas-gbulb--2 .xmas-gbulb__glass { fill: #f4c862; }
+.xmas-gbulb { animation: xmasGlow 2.4s ease-in-out infinite; }
+.xmas-gbulb--1 { animation-delay: .8s; }
+.xmas-gbulb--2 { animation-delay: 1.6s; }
+@keyframes xmasGlow { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+
+/* Barra de temporada (vidrio azul con filete dorado) */
+.xmas .hero { padding-top: 8.75rem; }
+.xmas-bar {
+  position: absolute; top: 1.5rem; left: 50%; transform: translateX(-50%); z-index: 3; width: max-content; max-width: calc(100% - 2rem);
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: .35rem .9rem;
+  padding: .6rem 1.3rem; border-radius: 999px; color: #e8edf8; font-size: .86rem; font-weight: 500; letter-spacing: .01em; text-align: center;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .03)), rgba(8, 15, 38, .55);
+  border: 1px solid rgba(233, 196, 106, .55); box-shadow: 0 10px 30px rgba(0, 0, 0, .25), inset 0 1px 0 rgba(255, 255, 255, .08);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+.xmas-bar strong { color: var(--x-gold); font-weight: 700; }
+.xmas-bar__item { display: inline-flex; align-items: center; gap: .45rem; }
+.xmas-bar__item svg { width: 15px; height: 15px; fill: var(--x-gold); flex: none; }
+.xmas-bar__sep { width: 1px; height: 14px; background: rgba(233, 196, 106, .45); }
+
+/* Esferas colgando (dorado, vino y azul) */
+.xmas-orns { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+.xmas-orn { position: absolute; top: 0; display: flex; flex-direction: column; align-items: center; transform-origin: top center; animation: xmasSwing 5s ease-in-out infinite; }
+.xmas-orn__line { display: block; width: 1.5px; background: linear-gradient(rgba(233, 196, 106, .9), rgba(233, 196, 106, .35)); }
+.xmas-orn__cap { display: block; width: 13px; height: 9px; border-radius: 3px 3px 2px 2px; background: linear-gradient(90deg, #8a6a24, #f3d98a 50%, #8a6a24); }
+.xmas-orn__ball { display: block; border-radius: 50%; position: relative; box-shadow: inset -7px -9px 16px rgba(0, 0, 0, .35), 0 10px 24px rgba(0, 0, 0, .35); }
+.xmas-orn__ball::after { content: ""; position: absolute; left: 20%; top: 16%; width: 24%; height: 16%; border-radius: 50%; background: rgba(255, 255, 255, .55); transform: rotate(-30deg); }
+.xmas-orn__ball--gold { background: radial-gradient(circle at 32% 30%, #fff3c4, #e9c46a 45%, #9b7424 100%); }
+.xmas-orn__ball--wine { background: radial-gradient(circle at 32% 30%, #e7808c, #a3243a 50%, #4f0d18 100%); }
+.xmas-orn__ball--navy { background: radial-gradient(circle at 32% 30%, #9fb7ff, #2648a8 50%, #0b1a4a 100%); box-shadow: inset -7px -9px 16px rgba(0, 0, 0, .35), 0 10px 24px rgba(0, 0, 0, .35), inset 0 0 0 2px rgba(233, 196, 106, .35); }
+.xmas-orn--1 { left: 5%; } .xmas-orn--1 .xmas-orn__line { height: 78px; } .xmas-orn--1 .xmas-orn__ball { width: 44px; height: 44px; }
+.xmas-orn--2 { left: 12%; animation-delay: -1.4s; } .xmas-orn--2 .xmas-orn__line { height: 36px; } .xmas-orn--2 .xmas-orn__ball { width: 30px; height: 30px; }
+.xmas-orn--3 { right: 12%; animation-delay: -2.4s; } .xmas-orn--3 .xmas-orn__line { height: 46px; } .xmas-orn--3 .xmas-orn__ball { width: 34px; height: 34px; }
+.xmas-orn--4 { right: 5%; animation-delay: -.7s; } .xmas-orn--4 .xmas-orn__line { height: 92px; } .xmas-orn--4 .xmas-orn__ball { width: 48px; height: 48px; }
+@keyframes xmasSwing { 0%, 100% { transform: rotate(3deg); } 50% { transform: rotate(-3deg); } }
+
+/* Nieve acumulada al final de la portada */
+.xmas-drift { position: absolute; left: 0; right: 0; bottom: -1px; height: 46px; pointer-events: none; z-index: 1; }
+.xmas-drift svg { width: 100%; height: 100%; display: block; }
+.xmas-drift path { fill: var(--color-bg, #f5f7fb); }
+
+/* Reno y duende a los costados (solo donde hay espacio libre) */
+.xmas-char { position: absolute; bottom: 14px; z-index: 2; pointer-events: none; display: none; }
+.xmas-char svg { display: block; width: 100%; height: auto; overflow: visible; }
+/* Se encogen solos según el espacio libre a los lados de la tarjeta central (820px) */
+.xmas-char--left { left: max(12px, calc(50% - 410px - 210px)); width: min(180px, calc((100vw - 820px) / 2 - 36px)); }
+.xmas-char--right { right: max(12px, calc(50% - 410px - 175px)); width: min(140px, calc((100vw - 820px) / 2 - 36px)); }
+@media (min-width: 1180px) { .xmas-char { display: block; } }
+/* Pantallas muy anchas: te acompañan en los costados mientras bajas */
+@media (min-width: 1600px) {
+  .xmas-char { position: fixed; bottom: 96px; z-index: 44; }
+  .xmas-char--left { left: calc((100vw - 1240px) / 4 - 90px); width: 170px; }
+  .xmas-char--right { right: calc((100vw - 1240px) / 4 - 70px); width: 135px; }
+}
+
+/* Animación del reno: trota en su sitio, mueve la cabeza y le brilla la nariz */
+.rd-body { animation: rdBob .9s ease-in-out infinite; }
+.rd-leg { transform-box: fill-box; transform-origin: 50% 0; }
+.rd-leg--front-a, .rd-leg--back-b { animation: rdLegA .9s ease-in-out infinite; }
+.rd-leg--front-b, .rd-leg--back-a { animation: rdLegB .9s ease-in-out infinite; }
+.rd-head { transform-box: view-box; transform-origin: 150px 92px; animation: rdNod 3.6s ease-in-out infinite; }
+.rd-nose { animation: rdNose 1.8s ease-in-out infinite; }
+@keyframes rdBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@keyframes rdLegA { 0%, 100% { transform: rotate(14deg); } 50% { transform: rotate(-12deg); } }
+@keyframes rdLegB { 0%, 100% { transform: rotate(-12deg); } 50% { transform: rotate(14deg); } }
+@keyframes rdNod { 0%, 70%, 100% { transform: rotate(0); } 80% { transform: rotate(-7deg); } 90% { transform: rotate(4deg); } }
+@keyframes rdNose { 0%, 100% { fill: #d62839; filter: drop-shadow(0 0 0 rgba(255, 60, 60, 0)); } 50% { fill: #ff4d5e; filter: drop-shadow(0 0 7px rgba(255, 60, 60, .95)); } }
+
+/* Animación del duende: saluda, salta y suena la campanita */
+.elf-body { animation: elfHop 1.6s ease-in-out infinite; }
+.elf-arm { transform-box: view-box; transform-origin: 116px 130px; animation: elfWave 1s ease-in-out infinite; }
+.elf-head { transform-box: view-box; transform-origin: 85px 112px; animation: elfTilt 3.2s ease-in-out infinite; }
+.elf-bell { transform-box: view-box; transform-origin: 131px 56px; animation: elfBell .8s ease-in-out infinite; }
+@keyframes elfHop { 0%, 60%, 100% { transform: translateY(0); } 75% { transform: translateY(-9px); } }
+@keyframes elfWave { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-24deg); } }
+@keyframes elfTilt { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(5deg); } }
+@keyframes elfBell { 0%, 100% { transform: rotate(-12deg); } 50% { transform: rotate(14deg); } }
+
+/* Botón para quitar o poner la nieve */
+.xmas-toggle {
+  position: fixed; left: 16px; bottom: 18px; z-index: 55; display: inline-flex; align-items: center; gap: .45rem;
+  padding: .55rem .95rem; border: 1px solid rgba(233, 196, 106, .6); border-radius: 999px; cursor: pointer;
+  background: rgba(11, 21, 48, .88); color: #f1f4fb; font: 600 .78rem/1 var(--font, sans-serif); letter-spacing: .01em;
+  box-shadow: 0 8px 22px rgba(11, 21, 48, .3); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.xmas-toggle svg { width: 16px; height: 16px; color: var(--x-gold); }
+.xmas-toggle:hover { background: rgba(11, 21, 48, .97); }
+
+@media (max-width: 640px) {
+  .xmas .hero { padding-top: 8rem; }
+  .xmas-bar { top: 1.1rem; font-size: .72rem; padding: .5rem .9rem; border-radius: 16px; gap: .25rem .6rem; }
+  .xmas-bar__sep { display: none; }
+  .xmas-orn--2, .xmas-orn--3 { display: none; }
+  .xmas-orn--1 .xmas-orn__line { height: 104px; } .xmas-orn--1 .xmas-orn__ball { width: 28px; height: 28px; }
+  .xmas-orn--4 .xmas-orn__line { height: 118px; } .xmas-orn--4 .xmas-orn__ball { width: 30px; height: 30px; }
+  .xmas-drift { height: 30px; }
+  .xmas-toggle span { display: none; }
+  .xmas-toggle { padding: .6rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .xmas-gbulb, .xmas-orn, .rd-body, .rd-leg, .rd-head, .rd-nose, .elf-body, .elf-arm, .elf-head, .elf-bell { animation: none; }
+}

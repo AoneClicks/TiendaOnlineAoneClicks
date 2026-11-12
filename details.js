@@ -91,12 +91,96 @@ const PRODUCT_DETAILS = {
     note: "Suplemento alimenticio: no es un medicamento ni reemplaza un tratamiento médico. Consulta a un profesional de la salud antes de usarlo, especialmente si estás embarazada, lactando o tomas medicamentos."
   },
   12: {
-    headline: "Ilumina tu hogar sin gastar en electricidad",
-    description: "Cadena de 200 bombillos LED de luz cálida que funciona con energía solar: su panel se carga con el sol durante el día y las luces se encienden solas al anochecer. Es resistente a la lluvia, ideal para decorar patios, jardines, balcones, terrazas y fachadas, sin cables a la toma ni costos en tu factura de luz.",
-    benefits: ["Carga solar automática: 100% ecológica", "Encendido inteligente al anochecer", "Resistente a la lluvia, ideal para exteriores", "200 bombillos LED de luz cálida para una decoración llamativa"],
-    howto: "Ubica el panel en un lugar donde reciba sol directo, distribuye la guirnalda donde quieras decorar y déjala cargar durante el día.",
-    specs: [["Bombillos", "200 LED"], ["Color", "Luz cálida (amarilla)"], ["Energía", "Solar, con encendido automático"], ["Uso", "Exteriores e interiores, resistente a la lluvia"], ["Incluye", "Guirnalda y panel solar"]],
-    note: "La duración de la luz depende de las horas de sol recibidas durante el día."
+      headline: "Ilumina tu hogar sin gastar en electricidad",
+      description: "Cadena de 200 bombillos LED de 12 metros que funciona con energía solar: su panel se carga con el sol durante el día y las luces se encienden solas al anochecer. Trae una caja de control con botón de encendido y botón MODE para cambiar los efectos de luz. Es resistente a la lluvia, ideal para decorar árboles, patios, jardines, balcones y fachadas, sin cables a la toma ni costos en tu factura de luz.",
+      benefits: [
+          "Carga solar automática: 100% ecológica",
+          "Encendido automático al anochecer",
+          "Botón MODE para cambiar los efectos de luz",
+          "200 bombillos LED en 12 metros de cable"
+      ],
+      howto: "Ubica el panel donde reciba sol directo, distribuye la cadena donde quieras decorar y déjala cargar durante el día.",
+      specs: [
+          [
+              "Bombillos",
+              "200 LED"
+          ],
+          [
+              "Largo",
+              "12 metros"
+          ],
+          [
+              "Colores",
+              "Blanco o multicolor (amarillo agotado)"
+          ],
+          [
+              "Energía",
+              "Panel solar con encendido automático"
+          ],
+          [
+              "Control",
+              "Botones ON/OFF y MODE (efectos de luz)"
+          ],
+          [
+              "Uso",
+              "Exteriores e interiores, resistente a la lluvia"
+          ],
+          [
+              "Certificaciones",
+              "CE, RoHS y FCC (caja de control)"
+          ],
+          [
+              "Incluye",
+              "Cadena de luces, caja de control y panel solar con estaca"
+          ]
+      ],
+      note: "La duración de la luz depende de las horas de sol recibidas durante el día."
+  },
+  14: {
+      headline: "Ilumina tu hogar sin gastar en electricidad",
+      description: "Cadena de 500 bombillos LED de 25 metros que funciona con energía solar: su panel se carga con el sol durante el día y las luces se encienden solas al anochecer. Trae una caja de control con botón de encendido y botón MODE para cambiar los efectos de luz. Es resistente a la lluvia, ideal para decorar árboles, patios, jardines, balcones y fachadas, sin cables a la toma ni costos en tu factura de luz.",
+      benefits: [
+          "Carga solar automática: 100% ecológica",
+          "Encendido automático al anochecer",
+          "Botón MODE para cambiar los efectos de luz",
+          "500 bombillos LED en 25 metros de cable"
+      ],
+      howto: "Ubica el panel donde reciba sol directo, distribuye la cadena donde quieras decorar y déjala cargar durante el día.",
+      specs: [
+          [
+              "Bombillos",
+              "500 LED"
+          ],
+          [
+              "Largo",
+              "25 metros"
+          ],
+          [
+              "Colores",
+              "Blanco o multicolor (amarillo agotado)"
+          ],
+          [
+              "Energía",
+              "Panel solar con encendido automático"
+          ],
+          [
+              "Control",
+              "Botones ON/OFF y MODE (efectos de luz)"
+          ],
+          [
+              "Uso",
+              "Exteriores e interiores, resistente a la lluvia"
+          ],
+          [
+              "Certificaciones",
+              "CE, RoHS y FCC (caja de control)"
+          ],
+          [
+              "Incluye",
+              "Cadena de luces, caja de control y panel solar con estaca"
+          ]
+      ],
+      note: "La duración de la luz depende de las horas de sol recibidas durante el día."
   },
   13: {
     headline: "El mineral esencial que tu cuerpo necesita",
@@ -168,8 +252,14 @@ const PRODUCT_INFO = {
     ["Ideal para", "Casas, fincas y negocios", "Casas, fincas, negocios y parqueaderos que quieren más seguridad."]
   ]},
   12: { rutina: "Decoración solar para tus noches", filas: [
-    ["Sirve para", "Decorar patios, balcones y jardines", "Decorar patios, balcones, jardines y fachadas con 200 luces LED de luz cálida."],
-    ["Cómo se usa", "Panel al sol y listo", "Pon el panel al sol y distribuye la guirnalda. Se encienden solas al anochecer."],
+    ["Sirve para", "Decorar árboles, patios y balcones", "Decorar árboles, patios, balcones, jardines y fachadas con 200 luces LED."],
+    ["Cómo se usa", "Panel al sol y listo", "Pon el panel al sol y distribuye la cadena. Se encienden solas al anochecer y con MODE cambias el efecto."],
+    ["Cuándo", "Todas las noches y en fiestas", "Todas las noches, en fiestas, reuniones y Navidad."],
+    ["Ideal para", "Hogares, terrazas y eventos", "Hogares, terrazas, negocios y eventos al aire libre (resiste la lluvia)."]
+  ]},
+  14: { rutina: "Decoración solar para tus noches", filas: [
+    ["Sirve para", "Decorar árboles, patios y balcones", "Decorar árboles, patios, balcones, jardines y fachadas con 500 luces LED."],
+    ["Cómo se usa", "Panel al sol y listo", "Pon el panel al sol y distribuye la cadena. Se encienden solas al anochecer y con MODE cambias el efecto."],
     ["Cuándo", "Todas las noches y en fiestas", "Todas las noches, en fiestas, reuniones y Navidad."],
     ["Ideal para", "Hogares, terrazas y eventos", "Hogares, terrazas, negocios y eventos al aire libre (resiste la lluvia)."]
   ]},

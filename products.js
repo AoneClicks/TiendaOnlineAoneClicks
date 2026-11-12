@@ -2,6 +2,7 @@
 // prices: precio total en COP (sin puntos ni símbolos) según unidades: 1, 2 o 3.
 // badge: "Verificado" | "Premium" | "Exclusivo"
 // gallery: fotos adicionales (opcional). Se ven al deslizar la foto principal.
+// colors: colores para elegir (opcional). Agrega soldOut: true a un color agotado y no se podrá pedir.
 // El orden de esta lista es el orden del catálogo: los productos similares van seguidos.
 const PRODUCTS = [
   // Suplementos
@@ -16,7 +17,8 @@ const PRODUCTS = [
   { id: 9, name: "Cepillo Alisador De Cabello Fh909", category: "Belleza", stock: 225, badge: "Premium", prices: { 1: 71900, 2: 94900, 3: 116900 }, image: "cepillo-alisador-fh909.jpg", gallery: ["cepillo-alisador-fh909-2.jpg", "cepillo-alisador-fh909-3.jpg"] },
   // Iluminación solar
   { id: 4, name: "Reflector Solar 500 W", category: "Hogar", stock: 193, badge: "Verificado", prices: { 1: 326900, 2: 622900, 3: 923900 }, image: "reflector-solar-500w.jpg" },
-  { id: 12, name: "Luces Led X200 Bombillos (Solar)", category: "Hogar", stock: 120, badge: "Verificado", prices: { 1: 99900, 2: 139900 }, image: "luces-led-solar-hd.jpg", gallery: ["luces-led-solar-real.jpg", "luces-led-solar-panel.jpg", "luces-led-solar-control.jpg"] },
+  { id: 12, name: "Luces LED Solares 200 Bombillos (12 m)", category: "Hogar", stock: 120, badge: "Verificado", prices: { 1: 99900, 2: 139900 }, image: "luces-led-solar-hd.jpg", gallery: ["luces-led-solar-real.jpg", "luces-led-solar-panel.jpg", "luces-led-solar-control.jpg"], colors: [{ name: "Blanco", swatch: "#f3f6ff" }, { name: "Multicolor", swatch: "conic-gradient(#ff4d4d, #ffd23f, #3ddc84, #3d8bff, #c04dff, #ff4d4d)" }, { name: "Amarillo", swatch: "#ffc53d", soldOut: true }] },
+  { id: 14, name: "Luces LED Solares 500 Bombillos (25 m)", category: "Hogar", stock: 120, badge: "Premium", prices: { 1: 119900, 2: 184900 }, image: "luces-led-solar-hd.jpg", gallery: ["luces-led-solar-real.jpg", "luces-led-solar-panel.jpg", "luces-led-solar-control.jpg"], colors: [{ name: "Blanco", swatch: "#f3f6ff" }, { name: "Multicolor", swatch: "conic-gradient(#ff4d4d, #ffd23f, #3ddc84, #3d8bff, #c04dff, #ff4d4d)" }, { name: "Amarillo", swatch: "#ffc53d", soldOut: true }] },
   // Hogar y tecnología
   { id: 5, name: "Limpiador A Vapor Para El Hogar", category: "Tecnología", stock: 68, badge: "Verificado", prices: { 1: 270900, 2: 505900, 3: 744900 }, image: "limpiador-a-vapor.jpg" },
   { id: 8, name: "Organizador Perchero Y Zapatero 4 In 1", category: "Hogar", stock: 192, badge: "Verificado", prices: { 1: 104900, 2: 162900, 3: 219900 }, image: "organizador-perchero-zapatero.jpg" },
@@ -31,7 +33,7 @@ const STORE_CONFIG = {
     image: "luces-led-solar-hd.jpg",
     label: "Producto del mes · Especial de Navidad",
     title: "Ilumina tu Navidad con energía solar",
-    text: "200 luces LED que se cargan con el sol y se encienden solas al anochecer. Sin cables y sin pagar luz."
+    text: "Cadena de luces LED que se carga con el sol y se enciende sola al anochecer. Elige 200 bombillos (12 m) o 500 bombillos (25 m), en blanco o multicolor."
   },
   // Desde cuántas unidades se ofrece precio por mayor (por WhatsApp)
   wholesaleFrom: 4,

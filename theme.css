@@ -415,3 +415,23 @@ h1, h2, h3 { letter-spacing: -.022em; }
   .card__img .gal__dot.on { width: 12px; }
   .card__star { top: 2.55rem; left: .5rem; font-size: .58rem; }
 }
+
+/* Selector de color */
+.colors { display: grid; gap: .35rem; }
+.colors__label { font-size: .8rem; color: var(--color-muted); font-weight: 600; }
+.colors__label strong { color: var(--ink); }
+.colors__opts { display: flex; gap: .45rem; flex-wrap: wrap; }
+.swatch { position: relative; width: 30px; height: 30px; padding: 0; border-radius: 50%; border: 2px solid #fff; background: var(--sw); box-shadow: 0 0 0 1px var(--color-border), 0 2px 5px rgba(11, 21, 48, .12); cursor: pointer; transition: box-shadow .15s, transform .15s; }
+.swatch:hover { transform: scale(1.08); }
+.swatch[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--color-primary), 0 2px 6px rgba(20, 80, 245, .3); }
+.swatch--out { opacity: .45; cursor: not-allowed; }
+.swatch--out::after { content: ""; position: absolute; left: 50%; top: -3px; bottom: -3px; width: 2px; background: #d92b4b; transform: translateX(-50%) rotate(45deg); border-radius: 2px; }
+.swatch--out:hover { transform: none; }
+.colors__out { font-size: .72rem; font-weight: 700; color: #b45309; }
+.pd .colors { margin: .2rem 0 .4rem; }
+.pd .swatch { width: 36px; height: 36px; }
+@media (max-width: 480px) {
+  .swatch { width: 24px; height: 24px; }
+  .colors__label { font-size: .72rem; }
+  .colors__out { font-size: .62rem; }
+}
