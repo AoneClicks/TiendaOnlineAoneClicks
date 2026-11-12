@@ -401,3 +401,17 @@ h1, h2, h3 { letter-spacing: -.022em; }
   .card__img .info { justify-content: flex-start; padding-top: 7cqw; }
   .card__img .info__list li { gap: 2.4cqw; }
 }
+
+/* Catálogo: botón "¿Para qué sirve?" abajo en la esquina para no tapar el producto */
+.card__img .gal__hint { left: .5rem; bottom: .5rem; padding: .3rem .65rem; font-size: .7rem; box-shadow: 0 2px 8px rgba(11, 21, 48, .2); }
+.card__img:has(.card__star) .gal__hint { bottom: .5rem; }
+.card__img .gal__dots { left: auto; right: .7rem; bottom: .85rem; transform: none; }
+.card__img .gal__count { display: none; }
+.card__star { top: 2.6rem; bottom: auto; left: .75rem; padding: .22rem .55rem; font-size: .66rem; }
+@media (max-width: 480px) {
+  .card__img .gal__hint { left: .35rem; bottom: .35rem; padding: .22rem .45rem; font-size: .58rem; }
+  .card__img .gal__dots { right: .45rem; bottom: .6rem; gap: 4px; }
+  .card__img .gal__dot { width: 6px; height: 6px; }
+  .card__img .gal__dot.on { width: 12px; }
+  .card__star { top: 2.55rem; left: .5rem; font-size: .58rem; }
+}
