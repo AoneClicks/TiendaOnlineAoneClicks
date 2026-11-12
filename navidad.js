@@ -105,6 +105,39 @@
 
     hero.append(h("div", "xmas-drift", `<svg viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 34 C 120 14 220 40 360 30 S 600 8 760 28 S 1020 46 1160 24 S 1360 18 1440 30 L 1440 60 L 0 60 Z"/></svg>`));
 
+    // Papá Noel saludando en lugar del punto verde del slogan
+    const eyebrow = hero.querySelector(".hero__eyebrow");
+    if (eyebrow) eyebrow.prepend(h("span", "xmas-santa", `<svg viewBox="0 0 64 64" aria-hidden="true">
+      <defs>
+        <radialGradient id="snFace" cx=".45" cy=".4" r=".7"><stop offset="0" stop-color="#ffe0c7"/><stop offset="1" stop-color="#f2b896"/></radialGradient>
+        <linearGradient id="snRed" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e2384a"/><stop offset="1" stop-color="#9e1426"/></linearGradient>
+      </defs>
+      <g class="sn-all">
+        <path d="M10 64 C 10 52, 18 46, 32 46 C 46 46, 54 52, 54 64 Z" fill="url(#snRed)"/>
+        <path d="M30 47 h4 v17 h-4z" fill="#f4f7fb"/>
+        <g class="sn-arm">
+          <path d="M47 52 C 52 46, 55 40, 56 33" stroke="url(#snRed)" stroke-width="7" stroke-linecap="round" fill="none"/>
+          <rect x="51.5" y="29" width="9" height="5" rx="2.5" fill="#f4f7fb" transform="rotate(-12 56 31)"/>
+          <circle cx="56.5" cy="25" r="4.6" fill="#f4f7fb"/>
+          <path d="M53.6 22.4 v-3 M56.5 21.4 v-3.4 M59.4 22.4 v-3" stroke="#f4f7fb" stroke-width="2.6" stroke-linecap="round"/>
+        </g>
+        <g class="sn-head">
+          <path d="M17 31 C 15 44, 22 54, 32 54 C 42 54, 49 44, 47 31 C 43 37, 21 37, 17 31 Z" fill="#f4f7fb"/>
+          <circle cx="32" cy="29" r="12" fill="url(#snFace)"/>
+          <circle cx="24.5" cy="32" r="3" fill="#f39a9a" opacity=".6"/><circle cx="39.5" cy="32" r="3" fill="#f39a9a" opacity=".6"/>
+          <path d="M25.5 27.5 q 2.5 -2.6 5 0 M33.5 27.5 q 2.5 -2.6 5 0" stroke="#3b2418" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <path d="M22 37 C 26 33, 30 34, 32 36 C 34 34, 38 33, 42 37 C 38 40, 34 39, 32 37.5 C 30 39, 26 40, 22 37 Z" fill="#ffffff"/>
+          <circle cx="32" cy="33.2" r="2.6" fill="#e98a7a"/>
+          <path d="M28.5 42 q 3.5 2.6 7 0" stroke="#b85a4a" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          <g transform="translate(64 0) scale(-1 1)">
+            <path d="M19 22 C 20 10, 34 4, 44 9 C 50 12, 53 18, 52 24 L 47 23 C 46 18, 42 15, 38 16 C 40 19, 43 21, 45 22 Z" fill="url(#snRed)"/>
+            <circle class="sn-pom" cx="52" cy="26" r="4" fill="#f4f7fb"/>
+          </g>
+          <rect x="17" y="19" width="30" height="7" rx="3.5" fill="#f4f7fb"/>
+        </g>
+      </g>
+    </svg>`));
+
     // Reno (izquierda) y duende (derecha)
     const reindeer = h("div", "xmas-char xmas-char--left", `<svg class="xmas-reindeer" viewBox="0 0 220 230" aria-hidden="true">
       <ellipse cx="108" cy="222" rx="78" ry="7" fill="#000" opacity=".18"/>
