@@ -210,6 +210,21 @@ const PRODUCT_DETAILS = {
     howto: "Elige la talla de tu anillo con la guía de tallas (mide el diámetro interno de un anillo que te quede bien). Ajusta la pulsera deslizando el nudo hasta la medida de tu muñeca. Para conservar el brillo, guarda las piezas secas y evita el contacto con perfumes y químicos.",
     specs: [["Incluye", "1 pulsera + 1 anillo"], ["Material", "Oro laminado 18K"], ["Balines de la pulsera", "Diamantados de 8 mm y 6 mm"], ["Emblema", "Corona en alto relieve con microcircones"], ["Hilo", "Negro resistente, tejido artesanal"], ["Ajuste de la pulsera", "Nudo corredizo para diferentes tamaños de muñeca"], ["Anillo", "Estilo robusto, laterales con grabados decorativos"], ["Acabado", "Dorado brillante"], ["Tallas del anillo", "De la 3 a la 13 (incluye medias tallas)"], ["Estilo", "Masculino, elegante y moderno"]],
     note: "Para que el oro laminado conserve su brillo por más tiempo, evita el contacto con agua, perfumes, cremas y productos químicos."
+  },
+  16: {
+    headline: "Lleva contigo un símbolo de fe, amor y devoción",
+    quick: ["Oro laminado 18K", "Cadena + pulsera", "Pulsera ajustable", "Ideal para regalar"],
+    description: "Un conjunto que une elegancia y significado espiritual: una delicada cadena dorada con dije de corazón rojo esmaltado y una pulsera de hilo rojo trenzado con el Sagrado Corazón de Jesús, coronado y con detalles dorados. Más que un accesorio, es un símbolo de fe que puedes llevar contigo todos los días.",
+    benefits: [
+      "Diseño lleno de significado: el Sagrado Corazón de Jesús, símbolo de fe, amor y protección",
+      "Rojo y dorado: una combinación que luce hermosa y resalta con cualquier atuendo",
+      "Pulsera ajustable: hilo trenzado con nudo corredizo que se adapta a tu muñeca",
+      "Juntas o por separado: lúcelas para el día a día o en ocasiones especiales",
+      "El regalo perfecto: para mamá, esposa, pareja o alguien que llevas en el corazón"
+    ],
+    howto: "Ajusta la pulsera deslizando los extremos del hilo hasta la medida de tu muñeca. Para conservar el brillo, guarda las piezas secas y evita el contacto con perfumes y químicos.",
+    specs: [["Incluye", "1 cadena con dije + 1 pulsera"], ["Material", "Oro laminado 18K"], ["Cadena", "Dorada, con dije de corazón rojo esmaltado y detalles dorados"], ["Pulsera", "Hilo rojo trenzado, balines dorados y dije del Sagrado Corazón con corona"], ["Ajuste de la pulsera", "Nudo corredizo para diferentes tamaños de muñeca"], ["Acabado", "Dorado brillante con esmalte rojo"], ["Estilo", "Religioso, elegante y delicado"]],
+    note: "Para que el oro laminado conserve su brillo por más tiempo, evita el contacto con agua, perfumes, cremas y productos químicos."
   }
 };
 
@@ -307,5 +322,11 @@ const PRODUCT_INFO = {
     ["Cómo se usa", "Ajusta la pulsera con el nudo", "Desliza el nudo corredizo para ajustar la pulsera a tu muñeca y ponte el anillo en tu dedo preferido."],
     ["Cuándo", "Ocasiones especiales y día a día", "En reuniones, celebraciones, salidas o en tu día a día, con ropa casual o elegante."],
     ["Ideal para", "Regalar a un hombre con estilo", "Hombres que cuidan su imagen. Un regalo perfecto para cumpleaños, aniversarios y Navidad."]
+  ]},
+  16: { rutina: "Fe y elegancia para cada día", filas: [
+    ["Sirve para", "Llevar tu fe con estilo", "Llevar contigo un símbolo de fe y amor, con un conjunto dorado y rojo que luce hermoso."],
+    ["Cómo se usa", "Ajusta la pulsera con el hilo", "Ponte la cadena y ajusta la pulsera deslizando el nudo hasta la medida de tu muñeca."],
+    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en misas, celebraciones y fechas especiales; juntas o por separado."],
+    ["Ideal para", "Regalar a mamá, esposa o pareja", "Mamá, esposa, pareja o alguien especial. Un regalo con significado para Navidad y cumpleaños."]
   ]}
 };
