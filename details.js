@@ -3,12 +3,25 @@
 // specs: datos técnicos [etiqueta, valor] | note: aviso importante (opcional)
 const PRODUCT_DETAILS = {
   1: {
-    headline: "Tu aliado diario para cuidar tu bienestar",
-    description: "Glucora Berberine es un suplemento en gotero que combina berberina con canela de Ceilán, cromo, melón amargo y cúrcuma, ingredientes muy usados en rutinas de bienestar. Su formato líquido es fácil de dosificar y se integra a tu día sin complicaciones.",
-    benefits: ["Fórmula con 5 ingredientes naturales reconocidos", "Gotero que facilita medir cada dosis", "Presentación práctica para llevar a todas partes", "Ideal para acompañar una alimentación equilibrada y hábitos saludables"],
-    howto: "Toma las gotas indicadas en el empaque, directamente o diluidas en agua, preferiblemente antes de las comidas.",
-    specs: [["Presentación", "Frasco con gotero"], ["Ingredientes clave", "Berberina, canela de Ceilán, cromo, melón amargo y cúrcuma"], ["Uso", "Oral"], ["Incluye", "1 frasco por unidad"]],
-    note: "Suplemento dietario: no es un medicamento ni reemplaza un tratamiento médico. Consulta a tu médico si tienes alguna condición o estás embarazada."
+    headline: "Fórmula líquida 5 en 1 para acompañar el equilibrio de tu azúcar y tu metabolismo",
+    quick: ["50 ml", "Fórmula 5 en 1", "Rinde aprox. 25 días", "Sin tragar pastillas"],
+    description: "Olvídate de tragar cápsulas grandes. Glucora Berberine reúne 5 ingredientes en un solo gotero que tomas en un vaso de agua antes de tus comidas principales. Una forma práctica de acompañar tu rutina de alimentación equilibrada y de cuidar tu consumo de azúcar todos los días.",
+    benefits: [
+      "Fórmula 5 en 1: berberina, canela de Ceilán, cromo, melón amargo y cúrcuma en una sola toma",
+      "Fácil de tomar: en gotas, sin pastillas grandes. Ideal si te cuesta tragar cápsulas",
+      "Dosis exacta: el gotero te deja medir cada toma sin complicaciones",
+      "Pensado para tu rutina: adultos que cuidan su azúcar, su peso y quieren sentirse livianos después de comer"
+    ],
+    ingredients: [
+      ["Berberina", "Compuesto de origen vegetal, el más usado en rutinas para el equilibrio de la glucosa."],
+      ["Canela de Ceilán", "La canela \"verdadera\", usada tradicionalmente para acompañar el azúcar después de las comidas."],
+      ["Cromo", "Mineral que contribuye al metabolismo normal de los carbohidratos y a mantener niveles normales de glucosa."],
+      ["Melón amargo", "Fruto usado tradicionalmente en rutinas de equilibrio metabólico."],
+      ["Cúrcuma", "Raíz conocida por su aporte antioxidante."]
+    ],
+    howto: "Toma 1 gotero (aprox. 1 ml) en un vaso de agua, 2 veces al día: 15 a 30 minutos antes del desayuno y de la cena.",
+    specs: [["Presentación", "Frasco gotero de 50 ml (1 fl oz)"], ["Contenido", "Aprox. 50 goteros de 1 ml"], ["Rendimiento", "Aprox. 25 días tomando 2 goteros al día"], ["Modo de uso", "1 gotero en agua, 2 veces al día"], ["Ingredientes", "Berberina, canela de Ceilán, cromo, melón amargo y cúrcuma"], ["Tipo", "Suplemento dietario líquido"], ["Incluye", "1 frasco por unidad"]],
+    note: "Suplemento dietario: no es un medicamento ni reemplaza un tratamiento médico. Si tomas medicamentos para la diabetes, estás embarazada o tienes alguna condición de salud, consulta antes a tu médico."
   },
   2: {
     headline: "Cuidado facial de salón, ahora en tu casa",

@@ -255,6 +255,13 @@
   }
   const clampQty = (v) => Math.min(MAX_QTY, Math.max(1, parseInt(v, 10) || 1));
 
+  // ---------- Precio "antes" (oferta) ----------
+  const offer = (p) => {
+    if (!p.compareAt || p.compareAt <= p.prices[1]) return null;
+    const ahorro = p.compareAt - p.prices[1];
+    return { antes: p.compareAt, ahorro, pct: Math.round((ahorro / p.compareAt) * 100) };
+  };
+
   // ---------- Descuentos por cantidad ----------
   function dealLine(p) {
     const max = Math.max(...packSizes(p));
@@ -339,6 +346,7 @@
       const priceEl = el("span", { class: "card__price" });
       const unitEl = el("span", { class: "card__unit" });
       const saveEl = el("span", { class: "card__save" });
+      const oldEl = el("s", { class: "card__old", "aria-label": "Precio anterior" });
       const packs = packSizes(p).map((n) => el("button", {
         type: "button", class: "pack", "aria-pressed": "false", "data-units": String(n),
         onclick: () => setUnits(n)
@@ -350,8 +358,10 @@
         priceEl.textContent = money(total);
         unitEl.textContent = n === 1 ? "Impuestos incluidos" : `${money(Math.round(total / n))} c/u · Impuestos incluidos`;
         const saving = p.prices[1] * n - total;
-        saveEl.textContent = saving > 0 ? `Ahorras ${money(saving)}` : "";
-        saveEl.hidden = saving <= 0;
+        const of = offer(p);
+        saveEl.textContent = saving > 0 ? `Ahorras ${money(saving)}` : (of && n === 1 ? `-${of.pct}% · Ahorras ${money(of.ahorro)}` : "");
+        saveEl.hidden = !saveEl.textContent;
+        oldEl.textContent = of && n === 1 ? money(of.antes) : ""; oldEl.hidden = !oldEl.textContent;
         packs.forEach((b) => {
           const on = Number(b.dataset.units) === n;
           b.classList.toggle("active", on);
@@ -386,7 +396,7 @@
         imgBox.append(b);
       }
       imgBox.append(heart);
-      if (STORE_CONFIG.featured && STORE_CONFIG.featured.id === p.id) imgBox.append(el("span", { class: "card__star", text: "⭐ Producto del mes" }));
+      if (STORE_CONFIG.featured && STORE_CONFIG.featured.id === p.id) imgBox.append(el("span", { class: "card__star" + (STORE_CONFIG.featured.theme === "blackfriday" ? " card__star--bf" : ""), text: STORE_CONFIG.featured.cardTag || "⭐ Producto del mes" }));
       else if (p.tag) imgBox.append(el("span", { class: "card__star card__star--hot", text: p.tag }));
       imgBox.addEventListener("click", () => openProduct(p));
 
@@ -401,7 +411,7 @@
           picker.el,
           el("div", { class: "packs", role: "group", "aria-label": "Unidades de " + p.name }, packs),
           dealLine(p) || "",
-          el("div", { class: "card__pricing" }, [priceEl, saveEl, unitEl]),
+          el("div", { class: "card__pricing" }, [oldEl, priceEl, saveEl, unitEl]),
           addBtn
         ])
       ]));
@@ -421,13 +431,22 @@
       addToCart(p.id, 1); openDrawer();
     } });
     addBtn.innerHTML = CART_ICON + "<span>Comprar ahora</span>";
-    box.replaceChildren(el("article", { class: "feat" }, [
-      el("button", { type: "button", class: "feat__img", "aria-label": "Ver " + p.name, onclick: () => openProduct(p) }, [(() => { const im = productImg(p, f.image); im.loading = "eager"; im.setAttribute("fetchpriority", "high"); return im; })()]),
+    const of = offer(p);
+    const bf = f.theme === "blackfriday";
+    box.replaceChildren(el("article", { class: "feat" + (bf ? " feat--bf" : "") }, [
+      el("button", { type: "button", class: "feat__img", "aria-label": "Ver " + p.name, onclick: () => openProduct(p) }, [(() => { const im = productImg(p, f.image); im.loading = "eager"; im.setAttribute("fetchpriority", "high"); return im; })(),
+        of ? el("span", { class: "feat__badge", "aria-label": `${of.pct}% de descuento` }, [el("strong", { text: `-${of.pct}%` }), el("small", { text: "OFF" })]) : ""]),
       el("div", { class: "feat__body" }, [
-        el("span", { class: "feat__label" }, [el("span", { "aria-hidden": "true", text: "⭐ " }), f.label]),
+        bf ? el("p", { class: "feat__bf" }, [el("span", { class: "feat__bf-word", text: "BLACK" }), el("span", { class: "feat__bf-word feat__bf-word--gold", text: "FRIDAY" })])
+           : el("span", { class: "feat__label" }, [el("span", { "aria-hidden": "true", text: "⭐ " }), f.label]),
         el("h2", { class: "feat__title", text: f.title }),
         el("p", { class: "feat__text", text: f.text }),
-        el("p", { class: "feat__price" }, [
+        of ? el("div", { class: "feat__offer" }, [
+          el("p", { class: "feat__was" }, ["Antes ", el("s", { text: money(of.antes) })]),
+          el("p", { class: "feat__now" }, [el("strong", { text: money(p.prices[1]) }), el("span", { class: "feat__pct", text: `-${of.pct}%` })]),
+          el("p", { class: "feat__save" }, [el("span", { "aria-hidden": "true", text: "💰 " }), "Ahorras ", el("strong", { text: money(of.ahorro) })]),
+          p.tag ? el("p", { class: "feat__proof", text: p.tag }) : ""
+        ]) : el("p", { class: "feat__price" }, [
           el("strong", { text: money(p.prices[1]) }),
           max > 1 ? el("span", { text: ` · ${max} por ${money(p.prices[max])}` }) : ""
         ]),
@@ -532,6 +551,7 @@
     const priceEl = el("span", { class: "card__price" });
     const unitEl = el("span", { class: "card__unit" });
     const saveEl = el("span", { class: "card__save" });
+      const oldEl = el("s", { class: "card__old", "aria-label": "Precio anterior" });
     const packs = packSizes(p).map((n) => el("button", {
       type: "button", class: "pack", "data-units": String(n), onclick: () => setUnits(n)
     }, `${n} ${n === 1 ? "unidad" : "unidades"}`));
@@ -541,8 +561,10 @@
       priceEl.textContent = money(total);
       unitEl.textContent = n === 1 ? "Impuestos incluidos" : `${money(Math.round(total / n))} c/u · Impuestos incluidos`;
       const saving = p.prices[1] * n - total;
-      saveEl.textContent = saving > 0 ? `Ahorras ${money(saving)}` : "";
-      saveEl.hidden = saving <= 0;
+      const of = offer(p);
+      saveEl.textContent = saving > 0 ? `Ahorras ${money(saving)}` : (of && n === 1 ? `-${of.pct}% · Ahorras ${money(of.ahorro)}` : "");
+      saveEl.hidden = !saveEl.textContent;
+      oldEl.textContent = of && n === 1 ? money(of.antes) : ""; oldEl.hidden = !oldEl.textContent;
       packs.forEach((b) => b.classList.toggle("active", Number(b.dataset.units) === n));
     }
     const pdPicker = colorPicker(p);
@@ -559,17 +581,28 @@
     const specs = el("dl", { class: "pd__specs" }, (d.specs || []).map(([k, v]) =>
       el("div", {}, [el("dt", { text: k }), el("dd", { text: v })])));
     const benefits = (d.benefits || []).length
-      ? el("ul", { class: "pd__benefits" }, d.benefits.map((b) => el("li", { text: b }))) : null;
+      ? el("ul", { class: "pd__benefits" }, d.benefits.map((b) => {
+          // "Título: texto" -> el título va en negrita para leerse de un vistazo
+          const k = b.indexOf(": ");
+          return k > 0 && k < 40 ? el("li", {}, [el("strong", { text: b.slice(0, k + 1) + " " }), b.slice(k + 2)]) : el("li", { text: b });
+        })) : null;
+    // Datos rápidos (pastillas) e ingredientes explicados, si la ficha los tiene
+    const quick = (d.quick || []).length ? el("ul", { class: "pd__quick" }, d.quick.map((q) => el("li", { text: q }))) : null;
+    const ingredients = (d.ingredients || []).length
+      ? el("ul", { class: "pd__ingredients" }, d.ingredients.map(([n, t]) => el("li", {}, [el("strong", { text: n }), el("span", { text: t })]))) : null;
     const uses = infoText(p);
     const info = el("div", { class: "pd__info" }, [
       el("span", { class: "pd__cat", text: p.category }),
       el("h2", { class: "pd__title", id: "pdTitle", text: p.name }),
       d.headline ? el("p", { class: "pd__headline", text: d.headline }) : "",
+      quick || "",
       el("h3", { class: "pd__h", text: "Descripción" }),
       el("p", { class: "pd__desc", text: d.description || "" }),
       uses || "",
       benefits ? el("h3", { class: "pd__h", text: "¿Por qué te va a encantar?" }) : "",
       benefits || "",
+      ingredients ? el("h3", { class: "pd__h", text: "¿Qué contiene y para qué sirve cada ingrediente?" }) : "",
+      ingredients || "",
       !uses && d.howto ? el("h3", { class: "pd__h", text: "¿Cómo se usa?" }) : "",
       !uses && d.howto ? el("p", { class: "pd__text", text: d.howto }) : "",
       el("h3", { class: "pd__h", text: "Ficha técnica" }),
@@ -580,7 +613,7 @@
       pdPicker.el,
       el("div", { class: "packs", role: "group", "aria-label": "Unidades de " + p.name }, packs),
       dealLine(p) || "",
-      el("div", { class: "card__pricing" }, [priceEl, saveEl, unitEl]),
+      el("div", { class: "card__pricing" }, [oldEl, priceEl, saveEl, unitEl]),
       addBtn,
       wholesaleLink(p)
     );
