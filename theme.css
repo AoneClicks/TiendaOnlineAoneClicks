@@ -532,3 +532,11 @@ h1, h2, h3 { letter-spacing: -.022em; }
 /* Las fotos de la galería siempre caben completas (verticales u horizontales) dentro de la caja */
 .gal__slide { position: relative; }
 .gal__slide > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+
+/* Franja de promoción bajo la foto (no tapa el producto) */
+.card__promo { display: flex; align-items: center; justify-content: space-between; gap: .5rem; padding: .45rem .9rem; background: linear-gradient(90deg, #0b0b0b, #1c1c1c); border-top: 1px solid rgba(233, 196, 106, .45); border-bottom: 1px solid rgba(233, 196, 106, .45); }
+.card__promo-name { font-size: .74rem; font-weight: 900; letter-spacing: .14em; background: linear-gradient(100deg, #c9952f, #f7e3a1 45%, #e9c46a 60%, #c9952f); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.card__promo-pct { padding: .16rem .5rem; border-radius: 6px; background: #e11d48; color: #fff; font-size: .74rem; font-weight: 900; }
+.pd__info > .card__promo { border-radius: 10px; margin-bottom: .2rem; }
+.card__proof { margin: -.25rem 0 0; font-size: .76rem; font-weight: 800; color: #d9480f; }
+@media (max-width: 480px) { .card__promo { padding: .35rem .55rem; } .card__promo-name { font-size: .6rem; letter-spacing: .08em; } .card__promo-pct { font-size: .62rem; padding: .12rem .35rem; } .card__proof { font-size: .66rem; } }

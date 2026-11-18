@@ -262,6 +262,16 @@
     return { antes: p.compareAt, ahorro, pct: Math.round((ahorro / p.compareAt) * 100) };
   };
 
+  // Franja de promoción (por ejemplo Black Friday) con el % de descuento
+  function promoStrip(p) {
+    if (!p.promo) return null;
+    const of = offer(p);
+    return el("div", { class: "card__promo" }, [
+      el("span", { class: "card__promo-name" }, [el("span", { "aria-hidden": "true", text: "🖤 " }), p.promo.toUpperCase()]),
+      of ? el("span", { class: "card__promo-pct", text: "-" + of.pct + "%" }) : ""
+    ]);
+  }
+
   // ---------- Descuentos por cantidad ----------
   function dealLine(p) {
     const max = Math.max(...packSizes(p));
@@ -396,18 +406,20 @@
         imgBox.append(b);
       }
       imgBox.append(heart);
-      if (STORE_CONFIG.featured && STORE_CONFIG.featured.id === p.id) imgBox.append(el("span", { class: "card__star" + (STORE_CONFIG.featured.theme === "blackfriday" ? " card__star--bf" : ""), text: STORE_CONFIG.featured.cardTag || "⭐ Producto del mes" }));
-      else if (p.tag) imgBox.append(el("span", { class: "card__star card__star--hot", text: p.tag }));
+      // Las promociones van en una franja debajo de la foto, para no tapar el producto
+      if (STORE_CONFIG.featured && STORE_CONFIG.featured.id === p.id && !p.promo) imgBox.append(el("span", { class: "card__star", text: STORE_CONFIG.featured.cardTag || "⭐ Producto del mes" }));
       imgBox.addEventListener("click", () => openProduct(p));
 
       grid.append(el("article", { class: "card", style: `animation-delay:${i * 60}ms` }, [
         imgBox,
+        promoStrip(p) || "",
         el("div", { class: "card__body" }, [
           el("div", { class: "card__meta" }, [
             el("span", { class: "card__cat", text: p.category }),
             el("button", { type: "button", class: "card__more", onclick: () => openProduct(p) }, "Ver detalles")
           ]),
           el("h3", { class: "card__title", text: p.name, onclick: () => openProduct(p) }),
+          p.tag ? el("p", { class: "card__proof", text: p.tag }) : "",
           picker.el,
           el("div", { class: "packs", role: "group", "aria-label": "Unidades de " + p.name }, packs),
           dealLine(p) || "",
@@ -592,6 +604,7 @@
       ? el("ul", { class: "pd__ingredients" }, d.ingredients.map(([n, t]) => el("li", {}, [el("strong", { text: n }), el("span", { text: t })]))) : null;
     const uses = infoText(p);
     const info = el("div", { class: "pd__info" }, [
+      promoStrip(p) || "",
       el("span", { class: "pd__cat", text: p.category }),
       el("h2", { class: "pd__title", id: "pdTitle", text: p.name }),
       d.headline ? el("p", { class: "pd__headline", text: d.headline }) : "",
