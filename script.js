@@ -58,13 +58,17 @@
 
   // Colores disponibles de un producto (los agotados no se pueden pedir)
   const availableColors = (p) => (p.colors || []).filter((c) => !c.soldOut);
+  // Opciones que se pueden pedir: colores disponibles o tallas disponibles
+  const variantNames = (p) => p.sizes ? p.sizes.values.filter((v) => !v.soldOut).map((v) => v.name) : availableColors(p).map((c) => c.name);
+  const hasVariants = (p) => Boolean((p.colors && p.colors.length) || (p.sizes && p.sizes.values.length));
+  const variantLabel = (p) => (p.sizes ? "Talla" : "Color");
   const cartKey = (id, color) => (color ? `${id}|${color}` : String(id));
   function parseKey(key) {
     const [idPart, color] = String(key).split("|");
     const product = PRODUCTS.find((p) => String(p.id) === idPart);
     if (!product) return null;
-    if (product.colors && product.colors.length) {
-      if (!availableColors(product).some((c) => c.name === color)) return null;
+    if (hasVariants(product)) {
+      if (!variantNames(product).includes(color)) return null;
     } else if (color) return null;
     return { product, color: color || "" };
   }
@@ -80,7 +84,7 @@
     } catch { return {}; }
   }
   const saveCart = () => { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(cart)); } catch { /* sin almacenamiento */ } };
-  const lineName = (l) => l.product.name + (l.color ? ` – Color ${l.color}` : "");
+  const lineName = (l) => l.product.name + (l.color ? ` – ${variantLabel(l.product)} ${l.color}` : "");
   const cartLines = () => Object.entries(cart)
     .map(([key, qty]) => { const k = parseKey(key); return k && { key, product: k.product, color: k.color, qty }; })
     .filter(Boolean)
@@ -101,11 +105,14 @@
     return node;
   }
   function productImg(p, src) {
-    const img = el("img", { src: src || p.image, alt: p.name, loading: "lazy", width: "400", height: "300" });
+    // loading="lazy" va antes que src: así la foto solo se descarga cuando el cliente está por verla
+    const img = el("img", { loading: "lazy", decoding: "async", alt: p.name, width: "400", height: "300" });
+    img.src = src || p.image;
     img.addEventListener("error", () => { img.src = FALLBACK_IMG; }, { once: true });
     return img;
   }
   const productPhotos = (p) => [p.image].concat(p.gallery || []);
+  const isVideo = (src) => /\.(mp4|webm)$/i.test(src);
 
   // ---------- "¿Para qué sirve?" ----------
   const INFO_ICONS = { "Sirve para": "🎯", "Cómo se toma": "💧", "Cómo se usa": "👉", "Cuándo": "⏰", "Dónde": "📍", "Ideal para": "👥" };
@@ -147,16 +154,22 @@
       document.body.append(lightbox);
       document.addEventListener("keydown", (e) => {
         if (lightbox.hidden) return;
-        if (e.key === "Escape") { e.stopImmediatePropagation(); lightbox.hidden = true; }
+        if (e.key === "Escape") { e.stopImmediatePropagation(); closeLightbox(); }
         if (e.key === "ArrowRight") lbStep(1);
         if (e.key === "ArrowLeft") lbStep(-1);
       }, true);
     }
     const img = el("img", { class: "lb__img", alt: p.name });
+    const video = el("video", { class: "lb__video", controls: "", playsinline: "", preload: "auto" });
+    video.addEventListener("click", (e) => e.stopPropagation());
     const count = el("span", { class: "lb__count" });
+    const tip = el("p", { class: "lb__tip" });
     const show = () => {
-      img.src = photos[i];
-      img.classList.remove("zoom");
+      const src = photos[i];
+      const vid = isVideo(src);
+      img.hidden = vid; video.hidden = !vid;
+      if (vid) { video.src = src; video.play().catch(() => {}); tip.textContent = "Usa los controles para pausar, subir el volumen o ver en pantalla completa"; }
+      else { video.pause(); video.removeAttribute("src"); video.load(); img.src = src; img.classList.remove("zoom"); tip.textContent = "Toca la foto para acercar · pellizca para hacer zoom"; }
       count.textContent = photos.length > 1 ? `${i + 1} / ${photos.length}` : "";
     };
     const step = (d) => { i = (i + d + photos.length) % photos.length; show(); };
@@ -166,9 +179,8 @@
       img.style.transformOrigin = `${((e.clientX - r.left) / r.width) * 100}% ${((e.clientY - r.top) / r.height) * 100}%`;
       img.classList.toggle("zoom");
     });
-    const close = el("button", { type: "button", class: "lb__close", "aria-label": "Cerrar", onclick: () => { lightbox.hidden = true; } }, "×");
-    const kids = [el("div", { class: "lb__stage", onclick: () => { lightbox.hidden = true; } }, [img]), close, count,
-      el("p", { class: "lb__tip", text: "Toca la foto para acercar · pellizca para hacer zoom" })];
+    const close = el("button", { type: "button", class: "lb__close", "aria-label": "Cerrar", onclick: () => closeLightbox() }, "×");
+    const kids = [el("div", { class: "lb__stage", onclick: () => closeLightbox() }, [img, video]), close, count, tip];
     if (photos.length > 1) kids.push(
       el("button", { type: "button", class: "lb__nav lb__nav--prev", "aria-label": "Foto anterior", onclick: () => step(-1) }, "‹"),
       el("button", { type: "button", class: "lb__nav lb__nav--next", "aria-label": "Foto siguiente", onclick: () => step(1) }, "›"));
@@ -179,10 +191,23 @@
     close.focus();
   }
 
+  function closeLightbox() {
+    if (!lightbox) return;
+    const v = lightbox.querySelector("video");
+    if (v) v.pause();
+    lightbox.hidden = true;
+  }
+
   // ---------- Galería deslizable: fotos + "¿Para qué sirve?" ----------
   function gallery(p, zoomable) {
     const photos = productPhotos(p);
     const slides = photos.map((src, n) => {
+      if (isVideo(src)) {
+        const v = el("video", { preload: "none", poster: p.image, muted: "", playsinline: "", "aria-label": "Video de " + p.name });
+        v.src = src;
+        const play = el("button", { type: "button", class: "gal__play", "aria-label": "Ver video de " + p.name, onclick: (e) => { e.stopPropagation(); openLightbox(p, n); } }, [el("span", { class: "gal__play-ic", "aria-hidden": "true", text: "▶" }), "Ver video"]);
+        return el("div", { class: "gal__slide gal__slide--video" }, [v, play]);
+      }
       const s = el("div", { class: "gal__slide" }, [productImg(p, src)]);
       if (zoomable) s.addEventListener("click", () => openLightbox(p, n));
       return s;
@@ -205,7 +230,7 @@
       hint = el("button", { type: "button", class: "gal__hint", onclick: stop(() => go(infoIndex)) }, "¿Para qué sirve? ›");
       wrap.append(hint);
     }
-    if (photos.length > 1) wrap.append(el("span", { class: "gal__count", text: `📷 ${photos.length} fotos` }));
+    if (photos.length > 1) { const nv = photos.filter(isVideo).length, nf = photos.length - nv; wrap.append(el("span", { class: "gal__count", text: `📷 ${nf} ${nf === 1 ? "foto" : "fotos"}` + (nv ? ` · 🎬 ${nv} video` : "") })); }
     if (zoomable) wrap.append(el("span", { class: "gal__zoomtip", "aria-hidden": "true", text: "🔍 Toca para ampliar" }));
     const sync = () => {
       cur = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
@@ -247,7 +272,36 @@
   }
 
   // ---------- Selector de color ----------
+  function sizePicker(p) {
+    const cfg = p.sizes;
+    const select = el("select", { class: "sizes__select", "aria-label": cfg.label || "Talla" }, [
+      el("option", { value: "", text: "Elige tu talla" }),
+      ...cfg.values.map((v) => {
+        const o = el("option", { value: v.name, text: v.hint ? `${v.name} (${v.hint})` : v.name });
+        if (v.soldOut) { o.disabled = true; o.textContent += " · agotada"; }
+        return o;
+      })
+    ]);
+    select.addEventListener("click", (e) => e.stopPropagation());
+    select.addEventListener("change", () => box.classList.remove("sizes--error"));
+    const guideIndex = cfg.guide ? productPhotos(p).indexOf(cfg.guide) : -1;
+    const box = el("div", { class: "sizes" }, [
+      el("label", { class: "sizes__label" }, [cfg.label || "Talla", select]),
+      guideIndex >= 0 ? el("button", { type: "button", class: "sizes__guide", onclick: (e) => { e.stopPropagation(); openLightbox(p, guideIndex); } }, "📏 ¿No sabes tu talla? Ver guía") : ""
+    ]);
+    return {
+      el: box,
+      get: () => select.value,
+      check: () => {
+        if (select.value) return true;
+        box.classList.add("sizes--error"); select.focus();
+        toast("Elige la talla del anillo antes de agregarlo");
+        return false;
+      }
+    };
+  }
   function colorPicker(p, onChange) {
+    if (p.sizes && p.sizes.values.length) return sizePicker(p);
     if (!p.colors || !p.colors.length) return { el: "", get: () => "" };
     let current = (availableColors(p)[0] || {}).name || "";
     const label = el("strong", { text: current });
@@ -321,7 +375,7 @@
       });
 
       const picker = colorPicker(p);
-      const addBtn = el("button", { type: "button", class: "card__add", onclick: () => addToCart(p.id, units, picker.get()) });
+      const addBtn = el("button", { type: "button", class: "card__add", onclick: () => { if (picker.check && !picker.check()) return; addToCart(p.id, units, picker.get()); } });
       addBtn.innerHTML = CART_ICON + "<span>Agregar</span>";
 
       const imgBox = el("div", { class: "card__img" }, [gallery(p)]);
@@ -333,6 +387,7 @@
       }
       imgBox.append(heart);
       if (STORE_CONFIG.featured && STORE_CONFIG.featured.id === p.id) imgBox.append(el("span", { class: "card__star", text: "⭐ Producto del mes" }));
+      else if (p.tag) imgBox.append(el("span", { class: "card__star card__star--hot", text: p.tag }));
       imgBox.addEventListener("click", () => openProduct(p));
 
       grid.append(el("article", { class: "card", style: `animation-delay:${i * 60}ms` }, [
@@ -362,12 +417,12 @@
     if (!box || !p) return;
     const max = Math.max(...packSizes(p));
     const addBtn = el("button", { type: "button", class: "btn btn--primary", onclick: () => {
-      if (p.colors && p.colors.length) { openProduct(p); return; }
+      if (hasVariants(p)) { openProduct(p); return; }
       addToCart(p.id, 1); openDrawer();
     } });
     addBtn.innerHTML = CART_ICON + "<span>Comprar ahora</span>";
     box.replaceChildren(el("article", { class: "feat" }, [
-      el("button", { type: "button", class: "feat__img", "aria-label": "Ver " + p.name, onclick: () => openProduct(p) }, [productImg(p, f.image)]),
+      el("button", { type: "button", class: "feat__img", "aria-label": "Ver " + p.name, onclick: () => openProduct(p) }, [(() => { const im = productImg(p, f.image); im.loading = "eager"; im.setAttribute("fetchpriority", "high"); return im; })()]),
       el("div", { class: "feat__body" }, [
         el("span", { class: "feat__label" }, [el("span", { "aria-hidden": "true", text: "⭐ " }), f.label]),
         el("h2", { class: "feat__title", text: f.title }),
@@ -387,7 +442,7 @@
   // ---------- Carrito ----------
   function addToCart(id, qty, color) {
     const key = cartKey(id, color);
-    if (!parseKey(key)) { toast("Elige un color disponible"); return; }
+    if (!parseKey(key)) { toast(PRODUCTS.find((x) => x.id === id)?.sizes ? "Elige la talla del anillo" : "Elige un color disponible"); return; }
     cart[key] = Math.min(MAX_QTY, (cart[key] || 0) + qty);
     saveCart(); renderCart();
     const added = PRODUCTS.find((x) => x.id === id);
@@ -491,7 +546,7 @@
       packs.forEach((b) => b.classList.toggle("active", Number(b.dataset.units) === n));
     }
     const pdPicker = colorPicker(p);
-    const addBtn = el("button", { type: "button", class: "card__add", onclick: () => { addToCart(p.id, units, pdPicker.get()); closeProduct(); } });
+    const addBtn = el("button", { type: "button", class: "card__add", onclick: () => { if (pdPicker.check && !pdPicker.check()) return; addToCart(p.id, units, pdPicker.get()); closeProduct(); } });
     addBtn.innerHTML = CART_ICON + "<span>Agregar al carrito</span>";
 
     const imgBox = el("div", { class: "pd__img" }, [gallery(p, true)]);

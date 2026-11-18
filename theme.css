@@ -435,3 +435,35 @@ h1, h2, h3 { letter-spacing: -.022em; }
   .colors__label { font-size: .72rem; }
   .colors__out { font-size: .62rem; }
 }
+
+/* Etiqueta de ventas sobre la foto (por ejemplo "+500 vendidos") */
+.card__star--hot { background: linear-gradient(135deg, #ff5a3c, #d62839); box-shadow: 0 3px 10px rgba(214, 40, 57, .35); }
+
+/* Video en la galería */
+.gal__slide--video { position: relative; background: #0b1530; }
+.gal__slide--video video { width: 100%; height: 100%; object-fit: contain; display: block; pointer-events: none; }
+.gal__play {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: inline-flex; align-items: center; gap: .5rem;
+  padding: .7rem 1.2rem; border: 0; border-radius: 999px; cursor: pointer; font: 700 .9rem/1 var(--font, sans-serif);
+  background: rgba(255, 255, 255, .95); color: var(--ink); box-shadow: 0 8px 24px rgba(0, 0, 0, .35); transition: transform .2s;
+}
+.gal__play:hover { transform: translate(-50%, -50%) scale(1.05); }
+.gal__play-ic { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--color-primary); color: #fff; font-size: .8rem; padding-left: 2px; }
+@media (max-width: 480px) { .card__img .gal__play { padding: .45rem .75rem; font-size: .72rem; } .card__img .gal__play-ic { width: 22px; height: 22px; font-size: .6rem; } }
+
+/* Video en el visor ampliado */
+.lb__video { max-width: 100%; max-height: 100%; border-radius: 10px; background: #000; box-shadow: 0 20px 60px rgba(0, 0, 0, .5); }
+.lb__img[hidden], .lb__video[hidden] { display: none; }
+
+/* Selector de talla */
+.sizes { display: grid; gap: .35rem; }
+.sizes__label { display: grid; gap: .3rem; font-size: .8rem; font-weight: 600; color: var(--color-muted); }
+.sizes__select {
+  width: 100%; min-height: 40px; padding: .5rem 2rem .5rem .7rem; border: 1px solid var(--color-border); border-radius: 10px;
+  font: 600 .88rem var(--font, sans-serif); color: var(--ink); background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235f6b85' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right .6rem center / 16px;
+  -webkit-appearance: none; appearance: none; cursor: pointer;
+}
+.sizes__select:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(20, 80, 245, .15); }
+.sizes--error .sizes__select { border-color: #d92b4b; box-shadow: 0 0 0 3px rgba(217, 43, 75, .15); }
+.sizes__guide { justify-self: start; padding: 0; border: 0; background: none; cursor: pointer; font: 700 .76rem var(--font, sans-serif); color: var(--color-primary); text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 480px) { .sizes__label { font-size: .72rem; } .sizes__select { font-size: .78rem; min-height: 36px; padding: .4rem 1.6rem .4rem .5rem; background-size: 14px; } .sizes__guide { font-size: .66rem; } }
