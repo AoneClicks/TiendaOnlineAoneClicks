@@ -4,11 +4,11 @@
 const PRODUCT_DETAILS = {
   1: {
     headline: "Fórmula líquida 5 en 1 para acompañar el equilibrio de tu azúcar y tu metabolismo",
-    quick: ["50 ml", "Fórmula 5 en 1", "Rinde aprox. 25 días", "Sin tragar pastillas"],
+    quick: ["50 ml", "Fórmula 5 en 1", "Sin azúcar", "Rinde aprox. 25 días", "Sin tragar pastillas"],
     description: "Olvídate de tragar cápsulas grandes. Glucora Berberine reúne 5 ingredientes en un solo gotero que tomas en un vaso de agua antes de tus comidas principales. Una forma práctica de acompañar tu rutina de alimentación equilibrada y de cuidar tu consumo de azúcar todos los días.",
     benefits: [
       "Fórmula 5 en 1: berberina, canela de Ceilán, cromo, melón amargo y cúrcuma en una sola toma",
-      "Fácil de tomar: en gotas, sin pastillas grandes. Ideal si te cuesta tragar cápsulas",
+      "Fácil de tomar: en gotas, sin pastillas grandes y sin azúcar. Ideal si te cuesta tragar cápsulas",
       "Dosis exacta: el gotero te deja medir cada toma sin complicaciones",
       "Pensado para tu rutina: adultos que cuidan su azúcar, su peso y quieren sentirse livianos después de comer"
     ],
@@ -20,7 +20,7 @@ const PRODUCT_DETAILS = {
       ["Cúrcuma", "Raíz conocida por su aporte antioxidante."]
     ],
     howto: "Toma 1 gotero (aprox. 1 ml) en un vaso de agua, 2 veces al día: 15 a 30 minutos antes del desayuno y de la cena.",
-    specs: [["Presentación", "Frasco gotero de 50 ml (1 fl oz)"], ["Contenido", "Aprox. 50 goteros de 1 ml"], ["Rendimiento", "Aprox. 25 días tomando 2 goteros al día"], ["Modo de uso", "1 gotero en agua, 2 veces al día"], ["Ingredientes", "Berberina, canela de Ceilán, cromo, melón amargo y cúrcuma"], ["Tipo", "Suplemento dietario líquido"], ["Incluye", "1 frasco por unidad"]],
+    specs: [["Presentación", "Frasco gotero de 50 ml (1 fl oz)"], ["Contenido", "Aprox. 50 goteros de 1 ml"], ["Rendimiento", "Aprox. 25 días tomando 2 goteros al día"], ["Modo de uso", "1 gotero en agua, 2 veces al día"], ["Ingredientes", "Berberina, canela de Ceilán, cromo, melón amargo y cúrcuma"], ["Tipo", "Suplemento dietario líquido"], ["Libre de", "Azúcar"], ["Incluye", "1 frasco por unidad"]],
     note: "Suplemento dietario: no es un medicamento ni reemplaza un tratamiento médico. Si tomas medicamentos para la diabetes, estás embarazada o tienes alguna condición de salud, consulta antes a tu médico."
   },
   2: {
