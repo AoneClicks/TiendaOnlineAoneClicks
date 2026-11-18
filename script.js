@@ -89,7 +89,27 @@
     .map(([key, qty]) => { const k = parseKey(key); return k && { key, product: k.product, color: k.color, qty }; })
     .filter(Boolean)
     .sort((a, b) => PRODUCTS.indexOf(a.product) - PRODUCTS.indexOf(b.product));
-  const cartTotal = () => cartLines().reduce((s, l) => s + lineTotal(l.product, l.qty), 0);
+  // Valor de cada renglón del carrito. Las unidades del mismo producto (aunque cambie la talla o el color)
+  // se suman para aplicar el precio por cantidad; el total se reparte entre sus renglones.
+  function lineAmounts() {
+    const lines = cartLines();
+    const out = new Map();
+    const byProduct = new Map();
+    for (const l of lines) { if (!byProduct.has(l.product.id)) byProduct.set(l.product.id, []); byProduct.get(l.product.id).push(l); }
+    for (const group of byProduct.values()) {
+      const p = group[0].product;
+      const qty = group.reduce((n, l) => n + l.qty, 0);
+      const total = lineTotal(p, qty);
+      let assigned = 0;
+      group.forEach((l, i) => {
+        const amount = i === group.length - 1 ? total - assigned : Math.round((total * l.qty) / qty);
+        assigned += amount;
+        out.set(l.key, amount);
+      });
+    }
+    return out;
+  }
+  const cartTotal = () => [...lineAmounts().values()].reduce((s, v) => s + v, 0);
   const cartUnits = () => cartLines().reduce((s, l) => s + l.qty, 0);
 
   // ---------- Utilidades DOM ----------
@@ -457,6 +477,7 @@
           el("p", { class: "feat__was" }, ["Antes ", el("s", { text: money(of.antes) })]),
           el("p", { class: "feat__now" }, [el("strong", { text: money(p.prices[1]) }), el("span", { class: "feat__pct", text: `-${of.pct}%` })]),
           el("p", { class: "feat__save" }, [el("span", { "aria-hidden": "true", text: "💰 " }), "Ahorras ", el("strong", { text: money(of.ahorro) })]),
+          max > 1 ? el("p", { class: "feat__combo" }, [el("span", { "aria-hidden": "true", text: "🔥 " }), `Lleva ${max} por `, el("strong", { text: money(p.prices[max]) })]) : "",
           p.tag ? el("p", { class: "feat__proof", text: p.tag }) : ""
         ]) : el("p", { class: "feat__price" }, [
           el("strong", { text: money(p.prices[1]) }),
@@ -492,6 +513,7 @@
 
     const list = $("#cartList");
     list.replaceChildren();
+    const amounts = lineAmounts();
     for (const line of lines) {
       const { product: p, qty, key } = line;
       const input = el("input", { type: "number", min: "1", max: String(MAX_QTY), value: String(qty), "aria-label": "Unidades de " + lineName(line) });
@@ -501,7 +523,7 @@
         productImg(p),
         el("div", {}, [
           el("div", { class: "cart-item__name", text: lineName(line) }),
-          el("div", { class: "cart-item__sub", text: `${qty} ${qty === 1 ? "unidad" : "unidades"} = ${money(lineTotal(p, qty))}` }),
+          el("div", { class: "cart-item__sub", text: `${qty} ${qty === 1 ? "unidad" : "unidades"} = ${money(amounts.get(key))}` }),
           el("button", { type: "button", class: "cart-item__remove", onclick: () => { delete cart[key]; saveCart(); renderCart(); } }, "Eliminar")
         ]),
         el("div", { class: "qty" }, [
@@ -533,9 +555,10 @@
     closeDrawer();
     const list = $("#summaryList");
     list.replaceChildren();
+    const amounts = lineAmounts();
     for (const line of cartLines()) {
-      const { product: p, qty } = line;
-      list.append(el("li", {}, [el("span", { text: `${qty} × ${lineName(line)}` }), el("span", { text: money(lineTotal(p, qty)) })]));
+      const { qty } = line;
+      list.append(el("li", {}, [el("span", { text: `${qty} × ${lineName(line)}` }), el("span", { text: money(amounts.get(line.key)) })]));
     }
     $("#summaryTotal").textContent = money(cartTotal());
     checkoutModal.hidden = false; syncScrollLock();
@@ -684,7 +707,8 @@
   const oneLine = (s) => s.replace(/[\r\n]+/g, " ").trim();
 
   function buildMessage(data) {
-    const lines = cartLines().map((l) => `• ${l.qty} ${l.qty === 1 ? "unidad" : "unidades"} de ${lineName(l)} — ${money(lineTotal(l.product, l.qty))}`);
+    const amounts = lineAmounts();
+    const lines = cartLines().map((l) => `• ${l.qty} ${l.qty === 1 ? "unidad" : "unidades"} de ${lineName(l)} — ${money(amounts.get(l.key))}`);
     return [
       "🛍️ *NUEVO PEDIDO - AoneClicks Shopping*",
       "",
