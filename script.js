@@ -24,6 +24,7 @@
   // Precio total por volumen: paquetes de 3 + resto (1 o 2) con su tarifa
   // Si un producto no tiene precio para 3 unidades, se usa su paquete más grande disponible
   const packSizes = (p) => [1, 2, 3].filter((n) => p.prices[n]);
+  const unitName = (p, n) => (p.unit ? (n === 1 ? p.unit[0] : p.unit[1]) : (n === 1 ? "unidad" : "unidades"));
   const lineTotal = (p, qty) => {
     const max = Math.max(...packSizes(p));
     return Math.floor(qty / max) * p.prices[max] + (qty % max ? p.prices[qty % max] : 0);
@@ -292,6 +293,15 @@
     ]);
   }
 
+  // Tablita "1 combo: $X · 2 combos: $Y" para que el precio por cantidad quede clarísimo
+  function priceTiers(p) {
+    const sizes = packSizes(p);
+    if (!p.unit || sizes.length < 2) return null;
+    return el("ul", { class: "price-tiers" }, sizes.map((n) => el("li", {}, [
+      el("span", { text: `${n} ${unitName(p, n)}` }), el("strong", { text: money(p.prices[n]) })
+    ])));
+  }
+
   // ---------- Descuentos por cantidad ----------
   function dealLine(p) {
     const max = Math.max(...packSizes(p));
@@ -380,13 +390,13 @@
       const packs = packSizes(p).map((n) => el("button", {
         type: "button", class: "pack", "aria-pressed": "false", "data-units": String(n),
         onclick: () => setUnits(n)
-      }, `${n} ${n === 1 ? "unidad" : "unidades"}`));
+      }, `${n} ${unitName(p, n)}`));
 
       function setUnits(n) {
         units = n;
         const total = p.prices[n];
         priceEl.textContent = money(total);
-        unitEl.textContent = n === 1 ? "Impuestos incluidos" : `${money(Math.round(total / n))} c/u · Impuestos incluidos`;
+        unitEl.textContent = n === 1 ? "Impuestos incluidos" : `${money(Math.round(total / n))} c/${p.unit ? p.unit[0] : "u"} · Impuestos incluidos`;
         const saving = p.prices[1] * n - total;
         const of = offer(p);
         saveEl.textContent = saving > 0 ? `Ahorras ${money(saving)}` : (of && n === 1 ? `-${of.pct}% · Ahorras ${money(of.ahorro)}` : "");
@@ -441,6 +451,7 @@
           el("h3", { class: "card__title", text: p.name, onclick: () => openProduct(p) }),
           p.tag ? el("p", { class: "card__proof", text: p.tag }) : "",
           picker.el,
+          priceTiers(p) || "",
           el("div", { class: "packs", role: "group", "aria-label": "Unidades de " + p.name }, packs),
           dealLine(p) || "",
           el("div", { class: "card__pricing" }, [oldEl, priceEl, saveEl, unitEl]),
@@ -475,9 +486,9 @@
         el("p", { class: "feat__text", text: f.text }),
         of ? el("div", { class: "feat__offer" }, [
           el("p", { class: "feat__was" }, ["Antes ", el("s", { text: money(of.antes) })]),
-          el("p", { class: "feat__now" }, [el("strong", { text: money(p.prices[1]) }), el("span", { class: "feat__pct", text: `-${of.pct}%` })]),
+          el("p", { class: "feat__now" }, [p.unit ? el("span", { class: "feat__unit", text: `1 ${unitName(p, 1)}` }) : "", el("strong", { text: money(p.prices[1]) }), el("span", { class: "feat__pct", text: `-${of.pct}%` })]),
           el("p", { class: "feat__save" }, [el("span", { "aria-hidden": "true", text: "💰 " }), "Ahorras ", el("strong", { text: money(of.ahorro) })]),
-          max > 1 ? el("p", { class: "feat__combo" }, [el("span", { "aria-hidden": "true", text: "🔥 " }), `Lleva ${max} por `, el("strong", { text: money(p.prices[max]) })]) : "",
+          max > 1 ? el("p", { class: "feat__combo" }, [el("span", { "aria-hidden": "true", text: "🔥 " }), `${max} ${unitName(p, max)} por `, el("strong", { text: money(p.prices[max]) }), ` (ahorras ${money(p.prices[1] * max - p.prices[max])})`]) : "",
           p.tag ? el("p", { class: "feat__proof", text: p.tag }) : ""
         ]) : el("p", { class: "feat__price" }, [
           el("strong", { text: money(p.prices[1]) }),
@@ -523,7 +534,7 @@
         productImg(p),
         el("div", {}, [
           el("div", { class: "cart-item__name", text: lineName(line) }),
-          el("div", { class: "cart-item__sub", text: `${qty} ${qty === 1 ? "unidad" : "unidades"} = ${money(amounts.get(key))}` }),
+          el("div", { class: "cart-item__sub", text: `${qty} ${unitName(p, qty)} = ${money(amounts.get(key))}` }),
           el("button", { type: "button", class: "cart-item__remove", onclick: () => { delete cart[key]; saveCart(); renderCart(); } }, "Eliminar")
         ]),
         el("div", { class: "qty" }, [
@@ -589,12 +600,12 @@
       const oldEl = el("s", { class: "card__old", "aria-label": "Precio anterior" });
     const packs = packSizes(p).map((n) => el("button", {
       type: "button", class: "pack", "data-units": String(n), onclick: () => setUnits(n)
-    }, `${n} ${n === 1 ? "unidad" : "unidades"}`));
+    }, `${n} ${unitName(p, n)}`));
     function setUnits(n) {
       units = n;
       const total = p.prices[n];
       priceEl.textContent = money(total);
-      unitEl.textContent = n === 1 ? "Impuestos incluidos" : `${money(Math.round(total / n))} c/u · Impuestos incluidos`;
+      unitEl.textContent = n === 1 ? "Impuestos incluidos" : `${money(Math.round(total / n))} c/${p.unit ? p.unit[0] : "u"} · Impuestos incluidos`;
       const saving = p.prices[1] * n - total;
       const of = offer(p);
       saveEl.textContent = saving > 0 ? `Ahorras ${money(saving)}` : (of && n === 1 ? `-${of.pct}% · Ahorras ${money(of.ahorro)}` : "");
@@ -647,6 +658,7 @@
     if (d.note) info.append(el("p", { class: "pd__note", text: d.note }));
     info.append(
       pdPicker.el,
+      priceTiers(p) || "",
       el("div", { class: "packs", role: "group", "aria-label": "Unidades de " + p.name }, packs),
       dealLine(p) || "",
       el("div", { class: "card__pricing" }, [oldEl, priceEl, saveEl, unitEl]),
@@ -708,7 +720,7 @@
 
   function buildMessage(data) {
     const amounts = lineAmounts();
-    const lines = cartLines().map((l) => `• ${l.qty} ${l.qty === 1 ? "unidad" : "unidades"} de ${lineName(l)} — ${money(amounts.get(l.key))}`);
+    const lines = cartLines().map((l) => `• ${l.qty} ${unitName(l.product, l.qty)} de ${lineName(l)} — ${money(amounts.get(l.key))}`);
     return [
       "🛍️ *NUEVO PEDIDO - AoneClicks Shopping*",
       "",
