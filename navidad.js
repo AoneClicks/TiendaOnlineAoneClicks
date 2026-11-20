@@ -229,7 +229,7 @@
     canvas.width = W * dpr; canvas.height = H * dpr;
     canvas.style.width = W + "px"; canvas.style.height = H + "px";
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const count = Math.round(Math.min(80, Math.max(26, W / 18)));
+    const count = W < 700 ? 22 : Math.round(Math.min(70, Math.max(26, W / 18)));
     flakes = Array.from({ length: count }, () => newFlake(true));
   }
   function newFlake(anywhere) {
@@ -250,7 +250,13 @@
     }
     ctx.restore();
   }
-  function tick() {
+  let last = 0, scrolling = 0;
+  window.addEventListener("scroll", () => { clearTimeout(scrolling); scrolling = setTimeout(() => { scrolling = 0; }, 150); }, { passive: true });
+  function tick(t) {
+    raf = requestAnimationFrame(tick);
+    // en celular dibuja a 30 cuadros por segundo y no gasta batería mientras el cliente desliza
+    if (W < 700 && (t - last < 32 || scrolling)) return;
+    last = t;
     ctx.clearRect(0, 0, W, H);
     for (const f of flakes) {
       f.sway += 0.01; f.rot += f.vr;
@@ -259,7 +265,6 @@
       if (f.star) drawStar(f);
       else { ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2); ctx.fillStyle = `rgba(255,255,255,${f.a})`; ctx.fill(); }
     }
-    raf = requestAnimationFrame(tick);
   }
   function start() { if (raf || reduceMotion) return; canvas.hidden = false; resize(); raf = requestAnimationFrame(tick); }
   function stop() { cancelAnimationFrame(raf); raf = 0; ctx.clearRect(0, 0, W, H); canvas.hidden = true; }

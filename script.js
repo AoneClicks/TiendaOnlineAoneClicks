@@ -125,11 +125,18 @@
     for (const c of [].concat(children)) node.append(c);
     return node;
   }
-  function productImg(p, src) {
+  // Versión liviana de la foto (600 px) para el catálogo y el carrito
+  const smallSrc = (src) => (/^img\/[^/]+\.(webp|png|jpe?g)$/i.test(src) ? src.replace(/^img\//, "img/sm/").replace(/\.(png|jpe?g)$/i, ".webp") : src);
+  // small: usa la foto liviana. defer: no la descarga hasta que el cliente deslice la galería
+  function productImg(p, src, opts = {}) {
     // loading="lazy" va antes que src: así la foto solo se descarga cuando el cliente está por verla
     const img = el("img", { loading: "lazy", decoding: "async", alt: p.name, width: "400", height: "300" });
-    img.src = src || p.image;
-    img.addEventListener("error", () => { img.src = FALLBACK_IMG; }, { once: true });
+    const full = src || p.image;
+    const want = opts.small ? smallSrc(full) : full;
+    img.addEventListener("error", () => {
+      if (img.dataset.tried !== "full" && want !== full) { img.dataset.tried = "full"; img.src = full; } else img.src = FALLBACK_IMG;
+    });
+    if (opts.defer) img.dataset.src = want; else img.src = want;
     return img;
   }
   const productPhotos = (p) => [p.image].concat(p.gallery || []);
@@ -234,7 +241,7 @@
         const play = el("button", { type: "button", class: "gal__play", "aria-label": "Ver video de " + p.name, onclick: (e) => { e.stopPropagation(); openLightbox(p, n); } }, [el("span", { class: "gal__play-ic", "aria-hidden": "true", text: "▶" }), "Ver video"]);
         return el("div", { class: "gal__slide gal__slide--video" }, [v, play]);
       }
-      const s = el("div", { class: "gal__slide" }, [productImg(p, src)]);
+      const s = el("div", { class: "gal__slide" }, [productImg(p, src, { small: !zoomable, defer: n > 0 })]);
       if (zoomable) s.addEventListener("click", () => openLightbox(p, n));
       return s;
     });
@@ -243,10 +250,18 @@
     if (info) slides.push(el("div", { class: "gal__slide gal__slide--info", role: "group", "aria-label": infoKicker(p) }, [info]));
     const track = el("div", { class: "gal__track" }, slides);
     const wrap = el("div", { class: "gal" + (zoomable ? " gal--zoom" : "") }, [track]);
+    // Las demás fotos se descargan cuando el cliente toca, pasa el mouse o desliza la galería
+    let woke = false;
+    const wake = () => {
+      if (woke) return; woke = true;
+      track.querySelectorAll("img[data-src]").forEach((im) => { im.src = im.dataset.src; im.removeAttribute("data-src"); });
+    };
+    if (zoomable) setTimeout(wake, 300);
+    else ["pointerenter", "touchstart", "focusin"].forEach((ev) => wrap.addEventListener(ev, wake, { once: true, passive: true }));
     if (slides.length < 2) return wrap;
     let cur = 0;
     const stop = (fn) => (e) => { e.stopPropagation(); fn(); };
-    const go = (i) => track.scrollTo({ left: Math.max(0, Math.min(slides.length - 1, i)) * track.clientWidth, behavior: "smooth" });
+    const go = (i) => wake() || track.scrollTo({ left: Math.max(0, Math.min(slides.length - 1, i)) * track.clientWidth, behavior: "smooth" });
     const dots = slides.map((_, i) => el("button", { type: "button", class: "gal__dot" + (i === infoIndex ? " gal__dot--info" : ""), "aria-label": i === infoIndex ? "Ver para qué sirve" : `Ver foto ${i + 1}`, onclick: stop(() => go(i)) }));
     const prev = el("button", { type: "button", class: "gal__arrow gal__arrow--prev", "aria-label": "Anterior", onclick: stop(() => go(cur - 1)) }, "‹");
     const next = el("button", { type: "button", class: "gal__arrow gal__arrow--next", "aria-label": "Siguiente", onclick: stop(() => go(cur + 1)) }, "›");
@@ -266,7 +281,7 @@
       wrap.classList.toggle("on-info", cur === infoIndex);
       wrap.parentElement && wrap.parentElement.classList.toggle("not-first", cur > 0);
     };
-    track.addEventListener("scroll", sync, { passive: true });
+    track.addEventListener("scroll", () => { wake(); sync(); }, { passive: true });
     sync();
     return wrap;
   }
@@ -386,11 +401,13 @@
   // Filtros por categoría y "Ver más": se muestran pocos productos a la vez para que la página cargue rápido
   const PAGE = 12;
   const catalogState = { cat: "Todos", shown: PAGE };
+  const cardCache = new Map();
   function applyCatalog() {
-    const cards = [...$("#productGrid").children];
-    const match = cards.filter((c) => catalogState.cat === "Todos" || c.dataset.cat === catalogState.cat);
-    cards.forEach((c) => { c.hidden = true; });
-    match.forEach((c, i) => { c.hidden = i >= catalogState.shown; });
+    const match = PRODUCTS.filter((p) => catalogState.cat === "Todos" || p.category === catalogState.cat);
+    $("#productGrid").replaceChildren(...match.slice(0, catalogState.shown).map((p, i) => {
+      if (!cardCache.has(p.id)) cardCache.set(p.id, buildCard(p, i));
+      return cardCache.get(p.id);
+    }));
     const more = $("#catalogMore");
     const left = match.length - catalogState.shown;
     more.hidden = left <= 0;
@@ -411,9 +428,11 @@
     $("#catalogMore").addEventListener("click", () => { catalogState.shown += PAGE; applyCatalog(); });
   }
   function renderCatalog() {
-    const grid = $("#productGrid");
-    grid.replaceChildren();
-    PRODUCTS.forEach((p, i) => {
+    cardCache.clear();
+    applyCatalog();
+  }
+  function buildCard(p, i) {
+    {
       let units = 1;
       const priceEl = el("span", { class: "card__price" });
       const unitEl = el("span", { class: "card__unit" });
@@ -472,7 +491,7 @@
       if (STORE_CONFIG.featured && STORE_CONFIG.featured.id === p.id && !p.promo) imgBox.append(el("span", { class: "card__star", text: STORE_CONFIG.featured.cardTag || "⭐ Producto del mes" }));
       imgBox.addEventListener("click", () => openProduct(p));
 
-      grid.append(el("article", { class: "card", "data-cat": p.category, style: `animation-delay:${(i % PAGE) * 60}ms` }, [
+      const card = el("article", { class: "card", "data-cat": p.category, style: `animation-delay:${(i % PAGE) * 60}ms` }, [
         imgBox,
         promoStrip(p) || "",
         el("div", { class: "card__body" }, [
@@ -489,10 +508,10 @@
           el("div", { class: "card__pricing" }, [oldEl, priceEl, saveEl, unitEl]),
           addBtn
         ])
-      ]));
+      ]);
       setUnits(1);
-    });
-    applyCatalog();
+      return card;
+    }
   }
 
   // ---------- Producto del mes (portada) ----------
@@ -564,7 +583,7 @@
       const setQty = (v) => { cart[key] = clampQty(v); saveCart(); renderCart(); };
       input.addEventListener("change", () => setQty(input.value));
       list.append(el("li", { class: "cart-item" }, [
-        productImg(p),
+        productImg(p, p.image, { small: true }),
         el("div", {}, [
           el("div", { class: "cart-item__name", text: lineName(line) }),
           el("div", { class: "cart-item__sub", text: `${qty} ${unitName(p, qty)} = ${money(amounts.get(key))}` }),
