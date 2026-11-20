@@ -775,7 +775,8 @@
 
   function buildMessage(data) {
     const amounts = lineAmounts();
-    const lines = cartLines().map((l) => `• ${l.qty} ${unitName(l.product, l.qty)} de ${lineName(l)} — ${money(amounts.get(l.key))}`);
+    // Ref. AOC-<id>: código de la tienda para que Chatea reconozca el producto y cree el pedido en Dropi
+    const lines = cartLines().map((l) => `• ${l.qty} ${unitName(l.product, l.qty)} de ${lineName(l)} — ${money(amounts.get(l.key))} (Ref. AOC-${l.product.id})`);
     return [
       "🛍️ *NUEVO PEDIDO - AoneClicks Shopping*",
       "",
