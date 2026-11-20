@@ -62,7 +62,7 @@
   // Opciones que se pueden pedir: colores disponibles o tallas disponibles
   const variantNames = (p) => p.sizes ? p.sizes.values.filter((v) => !v.soldOut).map((v) => v.name) : availableColors(p).map((c) => c.name);
   const hasVariants = (p) => Boolean((p.colors && p.colors.length) || (p.sizes && p.sizes.values.length));
-  const variantLabel = (p) => (p.sizes ? "Talla" : "Color");
+  const variantLabel = (p) => (p.sizes ? (/letra/i.test(p.sizes.label || "") ? "Letra" : "Talla") : "Color");
   const cartKey = (id, color) => (color ? `${id}|${color}` : String(id));
   function parseKey(key) {
     const [idPart, color] = String(key).split("|");
@@ -322,7 +322,7 @@
   function sizePicker(p) {
     const cfg = p.sizes;
     const select = el("select", { class: "sizes__select", "aria-label": cfg.label || "Talla" }, [
-      el("option", { value: "", text: "Elige tu talla" }),
+      el("option", { value: "", text: /letra/i.test(cfg.label || "") ? "Elige tu letra" : "Elige tu talla" }),
       ...cfg.values.map((v) => {
         const o = el("option", { value: v.name, text: v.hint ? `${v.name} (${v.hint})` : v.name });
         if (v.soldOut) { o.disabled = true; o.textContent += " · agotada"; }
@@ -342,7 +342,7 @@
       check: () => {
         if (select.value) return true;
         box.classList.add("sizes--error"); select.focus();
-        toast("Elige la talla del anillo antes de agregarlo");
+        toast(`Elige: ${(cfg.label || "talla").toLowerCase()}, antes de agregarlo`);
         return false;
       }
     };
@@ -378,6 +378,33 @@
   }
 
   // ---------- Catálogo ----------
+  // Filtros por categoría y "Ver más": se muestran pocos productos a la vez para que la página cargue rápido
+  const PAGE = 12;
+  const catalogState = { cat: "Todos", shown: PAGE };
+  function applyCatalog() {
+    const cards = [...$("#productGrid").children];
+    const match = cards.filter((c) => catalogState.cat === "Todos" || c.dataset.cat === catalogState.cat);
+    cards.forEach((c) => { c.hidden = true; });
+    match.forEach((c, i) => { c.hidden = i >= catalogState.shown; });
+    const more = $("#catalogMore");
+    const left = match.length - catalogState.shown;
+    more.hidden = left <= 0;
+    more.textContent = `Ver más productos (${left > 0 ? left : 0})`;
+    $("#catalogFilters").querySelectorAll(".chip").forEach((b) => {
+      const on = b.dataset.cat === catalogState.cat;
+      b.classList.toggle("active", on); b.setAttribute("aria-pressed", String(on));
+    });
+  }
+  function renderFilters() {
+    const box = $("#catalogFilters");
+    const cats = [...new Set(PRODUCTS.map((p) => p.category))];
+    const count = (c) => PRODUCTS.filter((p) => c === "Todos" || p.category === c).length;
+    box.replaceChildren(...["Todos", ...cats].map((c) => el("button", {
+      type: "button", class: "chip", "data-cat": c, "aria-pressed": "false",
+      onclick: () => { catalogState.cat = c; catalogState.shown = PAGE; applyCatalog(); }
+    }, [c, el("span", { class: "chip__n", text: String(count(c)) })])));
+    $("#catalogMore").addEventListener("click", () => { catalogState.shown += PAGE; applyCatalog(); });
+  }
   function renderCatalog() {
     const grid = $("#productGrid");
     grid.replaceChildren();
@@ -440,7 +467,7 @@
       if (STORE_CONFIG.featured && STORE_CONFIG.featured.id === p.id && !p.promo) imgBox.append(el("span", { class: "card__star", text: STORE_CONFIG.featured.cardTag || "⭐ Producto del mes" }));
       imgBox.addEventListener("click", () => openProduct(p));
 
-      grid.append(el("article", { class: "card", style: `animation-delay:${i * 60}ms` }, [
+      grid.append(el("article", { class: "card", "data-cat": p.category, style: `animation-delay:${(i % PAGE) * 60}ms` }, [
         imgBox,
         promoStrip(p) || "",
         el("div", { class: "card__body" }, [
@@ -460,6 +487,7 @@
       ]));
       setUnits(1);
     });
+    applyCatalog();
   }
 
   // ---------- Producto del mes (portada) ----------
@@ -505,7 +533,7 @@
   // ---------- Carrito ----------
   function addToCart(id, qty, color) {
     const key = cartKey(id, color);
-    if (!parseKey(key)) { toast(PRODUCTS.find((x) => x.id === id)?.sizes ? "Elige la talla del anillo" : "Elige un color disponible"); return; }
+    if (!parseKey(key)) { { const px = PRODUCTS.find((x) => x.id === id); toast(px?.sizes ? `Elige: ${(px.sizes.label || "talla").toLowerCase()}` : "Elige un color disponible"); } return; }
     cart[key] = Math.min(MAX_QTY, (cart[key] || 0) + qty);
     saveCart(); renderCart();
     const added = PRODUCTS.find((x) => x.id === id);
@@ -813,6 +841,7 @@
     });
     $("#waFloat").href = waUrl(STORE_CONFIG.supportMessage);
 
+    renderFilters();
     renderCatalog();
     renderFeatured();
     renderCart();
