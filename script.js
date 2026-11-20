@@ -297,15 +297,18 @@
   const clampQty = (v) => Math.min(MAX_QTY, Math.max(1, parseInt(v, 10) || 1));
 
   // ---------- Precio "antes" (oferta) ----------
+  // La promoción vale hasta el final del día STORE_CONFIG.promoEnds (hora de Colombia)
+  const promoOn = () => !STORE_CONFIG.promoEnds || Date.now() <= new Date(STORE_CONFIG.promoEnds + "T23:59:59-05:00").getTime();
   const offer = (p) => {
     if (!p.compareAt || p.compareAt <= p.prices[1]) return null;
+    if (p.promo && !promoOn()) return null;
     const ahorro = p.compareAt - p.prices[1];
     return { antes: p.compareAt, ahorro, pct: Math.round((ahorro / p.compareAt) * 100) };
   };
 
-  // Franja de promoción (por ejemplo Black Friday) con el % de descuento
+  // Franja de promoción (por ejemplo Black Days) con el % de descuento
   function promoStrip(p) {
-    if (!p.promo) return null;
+    if (!p.promo || !promoOn()) return null;
     const of = offer(p);
     return el("div", { class: "card__promo" }, [
       el("span", { class: "card__promo-name" }, [el("span", { "aria-hidden": "true", text: "🖤 " }), p.promo.toUpperCase()]),
@@ -527,12 +530,12 @@
     } });
     addBtn.innerHTML = CART_ICON + "<span>Comprar ahora</span>";
     const of = offer(p);
-    const bf = f.theme === "blackfriday";
+    const bf = (f.theme === "blackdays" || f.theme === "blackfriday") && promoOn();
     box.replaceChildren(el("article", { class: "feat" + (bf ? " feat--bf" : "") }, [
       el("button", { type: "button", class: "feat__img", "aria-label": "Ver " + p.name, onclick: () => openProduct(p) }, [(() => { const im = productImg(p, f.image); im.loading = "eager"; im.setAttribute("fetchpriority", "high"); return im; })(),
         of ? el("span", { class: "feat__badge", "aria-label": `${of.pct}% de descuento` }, [el("strong", { text: `-${of.pct}%` }), el("small", { text: "OFF" })]) : ""]),
       el("div", { class: "feat__body" }, [
-        bf ? el("p", { class: "feat__bf" }, [el("span", { class: "feat__bf-word", text: "BLACK" }), el("span", { class: "feat__bf-word feat__bf-word--gold", text: "FRIDAY" })])
+        bf ? el("p", { class: "feat__bf" }, [el("span", { class: "feat__bf-word", text: "BLACK" }), el("span", { class: "feat__bf-word feat__bf-word--gold", text: f.theme === "blackdays" ? "DAYS" : "FRIDAY" })])
            : el("span", { class: "feat__label" }, [el("span", { "aria-hidden": "true", text: "⭐ " }), f.label]),
         el("h2", { class: "feat__title", text: f.title }),
         el("p", { class: "feat__text", text: f.text }),
