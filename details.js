@@ -1632,12 +1632,61 @@ const PRODUCT_DETAILS = {
 // rutina: frase corta que responde "¿para qué tipo de rutina es?"
 // filas: [etiqueta, texto corto (tarjeta del catálogo), texto completo (ficha del producto)]
 // IMPORTANTE: confirma las dosis de los suplementos con la etiqueta o el proveedor.
+// kicker: título de la tarjeta (opcional). Si no se pone: "¿Para qué sirve?". Cada fila: [título, texto corto, texto largo, ícono opcional].
 const PRODUCT_INFO = {
   1: { rutina: "Control de azúcar y metabolismo", filas: [
     ["Sirve para", "Cuidar el azúcar y el metabolismo", "Apoyar niveles saludables de azúcar en la sangre y el metabolismo de las comidas."],
     ["Cómo se toma", "1 gotero en agua, 2 veces al día", "1 gotero (aprox. 1 ml) directo o en medio vaso de agua, 2 veces al día."],
     ["Cuándo", "Antes del desayuno y la cena", "15 a 30 minutos antes del desayuno y de la cena."],
     ["Ideal para", "Adultos que cuidan su azúcar o peso", "Adultos que cuidan su azúcar o su peso. Si tomas medicamentos para la diabetes, consulta antes a tu médico."]
+  ]},
+  2: { rutina: "Limpieza facial profunda en casa", filas: [
+    ["Sirve para", "Limpiar poros y puntos negros", "Limpiar los poros a fondo, retirar impurezas y ayudar a que tus cremas penetren mejor."],
+    ["Cómo se usa", "Piel húmeda, deslizar suave", "Con la piel húmeda, desliza la pala inclinada suavemente sobre el rostro durante 3 a 5 minutos."],
+    ["Cuándo", "2 a 3 veces por semana", "2 o 3 veces por semana, preferiblemente en la noche."],
+    ["Ideal para", "Piel grasa o con poros abiertos", "Piel grasa, mixta, con puntos negros o poros abiertos."]
+  ]},
+  3: { rutina: "Cuidado de ojeras, mañana y noche", filas: [
+    ["Sirve para", "Ojeras, bolsas y líneas finas", "Hidratar el contorno de ojos y mejorar la apariencia de ojeras, bolsas y líneas finas."],
+    ["Cómo se usa", "Toquecitos suaves bajo el ojo", "Aplica una pequeña cantidad y extiende con toquecitos suaves, sin frotar."],
+    ["Cuándo", "Mañana y noche", "Mañana y noche, con la piel limpia y seca."],
+    ["Ideal para", "Si duermes poco o te ves cansado", "Quien duerme poco, trabaja frente a pantallas o nota la mirada cansada."]
+  ]},
+  4: { kicker: "¿Qué lo hace especial?", rutina: "Iluminación exterior sin pagar luz", filas: [
+    ["Lo que hace por ti", "Iluminar patios, fachadas y lotes", "Iluminar patios, fachadas, parqueaderos y lotes sin gastar en electricidad.", "⚡"],
+    ["Así de fácil", "Panel al sol, reflector donde quieras", "Pon el panel donde reciba sol directo y el reflector donde necesites luz. Sin cables a la red.", "👌"],
+    ["Cuándo lo disfrutas", "Carga de día, alumbra de noche", "Se carga con el sol durante el día y alumbra en la noche.", "🌙"],
+    ["Pensado para", "Casas, fincas y negocios", "Casas, fincas, negocios y parqueaderos que quieren más seguridad.", "🏡"]
+  ]},
+  5: { kicker: "¿Qué lo hace especial?", rutina: "Limpieza profunda sin químicos", filas: [
+    ["Lo que hace por ti", "Limpiar y desinfectar con solo agua", "Quitar grasa y mugre pegada, y desinfectar usando solo agua.", "⚡"],
+    ["Así de fácil", "Agua, esperar vapor y pasar", "Llena el depósito con agua, espera a que salga vapor y pasa el accesorio por la superficie.", "👌"],
+    ["Dónde lo usas", "Cocina, baños, pisos y muebles", "Cocina, baños, pisos, vidrios, colchones y muebles tapizados.", "📍"],
+    ["Pensado para", "Hogares con niños o mascotas", "Hogares con niños o mascotas que prefieren limpiar sin químicos fuertes.", "🏡"]
+  ]},
+  6: { rutina: "Cuidado capilar con luz LED", filas: [
+    ["Sirve para", "Cepillar con luz LED y tónico", "Cepillar el cabello mientras usas la luz LED y aplicas tu tónico o aceite con el rociador."],
+    ["Cómo se usa", "Enciéndelo y cepilla por secciones", "Enciéndelo, elige la luz, activa el rociador si quieres y cepilla suavemente por secciones."],
+    ["Cuándo", "Unos minutos al día", "Unos minutos al día, en tu rutina de la mañana o de la noche."],
+    ["Ideal para", "Quien cuida su cabello en casa", "Quien quiere una rutina capilar práctica en casa, sin cables ni pilas."]
+  ]},
+  7: { kicker: "¿Qué lo hace especial?", rutina: "Seguridad y tranquilidad", filas: [
+    ["Lo que hace por ti", "Ubicar carro, moto, mascota u objetos", "Saber dónde están tu vehículo, moto, mascota, maleta u objetos de valor.", "⚡"],
+    ["Así de fácil", "Cárgalo y míralo en tu celular", "Cárgalo, actívalo y consulta la ubicación desde tu celular. Te ayudamos por WhatsApp.", "👌"],
+    ["Cuándo lo disfrutas", "Viajes, parqueo y día a día", "En viajes, al dejar el carro parqueado o para cuidar a tu mascota.", "🌙"],
+    ["Pensado para", "Conductores, familias y mascotas", "Conductores, familias y dueños de mascotas.", "🏡"]
+  ]},
+  8: { kicker: "¿Qué lo hace especial?", rutina: "Orden en espacios pequeños", filas: [
+    ["Lo que hace por ti", "Ropa, zapatos y bolsos en un mueble", "Organizar ropa, zapatos, bolsos y accesorios en un solo mueble.", "⚡"],
+    ["Así de fácil", "Se arma fácil en casa", "Se arma en casa siguiendo las instrucciones incluidas.", "👌"],
+    ["Dónde lo usas", "Habitación o entrada", "Habitaciones, entradas, pasillos y apartaestudios.", "📍"],
+    ["Pensado para", "Espacios pequeños", "Quien tiene poco espacio o no tiene clóset.", "🏡"]
+  ]},
+  9: { rutina: "Liso rápido antes de salir", filas: [
+    ["Sirve para", "Alisar y peinar a la vez", "Alisar y peinar en un solo paso, sin necesidad de plancha."],
+    ["Cómo se usa", "Cabello seco, por mechones", "Con el cabello seco, pasa el cepillo caliente por mechones de la raíz a las puntas."],
+    ["Cuándo", "En minutos, antes de salir", "Cuando quieras un liso rápido: listo en pocos minutos."],
+    ["Ideal para", "Quien no tiene tiempo para plancha", "Quien quiere el cabello liso y arreglado sin complicarse."]
   ]},
   10: { rutina: "Defensas y bienestar diario", filas: [
     ["Sirve para", "Reforzar defensas y antioxidantes", "Aportar antioxidantes de guanábana, moringa y cúrcuma para apoyar tus defensas."],
@@ -1651,646 +1700,598 @@ const PRODUCT_INFO = {
     ["Cuándo", "Mañana y tarde", "En la mañana y en la tarde. Toma bastante agua durante el día."],
     ["Ideal para", "Piernas cansadas o hinchadas", "Personas con piernas cansadas o hinchadas, o que pasan muchas horas de pie o sentadas."]
   ]},
+  12: { kicker: "¿Qué lo hace especial?", rutina: "Decoración solar para tus noches", filas: [
+    ["Lo que hace por ti", "Decorar árboles, patios y balcones", "Decorar árboles, patios, balcones, jardines y fachadas con 200 luces LED.", "⚡"],
+    ["Así de fácil", "Panel al sol y listo", "Pon el panel al sol y distribuye la cadena. Se encienden solas al anochecer y con MODE cambias el efecto.", "👌"],
+    ["Cuándo lo disfrutas", "Todas las noches y en fiestas", "Todas las noches, en fiestas, reuniones y Navidad.", "🌙"],
+    ["Pensado para", "Hogares, terrazas y eventos", "Hogares, terrazas, negocios y eventos al aire libre (resiste la lluvia).", "🏡"]
+  ]},
   13: { rutina: "Descanso, relajación y músculos", filas: [
     ["Sirve para", "Menos cansancio, calambres y tensión", "Apoyar músculos y nervios: menos cansancio, calambres y tensión. Ayuda a relajarte."],
     ["Cómo se toma", "1 cápsula con un vaso de agua", "1 cápsula con un vaso de agua, 1 o 2 veces al día."],
     ["Cuándo", "Con la comida o en la noche", "Con las comidas. Si buscas dormir mejor, tómala en la noche."],
     ["Ideal para", "Adultos y adultos mayores", "Adultos con estrés, mucha actividad o calambres. Muy usado por adultos mayores (consulta si tienes problemas renales)."]
   ]},
-  3: { rutina: "Cuidado de ojeras, mañana y noche", filas: [
-    ["Sirve para", "Ojeras, bolsas y líneas finas", "Hidratar el contorno de ojos y mejorar la apariencia de ojeras, bolsas y líneas finas."],
-    ["Cómo se usa", "Toquecitos suaves bajo el ojo", "Aplica una pequeña cantidad y extiende con toquecitos suaves, sin frotar."],
-    ["Cuándo", "Mañana y noche", "Mañana y noche, con la piel limpia y seca."],
-    ["Ideal para", "Si duermes poco o te ves cansado", "Quien duerme poco, trabaja frente a pantallas o nota la mirada cansada."]
-  ]},
-  2: { rutina: "Limpieza facial profunda en casa", filas: [
-    ["Sirve para", "Limpiar poros y puntos negros", "Limpiar los poros a fondo, retirar impurezas y ayudar a que tus cremas penetren mejor."],
-    ["Cómo se usa", "Piel húmeda, deslizar suave", "Con la piel húmeda, desliza la pala inclinada suavemente sobre el rostro durante 3 a 5 minutos."],
-    ["Cuándo", "2 a 3 veces por semana", "2 o 3 veces por semana, preferiblemente en la noche."],
-    ["Ideal para", "Piel grasa o con poros abiertos", "Piel grasa, mixta, con puntos negros o poros abiertos."]
-  ]},
-  6: { rutina: "Cuidado capilar con luz LED", filas: [
-    ["Sirve para", "Cepillar con luz LED y tónico", "Cepillar el cabello mientras usas la luz LED y aplicas tu tónico o aceite con el rociador."],
-    ["Cómo se usa", "Enciéndelo y cepilla por secciones", "Enciéndelo, elige la luz, activa el rociador si quieres y cepilla suavemente por secciones."],
-    ["Cuándo", "Unos minutos al día", "Unos minutos al día, en tu rutina de la mañana o de la noche."],
-    ["Ideal para", "Quien cuida su cabello en casa", "Quien quiere una rutina capilar práctica en casa, sin cables ni pilas."]
-  ]},
-  9: { rutina: "Liso rápido antes de salir", filas: [
-    ["Sirve para", "Alisar y peinar a la vez", "Alisar y peinar en un solo paso, sin necesidad de plancha."],
-    ["Cómo se usa", "Cabello seco, por mechones", "Con el cabello seco, pasa el cepillo caliente por mechones de la raíz a las puntas."],
-    ["Cuándo", "En minutos, antes de salir", "Cuando quieras un liso rápido: listo en pocos minutos."],
-    ["Ideal para", "Quien no tiene tiempo para plancha", "Quien quiere el cabello liso y arreglado sin complicarse."]
-  ]},
-  4: { rutina: "Iluminación exterior sin pagar luz", filas: [
-    ["Sirve para", "Iluminar patios, fachadas y lotes", "Iluminar patios, fachadas, parqueaderos y lotes sin gastar en electricidad."],
-    ["Cómo se usa", "Panel al sol, reflector donde quieras", "Pon el panel donde reciba sol directo y el reflector donde necesites luz. Sin cables a la red."],
-    ["Cuándo", "Carga de día, alumbra de noche", "Se carga con el sol durante el día y alumbra en la noche."],
-    ["Ideal para", "Casas, fincas y negocios", "Casas, fincas, negocios y parqueaderos que quieren más seguridad."]
-  ]},
-  12: { rutina: "Decoración solar para tus noches", filas: [
-    ["Sirve para", "Decorar árboles, patios y balcones", "Decorar árboles, patios, balcones, jardines y fachadas con 200 luces LED."],
-    ["Cómo se usa", "Panel al sol y listo", "Pon el panel al sol y distribuye la cadena. Se encienden solas al anochecer y con MODE cambias el efecto."],
-    ["Cuándo", "Todas las noches y en fiestas", "Todas las noches, en fiestas, reuniones y Navidad."],
-    ["Ideal para", "Hogares, terrazas y eventos", "Hogares, terrazas, negocios y eventos al aire libre (resiste la lluvia)."]
-  ]},
-  14: { rutina: "Decoración solar para tus noches", filas: [
-    ["Sirve para", "Decorar árboles, patios y balcones", "Decorar árboles, patios, balcones, jardines y fachadas con 500 luces LED."],
-    ["Cómo se usa", "Panel al sol y listo", "Pon el panel al sol y distribuye la cadena. Se encienden solas al anochecer y con MODE cambias el efecto."],
-    ["Cuándo", "Todas las noches y en fiestas", "Todas las noches, en fiestas, reuniones y Navidad."],
-    ["Ideal para", "Hogares, terrazas y eventos", "Hogares, terrazas, negocios y eventos al aire libre (resiste la lluvia)."]
-  ]},
-  5: { rutina: "Limpieza profunda sin químicos", filas: [
-    ["Sirve para", "Limpiar y desinfectar con solo agua", "Quitar grasa y mugre pegada, y desinfectar usando solo agua."],
-    ["Cómo se usa", "Agua, esperar vapor y pasar", "Llena el depósito con agua, espera a que salga vapor y pasa el accesorio por la superficie."],
-    ["Dónde", "Cocina, baños, pisos y muebles", "Cocina, baños, pisos, vidrios, colchones y muebles tapizados."],
-    ["Ideal para", "Hogares con niños o mascotas", "Hogares con niños o mascotas que prefieren limpiar sin químicos fuertes."]
-  ]},
-  8: { rutina: "Orden en espacios pequeños", filas: [
-    ["Sirve para", "Ropa, zapatos y bolsos en un mueble", "Organizar ropa, zapatos, bolsos y accesorios en un solo mueble."],
-    ["Cómo se usa", "Se arma fácil en casa", "Se arma en casa siguiendo las instrucciones incluidas."],
-    ["Dónde", "Habitación o entrada", "Habitaciones, entradas, pasillos y apartaestudios."],
-    ["Ideal para", "Espacios pequeños", "Quien tiene poco espacio o no tiene clóset."]
-  ]},
-  7: { rutina: "Seguridad y tranquilidad", filas: [
-    ["Sirve para", "Ubicar carro, moto, mascota u objetos", "Saber dónde están tu vehículo, moto, mascota, maleta u objetos de valor."],
-    ["Cómo se usa", "Cárgalo y míralo en tu celular", "Cárgalo, actívalo y consulta la ubicación desde tu celular. Te ayudamos por WhatsApp."],
-    ["Cuándo", "Viajes, parqueo y día a día", "En viajes, al dejar el carro parqueado o para cuidar a tu mascota."],
-    ["Ideal para", "Conductores, familias y mascotas", "Conductores, familias y dueños de mascotas."]
-  ]},
-  15: { rutina: "Estilo elegante para toda ocasión", filas: [
-    ["Sirve para", "Lucir elegante y con presencia", "Completar tu look con un conjunto dorado que llama la atención y combina pulsera y anillo."],
-    ["Cómo se usa", "Ajusta la pulsera con el nudo", "Desliza el nudo corredizo para ajustar la pulsera a tu muñeca y ponte el anillo en tu dedo preferido."],
-    ["Cuándo", "Ocasiones especiales y día a día", "En reuniones, celebraciones, salidas o en tu día a día, con ropa casual o elegante."],
-    ["Ideal para", "Regalar a un hombre con estilo", "Hombres que cuidan su imagen. Un regalo perfecto para cumpleaños, aniversarios y Navidad."]
-  ]},
-  16: { rutina: "Fe y elegancia para cada día", filas: [
-    ["Sirve para", "Llevar tu fe con estilo", "Llevar contigo un símbolo de fe y amor, con un conjunto dorado y rojo que luce hermoso."],
-    ["Cómo se usa", "Ajusta la pulsera con el hilo", "Ponte la cadena y ajusta la pulsera deslizando el nudo hasta la medida de tu muñeca."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en misas, celebraciones y fechas especiales; juntas o por separado."],
-    ["Ideal para", "Regalar a mamá, esposa o pareja", "Mamá, esposa, pareja o alguien especial. Un regalo con significado para Navidad y cumpleaños."]
-  ]},
-  17: { rutina: "Estilo y presencia", filas: [
-    ["Sirve para", "Lucir un estilo seguro y elegante", "Un diseño dorado con corona que da presencia y personalidad a tu look."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  18: { rutina: "Estilo y presencia", filas: [
-    ["Sirve para", "Lucir un estilo seguro y elegante", "Un diseño dorado con corona que da presencia y personalidad a tu look."],
-    ["Cómo se usa", "Elige tu talla", "Mide tu dedo con la guía de tallas y elige la talla correcta al pedir."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  19: { rutina: "Estilo y presencia", filas: [
-    ["Sirve para", "Lucir un estilo seguro y elegante", "Un diseño dorado con corona que da presencia y personalidad a tu look."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Hombres con estilo", "Hombres que quieren un accesorio con presencia. Un gran regalo para papá, pareja o un amigo."]
-  ]},
-  20: { rutina: "Estilo y presencia", filas: [
-    ["Sirve para", "Lucir un estilo seguro y elegante", "Un diseño dorado con corona que da presencia y personalidad a tu look."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  21: { rutina: "Estilo y presencia", filas: [
-    ["Sirve para", "Lucir un estilo seguro y elegante", "Un diseño dorado con corona que da presencia y personalidad a tu look."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  22: { rutina: "Estilo y presencia", filas: [
-    ["Sirve para", "Lucir un estilo seguro y elegante", "Un diseño dorado con corona que da presencia y personalidad a tu look."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Hombres con estilo", "Hombres que quieren un accesorio con presencia. Un gran regalo para papá, pareja o un amigo."]
-  ]},
-  23: { rutina: "Estilo y presencia", filas: [
-    ["Sirve para", "Lucir un estilo seguro y elegante", "Un diseño dorado con corona que da presencia y personalidad a tu look."],
-    ["Cómo se usa", "Elige tu talla", "Mide tu dedo con la guía de tallas y elige la talla correcta al pedir."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Hombres con estilo", "Hombres que quieren un accesorio con presencia. Un gran regalo para papá, pareja o un amigo."]
-  ]},
-  24: { rutina: "Abundancia con estilo", filas: [
-    ["Sirve para", "Atraer buena energía y prosperidad", "Un símbolo de abundancia y prosperidad que llevas contigo con un acabado dorado brillante."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  25: { rutina: "Abundancia con estilo", filas: [
-    ["Sirve para", "Atraer buena energía y prosperidad", "Un símbolo de abundancia y prosperidad que llevas contigo con un acabado dorado brillante."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  26: { rutina: "Abundancia con estilo", filas: [
-    ["Sirve para", "Atraer buena energía y prosperidad", "Un símbolo de abundancia y prosperidad que llevas contigo con un acabado dorado brillante."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  27: { rutina: "Abundancia con estilo", filas: [
-    ["Sirve para", "Atraer buena energía y prosperidad", "Un símbolo de abundancia y prosperidad que llevas contigo con un acabado dorado brillante."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  28: { rutina: "Abundancia con estilo", filas: [
-    ["Sirve para", "Atraer buena energía y prosperidad", "Un símbolo de abundancia y prosperidad que llevas contigo con un acabado dorado brillante."],
-    ["Cómo se usa", "Elige tu talla", "Mide tu dedo con la guía de tallas y elige la talla correcta al pedir."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  29: { rutina: "Abundancia con estilo", filas: [
-    ["Sirve para", "Atraer buena energía y prosperidad", "Un símbolo de abundancia y prosperidad que llevas contigo con un acabado dorado brillante."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  30: { rutina: "Abundancia con estilo", filas: [
-    ["Sirve para", "Atraer buena energía y prosperidad", "Un símbolo de abundancia y prosperidad que llevas contigo con un acabado dorado brillante."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  31: { rutina: "Abundancia con estilo", filas: [
-    ["Sirve para", "Atraer buena energía y prosperidad", "Un símbolo de abundancia y prosperidad que llevas contigo con un acabado dorado brillante."],
-    ["Cómo se usa", "Elige tu talla", "Mide tu dedo con la guía de tallas y elige la talla correcta al pedir."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  32: { rutina: "Abundancia con estilo", filas: [
-    ["Sirve para", "Atraer buena energía y prosperidad", "Un símbolo de abundancia y prosperidad que llevas contigo con un acabado dorado brillante."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  33: { rutina: "Abundancia con estilo", filas: [
-    ["Sirve para", "Atraer buena energía y prosperidad", "Un símbolo de abundancia y prosperidad que llevas contigo con un acabado dorado brillante."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  34: { rutina: "Fe y elegancia para cada día", filas: [
-    ["Sirve para", "Llevar tu fe con estilo", "Llevar contigo el Sagrado Corazón de Jesús, símbolo de fe, amor y protección."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  35: { rutina: "Fe y elegancia para cada día", filas: [
-    ["Sirve para", "Llevar tu fe con estilo", "Llevar contigo el Sagrado Corazón de Jesús, símbolo de fe, amor y protección."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Mujeres que aman brillar", "Mamá, esposa, novia, hija o amiga. Un regalo con significado para Navidad y cumpleaños."]
-  ]},
-  36: { rutina: "Fe y elegancia para cada día", filas: [
-    ["Sirve para", "Llevar tu fe con estilo", "Llevar contigo el Sagrado Corazón de Jesús, símbolo de fe, amor y protección."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Mujeres que aman brillar", "Mamá, esposa, novia, hija o amiga. Un regalo con significado para Navidad y cumpleaños."]
-  ]},
-  37: { rutina: "Fe y elegancia para cada día", filas: [
-    ["Sirve para", "Llevar tu fe con estilo", "Llevar contigo el Sagrado Corazón de Jesús, símbolo de fe, amor y protección."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  38: { rutina: "Fe y elegancia para cada día", filas: [
-    ["Sirve para", "Llevar tu fe con estilo", "Llevar contigo el Sagrado Corazón de Jesús, símbolo de fe, amor y protección."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  39: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar contigo a la Virgen de Guadalupe", "Llevar contigo a la Virgen de Guadalupe, símbolo de amor, esperanza y protección."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  40: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar contigo a la Virgen de Guadalupe", "Llevar contigo a la Virgen de Guadalupe, símbolo de amor, esperanza y protección."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Mujeres que aman brillar", "Mamá, esposa, novia, hija o amiga. Un regalo con significado para Navidad y cumpleaños."]
-  ]},
-  41: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar contigo a la Virgen de Guadalupe", "Llevar contigo a la Virgen de Guadalupe, símbolo de amor, esperanza y protección."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  42: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar contigo a la Virgen de Guadalupe", "Llevar contigo a la Virgen de Guadalupe, símbolo de amor, esperanza y protección."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Mujeres que aman brillar", "Mamá, esposa, novia, hija o amiga. Un regalo con significado para Navidad y cumpleaños."]
-  ]},
-  43: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar contigo a la Virgen de Guadalupe", "Llevar contigo a la Virgen de Guadalupe, símbolo de amor, esperanza y protección."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  44: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar contigo a la Virgen de Guadalupe", "Llevar contigo a la Virgen de Guadalupe, símbolo de amor, esperanza y protección."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Hombres con estilo", "Hombres que quieren un accesorio con presencia. Un gran regalo para papá, pareja o un amigo."]
-  ]},
-  45: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar contigo a la Virgen de Guadalupe", "Llevar contigo a la Virgen de Guadalupe, símbolo de amor, esperanza y protección."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  46: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar contigo a la Virgen de Guadalupe", "Llevar contigo a la Virgen de Guadalupe, símbolo de amor, esperanza y protección."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Hombres con estilo", "Hombres que quieren un accesorio con presencia. Un gran regalo para papá, pareja o un amigo."]
-  ]},
-  47: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar contigo a la Virgen de Guadalupe", "Llevar contigo a la Virgen de Guadalupe, símbolo de amor, esperanza y protección."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Mujeres que aman brillar", "Mamá, esposa, novia, hija o amiga. Un regalo con significado para Navidad y cumpleaños."]
-  ]},
-  48: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar contigo a la Virgen de Guadalupe", "Llevar contigo a la Virgen de Guadalupe, símbolo de amor, esperanza y protección."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Mujeres que aman brillar", "Mamá, esposa, novia, hija o amiga. Un regalo con significado para Navidad y cumpleaños."]
-  ]},
-  49: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar contigo a la Virgen de Guadalupe", "Llevar contigo a la Virgen de Guadalupe, símbolo de amor, esperanza y protección."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  50: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar contigo a la Virgen de Guadalupe", "Llevar contigo a la Virgen de Guadalupe, símbolo de amor, esperanza y protección."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  51: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar contigo a la Virgen de Guadalupe", "Llevar contigo a la Virgen de Guadalupe, símbolo de amor, esperanza y protección."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  52: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar contigo a la Virgen de Guadalupe", "Llevar contigo a la Virgen de Guadalupe, símbolo de amor, esperanza y protección."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  53: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar contigo a la Virgen de Guadalupe", "Llevar contigo a la Virgen de Guadalupe, símbolo de amor, esperanza y protección."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  54: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar contigo a la Virgen de Guadalupe", "Llevar contigo a la Virgen de Guadalupe, símbolo de amor, esperanza y protección."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  55: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar contigo a la Virgen de Guadalupe", "Llevar contigo a la Virgen de Guadalupe, símbolo de amor, esperanza y protección."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  56: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar contigo a la Virgen de Guadalupe", "Llevar contigo a la Virgen de Guadalupe, símbolo de amor, esperanza y protección."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Mujeres que aman brillar", "Mamá, esposa, novia, hija o amiga. Un regalo con significado para Navidad y cumpleaños."]
-  ]},
-  57: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar contigo a la Virgen de Guadalupe", "Llevar contigo a la Virgen de Guadalupe, símbolo de amor, esperanza y protección."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  58: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar contigo a la Virgen de Guadalupe", "Llevar contigo a la Virgen de Guadalupe, símbolo de amor, esperanza y protección."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  59: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar contigo a la Virgen de Guadalupe", "Llevar contigo a la Virgen de Guadalupe, símbolo de amor, esperanza y protección."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  60: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar contigo a la Virgen Milagrosa", "Llevar contigo a la Virgen Milagrosa, símbolo de fe, esperanza y protección."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  61: { rutina: "Protección para tu día a día", filas: [
-    ["Sirve para", "Llevar la protección de San Benito", "Llevar contigo la medalla de San Benito, símbolo de protección y fe."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  62: { rutina: "Protección para tu día a día", filas: [
-    ["Sirve para", "Llevar la protección de San Benito", "Llevar contigo la medalla de San Benito, símbolo de protección y fe."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  63: { rutina: "Protección para tu día a día", filas: [
-    ["Sirve para", "Llevar la protección de San Benito", "Llevar contigo la medalla de San Benito, símbolo de protección y fe."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  64: { rutina: "Protección para tu día a día", filas: [
-    ["Sirve para", "Llevar la protección de San Benito", "Llevar contigo la medalla de San Benito, símbolo de protección y fe."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  65: { rutina: "Protección para tu día a día", filas: [
-    ["Sirve para", "Llevar la protección de San Benito", "Llevar contigo la medalla de San Benito, símbolo de protección y fe."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  66: { rutina: "Protección para tu día a día", filas: [
-    ["Sirve para", "Llevar la protección de San Benito", "Llevar contigo la medalla de San Benito, símbolo de protección y fe."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  67: { rutina: "Protección para tu día a día", filas: [
-    ["Sirve para", "Llevar la protección de San Benito", "Llevar contigo la medalla de San Benito, símbolo de protección y fe."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  68: { rutina: "Protección para tu día a día", filas: [
-    ["Sirve para", "Llevar la protección de San Benito", "Llevar contigo la medalla de San Benito, símbolo de protección y fe."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  69: { rutina: "Protección para tu día a día", filas: [
-    ["Sirve para", "Llevar la protección de San Benito", "Llevar contigo la medalla de San Benito, símbolo de protección y fe."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  70: { rutina: "Protección para tu día a día", filas: [
-    ["Sirve para", "Llevar la protección de San Benito", "Llevar contigo la medalla de San Benito, símbolo de protección y fe."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Mujeres que aman brillar", "Mamá, esposa, novia, hija o amiga. Un regalo con significado para Navidad y cumpleaños."]
-  ]},
-  71: { rutina: "Protección para tu día a día", filas: [
-    ["Sirve para", "Llevar la protección de San Benito", "Llevar contigo la medalla de San Benito, símbolo de protección y fe."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  72: { rutina: "Protección para tu día a día", filas: [
-    ["Sirve para", "Llevar la protección de San Benito", "Llevar contigo la medalla de San Benito, símbolo de protección y fe."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  73: { rutina: "Protección para tu día a día", filas: [
-    ["Sirve para", "Llevar la protección de San Benito", "Llevar contigo la medalla de San Benito, símbolo de protección y fe."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  74: { rutina: "Protección para tu día a día", filas: [
-    ["Sirve para", "Llevar la protección de San Benito", "Llevar contigo la medalla de San Benito, símbolo de protección y fe."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  75: { rutina: "Protección para tu día a día", filas: [
-    ["Sirve para", "Llevar la protección de San Benito", "Llevar contigo la medalla de San Benito, símbolo de protección y fe."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  76: { rutina: "Protección para tu día a día", filas: [
-    ["Sirve para", "Llevar la protección de San Benito", "Llevar contigo la medalla de San Benito, símbolo de protección y fe."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  77: { rutina: "Protección para tu día a día", filas: [
-    ["Sirve para", "Llevar la protección de San Benito", "Llevar contigo la medalla de San Benito, símbolo de protección y fe."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  78: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar un símbolo de fe y protección", "Llevar contigo un símbolo de fe, fortaleza y protección espiritual."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  79: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar un símbolo de fe y protección", "Llevar contigo un símbolo de fe, fortaleza y protección espiritual."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  80: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar un símbolo de fe y protección", "Llevar contigo un símbolo de fe, fortaleza y protección espiritual."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  81: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar un símbolo de fe y protección", "Llevar contigo un símbolo de fe, fortaleza y protección espiritual."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  82: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar un símbolo de fe y protección", "Llevar contigo un símbolo de fe, fortaleza y protección espiritual."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  83: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar un símbolo de fe y protección", "Llevar contigo un símbolo de fe, fortaleza y protección espiritual."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  84: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar un símbolo de fe y protección", "Llevar contigo un símbolo de fe, fortaleza y protección espiritual."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  85: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar un símbolo de fe y protección", "Llevar contigo un símbolo de fe, fortaleza y protección espiritual."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  86: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar un símbolo de fe y protección", "Llevar contigo un símbolo de fe, fortaleza y protección espiritual."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Mujeres que aman brillar", "Mamá, esposa, novia, hija o amiga. Un regalo con significado para Navidad y cumpleaños."]
-  ]},
-  87: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar un símbolo de fe y protección", "Llevar contigo un símbolo de fe, fortaleza y protección espiritual."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  88: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar un símbolo de fe y protección", "Llevar contigo un símbolo de fe, fortaleza y protección espiritual."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Mujeres que aman brillar", "Mamá, esposa, novia, hija o amiga. Un regalo con significado para Navidad y cumpleaños."]
-  ]},
-  89: { rutina: "Fe y protección cada día", filas: [
-    ["Sirve para", "Llevar un símbolo de fe y protección", "Llevar contigo un símbolo de fe, fortaleza y protección espiritual."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Hombres con estilo", "Hombres que quieren un accesorio con presencia. Un gran regalo para papá, pareja o un amigo."]
-  ]},
-  90: { rutina: "Buena suerte con estilo", filas: [
-    ["Sirve para", "Atraer buena suerte y energía positiva", "Un símbolo de buena suerte y energía positiva con un acabado elegante."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  91: { rutina: "Buena suerte con estilo", filas: [
-    ["Sirve para", "Atraer buena suerte y energía positiva", "Un símbolo de buena suerte y energía positiva con un acabado elegante."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  92: { rutina: "Buena suerte con estilo", filas: [
-    ["Sirve para", "Atraer buena suerte y energía positiva", "Un símbolo de buena suerte y energía positiva con un acabado elegante."],
-    ["Cómo se usa", "Elige tu talla", "Mide tu dedo con la guía de tallas y elige la talla correcta al pedir."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  93: { rutina: "Un detalle con significado", filas: [
-    ["Sirve para", "Llevar tu inicial o la de alguien especial", "Llevar tu inicial o la de esa persona especial en una joya única y personal."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  94: { rutina: "Un detalle con significado", filas: [
-    ["Sirve para", "Llevar tu inicial o la de alguien especial", "Llevar tu inicial o la de esa persona especial en una joya única y personal."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Hombres con estilo", "Hombres que quieren un accesorio con presencia. Un gran regalo para papá, pareja o un amigo."]
-  ]},
-  95: { rutina: "Un detalle con significado", filas: [
-    ["Sirve para", "Llevar tu inicial o la de alguien especial", "Llevar tu inicial o la de esa persona especial en una joya única y personal."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  96: { rutina: "Elegancia con color", filas: [
-    ["Sirve para", "Lucir el verde esmeralda con el dorado", "Una combinación de verde esmeralda y dorado que luce elegante y llamativa."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  97: { rutina: "Elegancia con color", filas: [
-    ["Sirve para", "Lucir el verde esmeralda con el dorado", "Una combinación de verde esmeralda y dorado que luce elegante y llamativa."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  98: { rutina: "Elegancia con color", filas: [
-    ["Sirve para", "Lucir el verde esmeralda con el dorado", "Una combinación de verde esmeralda y dorado que luce elegante y llamativa."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  99: { rutina: "Elegancia con color", filas: [
-    ["Sirve para", "Lucir el verde esmeralda con el dorado", "Una combinación de verde esmeralda y dorado que luce elegante y llamativa."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  100: { rutina: "Orgullo colombiano", filas: [
-    ["Sirve para", "Lucir los colores de Colombia", "Llevar los colores de Colombia con orgullo, ideal para los partidos y el día a día."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  101: { rutina: "Brillo para cada día", filas: [
-    ["Sirve para", "Lucir un accesorio dorado elegante", "Un accesorio dorado y brillante que eleva cualquier atuendo, de día o de noche."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  102: { rutina: "Brillo para cada día", filas: [
-    ["Sirve para", "Lucir un accesorio dorado elegante", "Un accesorio dorado y brillante que eleva cualquier atuendo, de día o de noche."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  103: { rutina: "Brillo para cada día", filas: [
-    ["Sirve para", "Lucir un accesorio dorado elegante", "Un accesorio dorado y brillante que eleva cualquier atuendo, de día o de noche."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Mujeres que aman brillar", "Mamá, esposa, novia, hija o amiga. Un regalo con significado para Navidad y cumpleaños."]
-  ]},
-  104: { rutina: "Brillo para cada día", filas: [
-    ["Sirve para", "Lucir un accesorio dorado elegante", "Un accesorio dorado y brillante que eleva cualquier atuendo, de día o de noche."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  105: { rutina: "Brillo para cada día", filas: [
-    ["Sirve para", "Lucir un accesorio dorado elegante", "Un accesorio dorado y brillante que eleva cualquier atuendo, de día o de noche."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Mujeres que aman brillar", "Mamá, esposa, novia, hija o amiga. Un regalo con significado para Navidad y cumpleaños."]
-  ]},
-  106: { rutina: "Brillo para cada día", filas: [
-    ["Sirve para", "Lucir un accesorio dorado elegante", "Un accesorio dorado y brillante que eleva cualquier atuendo, de día o de noche."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Hombres con estilo", "Hombres que quieren un accesorio con presencia. Un gran regalo para papá, pareja o un amigo."]
-  ]},
-  107: { rutina: "Brillo para cada día", filas: [
-    ["Sirve para", "Lucir un accesorio dorado elegante", "Un accesorio dorado y brillante que eleva cualquier atuendo, de día o de noche."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Hombres con estilo", "Hombres que quieren un accesorio con presencia. Un gran regalo para papá, pareja o un amigo."]
-  ]},
-  108: { rutina: "Brillo para cada día", filas: [
-    ["Sirve para", "Lucir un accesorio dorado elegante", "Un accesorio dorado y brillante que eleva cualquier atuendo, de día o de noche."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  109: { rutina: "Brillo para cada día", filas: [
-    ["Sirve para", "Lucir un accesorio dorado elegante", "Un accesorio dorado y brillante que eleva cualquier atuendo, de día o de noche."],
-    ["Cómo se usa", "Póntela y luce", "Combínala con tu ropa de diario o con un look elegante para ocasiones especiales."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
-  ]},
-  110: { rutina: "Brillo para cada día", filas: [
-    ["Sirve para", "Lucir un accesorio dorado elegante", "Un accesorio dorado y brillante que eleva cualquier atuendo, de día o de noche."],
-    ["Cómo se usa", "Ajústala a tu medida", "Desliza el ajuste hasta la medida de tu muñeca o cuello, y listo."],
-    ["Cuándo", "Diario y ocasiones especiales", "En tu día a día, en celebraciones y fechas especiales; sola o combinada con otras joyas."],
-    ["Ideal para", "Regalar a alguien especial", "Para ti o para regalar en Navidad, cumpleaños, aniversarios y fechas especiales."]
+  14: { kicker: "¿Qué lo hace especial?", rutina: "Decoración solar para tus noches", filas: [
+    ["Lo que hace por ti", "Decorar árboles, patios y balcones", "Decorar árboles, patios, balcones, jardines y fachadas con 500 luces LED.", "⚡"],
+    ["Así de fácil", "Panel al sol y listo", "Pon el panel al sol y distribuye la cadena. Se encienden solas al anochecer y con MODE cambias el efecto.", "👌"],
+    ["Cuándo lo disfrutas", "Todas las noches y en fiestas", "Todas las noches, en fiestas, reuniones y Navidad.", "🌙"],
+    ["Pensado para", "Hogares, terrazas y eventos", "Hogares, terrazas, negocios y eventos al aire libre (resiste la lluvia).", "🏡"]
+  ]},
+  15: { kicker: "Por qué enamora", rutina: "Presencia de rey en cada detalle", filas: [
+    ["Lo que lo hace único", "Corona dorada que roba miradas", "Su corona dorada en alto brillo le da a tu look presencia, seguridad y mucha personalidad.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Salir con estilo", "Reuniones, rumbas, cenas y tu día a día: con ropa casual o elegante siempre luce.", "🎉"],
+    ["Regálalo a", "Papá, pareja o un amigo", "Papá, esposo, novio, hermano o amigo. Un regalo con estilo para cumpleaños, Navidad y Día del Padre.", "🎁"]
+  ]},
+  16: { kicker: "Por qué enamora", rutina: "Fe y amor cerca de tu corazón", filas: [
+    ["Lo que lo hace único", "El Sagrado Corazón de Jesús", "El Sagrado Corazón de Jesús, símbolo de amor, fe y protección, en una joya delicada y llena de significado.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  17: { kicker: "Por qué enamora", rutina: "Presencia de rey en cada detalle", filas: [
+    ["Lo que la hace única", "Corona dorada que roba miradas", "Su corona dorada en alto brillo le da a tu look presencia, seguridad y mucha personalidad.", "✨"],
+    ["Cómo lucirla", "Sola o con tu reloj", "Lúcela sola para un toque sutil o combínala con tu reloj y otras pulseras.", "💫"],
+    ["Perfecta para", "Salir con estilo", "Reuniones, rumbas, cenas y tu día a día: con ropa casual o elegante siempre luce.", "🎉"],
+    ["Regálala a", "Papá, pareja o un amigo", "Papá, esposo, novio, hermano o amigo. Un regalo con estilo para cumpleaños, Navidad y Día del Padre.", "🎁"]
+  ]},
+  18: { kicker: "Por qué enamora", rutina: "Presencia de rey en cada detalle", filas: [
+    ["Lo que lo hace único", "Corona dorada que roba miradas", "Su corona dorada en alto brillo le da a tu look presencia, seguridad y mucha personalidad.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Salir con estilo", "Reuniones, rumbas, cenas y tu día a día: con ropa casual o elegante siempre luce.", "🎉"],
+    ["Regálalo a", "Papá, pareja o un amigo", "Papá, esposo, novio, hermano o amigo. Un regalo con estilo para cumpleaños, Navidad y Día del Padre.", "🎁"]
+  ]},
+  19: { kicker: "Por qué enamora", rutina: "Presencia de rey en cada detalle", filas: [
+    ["Lo que la hace única", "Corona dorada que roba miradas", "Su corona dorada en alto brillo le da a tu look presencia, seguridad y mucha personalidad.", "✨"],
+    ["Cómo lucirla", "Sobre la ropa o la piel", "Por fuera de la camisa, sobre un escote o con un buzo: el dije siempre queda a la vista.", "💫"],
+    ["Perfecta para", "Salir con estilo", "Reuniones, rumbas, cenas y tu día a día: con ropa casual o elegante siempre luce.", "🎉"],
+    ["Regálala a", "Papá, pareja o un amigo", "Papá, esposo, novio, hermano o amigo. Un regalo con estilo para cumpleaños, Navidad y Día del Padre.", "🎁"]
+  ]},
+  20: { kicker: "Por qué enamora", rutina: "Presencia de rey en cada detalle", filas: [
+    ["Lo que lo hace único", "Corona dorada que roba miradas", "Su corona dorada en alto brillo le da a tu look presencia, seguridad y mucha personalidad.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Salir con estilo", "Reuniones, rumbas, cenas y tu día a día: con ropa casual o elegante siempre luce.", "🎉"],
+    ["Regálalo a", "Papá, pareja o un amigo", "Papá, esposo, novio, hermano o amigo. Un regalo con estilo para cumpleaños, Navidad y Día del Padre.", "🎁"]
+  ]},
+  21: { kicker: "Por qué enamora", rutina: "Presencia de rey en cada detalle", filas: [
+    ["Lo que lo hace único", "Corona dorada que roba miradas", "Su corona dorada en alto brillo le da a tu look presencia, seguridad y mucha personalidad.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Salir con estilo", "Reuniones, rumbas, cenas y tu día a día: con ropa casual o elegante siempre luce.", "🎉"],
+    ["Regálalo a", "Papá, pareja o un amigo", "Papá, esposo, novio, hermano o amigo. Un regalo con estilo para cumpleaños, Navidad y Día del Padre.", "🎁"]
+  ]},
+  22: { kicker: "Por qué enamora", rutina: "Presencia de rey en cada detalle", filas: [
+    ["Lo que la hace única", "Corona dorada que roba miradas", "Su corona dorada en alto brillo le da a tu look presencia, seguridad y mucha personalidad.", "✨"],
+    ["Cómo lucirla", "Sobre la ropa o la piel", "Por fuera de la camisa, sobre un escote o con un buzo: el dije siempre queda a la vista.", "💫"],
+    ["Perfecta para", "Salir con estilo", "Reuniones, rumbas, cenas y tu día a día: con ropa casual o elegante siempre luce.", "🎉"],
+    ["Regálala a", "Papá, pareja o un amigo", "Papá, esposo, novio, hermano o amigo. Un regalo con estilo para cumpleaños, Navidad y Día del Padre.", "🎁"]
+  ]},
+  23: { kicker: "Por qué enamora", rutina: "Presencia de rey en cada detalle", filas: [
+    ["Lo que lo hace único", "Corona dorada que roba miradas", "Su corona dorada en alto brillo le da a tu look presencia, seguridad y mucha personalidad.", "✨"],
+    ["Cómo lucirlo", "En tu dedo favorito", "Elige tu talla con la guía de tallas y lúcelo en el dedo que más te guste.", "💫"],
+    ["Perfecto para", "Salir con estilo", "Reuniones, rumbas, cenas y tu día a día: con ropa casual o elegante siempre luce.", "🎉"],
+    ["Regálalo a", "Papá, pareja o un amigo", "Papá, esposo, novio, hermano o amigo. Un regalo con estilo para cumpleaños, Navidad y Día del Padre.", "🎁"]
+  ]},
+  24: { kicker: "Por qué enamora", rutina: "Brilla con energía de abundancia", filas: [
+    ["Lo que la hace única", "Un símbolo de abundancia y éxito", "Lleva contigo un símbolo de prosperidad y éxito, con un dorado brillante que no pasa desapercibido.", "✨"],
+    ["Cómo lucirla", "Sobre la ropa o la piel", "Por fuera de la camisa, sobre un escote o con un buzo: el dije siempre queda a la vista.", "💫"],
+    ["Perfecta para", "Salir con estilo", "Reuniones, rumbas, cenas y tu día a día: con ropa casual o elegante siempre luce.", "🎉"],
+    ["Regálala a", "Quien tú quieras", "Para ti o para regalar en cumpleaños, aniversarios, grados y Navidad.", "🎁"]
+  ]},
+  25: { kicker: "Por qué enamora", rutina: "Brilla con energía de abundancia", filas: [
+    ["Lo que lo hace único", "Un símbolo de abundancia y éxito", "Lleva contigo un símbolo de prosperidad y éxito, con un dorado brillante que no pasa desapercibido.", "✨"],
+    ["Cómo lucirlo", "Se ajusta a tu dedo", "Es ajustable: lo adaptas a tu dedo favorito, sin preocuparte por la talla.", "💫"],
+    ["Perfecto para", "Salir con estilo", "Reuniones, rumbas, cenas y tu día a día: con ropa casual o elegante siempre luce.", "🎉"],
+    ["Regálalo a", "Quien tú quieras", "Para ti o para regalar en cumpleaños, aniversarios, grados y Navidad.", "🎁"]
+  ]},
+  26: { kicker: "Por qué enamora", rutina: "Brilla con energía de abundancia", filas: [
+    ["Lo que lo hace único", "Un símbolo de abundancia y éxito", "Lleva contigo un símbolo de prosperidad y éxito, con un dorado brillante que no pasa desapercibido.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Salir con estilo", "Reuniones, rumbas, cenas y tu día a día: con ropa casual o elegante siempre luce.", "🎉"],
+    ["Regálalo a", "Quien tú quieras", "Para ti o para regalar en cumpleaños, aniversarios, grados y Navidad.", "🎁"]
+  ]},
+  27: { kicker: "Por qué enamora", rutina: "Brilla con energía de abundancia", filas: [
+    ["Lo que lo hace único", "Un símbolo de abundancia y éxito", "Lleva contigo un símbolo de prosperidad y éxito, con un dorado brillante que no pasa desapercibido.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Salir con estilo", "Reuniones, rumbas, cenas y tu día a día: con ropa casual o elegante siempre luce.", "🎉"],
+    ["Regálalo a", "Quien tú quieras", "Para ti o para regalar en cumpleaños, aniversarios, grados y Navidad.", "🎁"]
+  ]},
+  28: { kicker: "Por qué enamora", rutina: "Brilla con energía de abundancia", filas: [
+    ["Lo que lo hace único", "Un símbolo de abundancia y éxito", "Lleva contigo un símbolo de prosperidad y éxito, con un dorado brillante que no pasa desapercibido.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Salir con estilo", "Reuniones, rumbas, cenas y tu día a día: con ropa casual o elegante siempre luce.", "🎉"],
+    ["Regálalo a", "Quien tú quieras", "Para ti o para regalar en cumpleaños, aniversarios, grados y Navidad.", "🎁"]
+  ]},
+  29: { kicker: "Por qué enamora", rutina: "Brilla con energía de abundancia", filas: [
+    ["Lo que la hace única", "Un símbolo de abundancia y éxito", "Lleva contigo un símbolo de prosperidad y éxito, con un dorado brillante que no pasa desapercibido.", "✨"],
+    ["Cómo lucirla", "Sola o con tu reloj", "Lúcela sola para un toque sutil o combínala con tu reloj y otras pulseras.", "💫"],
+    ["Perfecta para", "Salir con estilo", "Reuniones, rumbas, cenas y tu día a día: con ropa casual o elegante siempre luce.", "🎉"],
+    ["Regálala a", "Quien tú quieras", "Para ti o para regalar en cumpleaños, aniversarios, grados y Navidad.", "🎁"]
+  ]},
+  30: { kicker: "Por qué enamora", rutina: "Brilla con energía de abundancia", filas: [
+    ["Lo que la hace única", "Un símbolo de abundancia y éxito", "Lleva contigo un símbolo de prosperidad y éxito, con un dorado brillante que no pasa desapercibido.", "✨"],
+    ["Cómo lucirla", "Sola o con tu reloj", "Lúcela sola para un toque sutil o combínala con tu reloj y otras pulseras.", "💫"],
+    ["Perfecta para", "Salir con estilo", "Reuniones, rumbas, cenas y tu día a día: con ropa casual o elegante siempre luce.", "🎉"],
+    ["Regálala a", "Quien tú quieras", "Para ti o para regalar en cumpleaños, aniversarios, grados y Navidad.", "🎁"]
+  ]},
+  31: { kicker: "Por qué enamora", rutina: "Brilla con energía de abundancia", filas: [
+    ["Lo que lo hace único", "Un símbolo de abundancia y éxito", "Lleva contigo un símbolo de prosperidad y éxito, con un dorado brillante que no pasa desapercibido.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Salir con estilo", "Reuniones, rumbas, cenas y tu día a día: con ropa casual o elegante siempre luce.", "🎉"],
+    ["Regálalo a", "Quien tú quieras", "Para ti o para regalar en cumpleaños, aniversarios, grados y Navidad.", "🎁"]
+  ]},
+  32: { kicker: "Por qué enamora", rutina: "Brilla con energía de abundancia", filas: [
+    ["Lo que la hace única", "Un símbolo de abundancia y éxito", "Lleva contigo un símbolo de prosperidad y éxito, con un dorado brillante que no pasa desapercibido.", "✨"],
+    ["Cómo lucirla", "Sola o con tu reloj", "Lúcela sola para un toque sutil o combínala con tu reloj y otras pulseras.", "💫"],
+    ["Perfecta para", "Salir con estilo", "Reuniones, rumbas, cenas y tu día a día: con ropa casual o elegante siempre luce.", "🎉"],
+    ["Regálala a", "Quien tú quieras", "Para ti o para regalar en cumpleaños, aniversarios, grados y Navidad.", "🎁"]
+  ]},
+  33: { kicker: "Por qué enamora", rutina: "Brilla con energía de abundancia", filas: [
+    ["Lo que la hace única", "Un símbolo de abundancia y éxito", "Lleva contigo un símbolo de prosperidad y éxito, con un dorado brillante que no pasa desapercibido.", "✨"],
+    ["Cómo lucirla", "Sobre la ropa o la piel", "Por fuera de la camisa, sobre un escote o con un buzo: el dije siempre queda a la vista.", "💫"],
+    ["Perfecta para", "Salir con estilo", "Reuniones, rumbas, cenas y tu día a día: con ropa casual o elegante siempre luce.", "🎉"],
+    ["Regálala a", "Papá, pareja o un amigo", "Papá, esposo, novio, hermano o amigo. Un regalo con estilo para cumpleaños, Navidad y Día del Padre.", "🎁"]
+  ]},
+  34: { kicker: "Por qué enamora", rutina: "Fe y amor cerca de tu corazón", filas: [
+    ["Lo que lo hace único", "El Sagrado Corazón de Jesús", "El Sagrado Corazón de Jesús, símbolo de amor, fe y protección, en una joya delicada y llena de significado.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  35: { kicker: "Por qué enamora", rutina: "Fe y amor cerca de tu corazón", filas: [
+    ["Lo que la hace única", "El Sagrado Corazón de Jesús", "El Sagrado Corazón de Jesús, símbolo de amor, fe y protección, en una joya delicada y llena de significado.", "✨"],
+    ["Cómo lucirla", "Sobre la ropa o la piel", "Por fuera de la camisa, sobre un escote o con un buzo: el dije siempre queda a la vista.", "💫"],
+    ["Perfecta para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálala a", "Mamá, esposa o amiga", "Mamá, esposa, novia, hija o amiga. Un detalle que enamora para cumpleaños, Navidad y Día de la Madre.", "🎁"]
+  ]},
+  36: { kicker: "Por qué enamora", rutina: "Fe y amor cerca de tu corazón", filas: [
+    ["Lo que la hace única", "El Sagrado Corazón de Jesús", "El Sagrado Corazón de Jesús, símbolo de amor, fe y protección, en una joya delicada y llena de significado.", "✨"],
+    ["Cómo lucirla", "Sobre la ropa o la piel", "Por fuera de la camisa, sobre un escote o con un buzo: el dije siempre queda a la vista.", "💫"],
+    ["Perfecta para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálala a", "Mamá, esposa o amiga", "Mamá, esposa, novia, hija o amiga. Un detalle que enamora para cumpleaños, Navidad y Día de la Madre.", "🎁"]
+  ]},
+  37: { kicker: "Por qué enamora", rutina: "Fe y amor cerca de tu corazón", filas: [
+    ["Lo que la hace única", "El Sagrado Corazón de Jesús", "El Sagrado Corazón de Jesús, símbolo de amor, fe y protección, en una joya delicada y llena de significado.", "✨"],
+    ["Cómo lucirla", "Sobre la ropa o la piel", "Por fuera de la camisa, sobre un escote o con un buzo: el dije siempre queda a la vista.", "💫"],
+    ["Perfecta para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálala a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  38: { kicker: "Por qué enamora", rutina: "Fe y amor cerca de tu corazón", filas: [
+    ["Lo que lo hace único", "El Sagrado Corazón de Jesús", "El Sagrado Corazón de Jesús, símbolo de amor, fe y protección, en una joya delicada y llena de significado.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  39: { kicker: "Por qué enamora", rutina: "La Virgen te acompaña con estilo", filas: [
+    ["Lo que la hace única", "La Virgen de Guadalupe contigo", "La Virgen de Guadalupe, símbolo de amor de madre, esperanza y protección, en una joya hermosa para cada día.", "✨"],
+    ["Cómo lucirla", "Sola o con tu reloj", "Lúcela sola para un toque sutil o combínala con tu reloj y otras pulseras.", "💫"],
+    ["Perfecta para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálala a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  40: { kicker: "Por qué enamora", rutina: "La Virgen te acompaña con estilo", filas: [
+    ["Lo que lo hace único", "La Virgen de Guadalupe contigo", "La Virgen de Guadalupe, símbolo de amor de madre, esperanza y protección, en una joya hermosa para cada día.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Mamá, esposa o amiga", "Mamá, esposa, novia, hija o amiga. Un detalle que enamora para cumpleaños, Navidad y Día de la Madre.", "🎁"]
+  ]},
+  41: { kicker: "Por qué enamora", rutina: "La Virgen te acompaña con estilo", filas: [
+    ["Lo que lo hace único", "La Virgen de Guadalupe contigo", "La Virgen de Guadalupe, símbolo de amor de madre, esperanza y protección, en una joya hermosa para cada día.", "✨"],
+    ["Cómo lucirlo", "Sobre la ropa o la piel", "Por fuera de la camisa, sobre un escote o con un buzo: el dije siempre queda a la vista.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  42: { kicker: "Por qué enamora", rutina: "La Virgen te acompaña con estilo", filas: [
+    ["Lo que lo hace único", "La Virgen de Guadalupe contigo", "La Virgen de Guadalupe, símbolo de amor de madre, esperanza y protección, en una joya hermosa para cada día.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Mamá, esposa o amiga", "Mamá, esposa, novia, hija o amiga. Un detalle que enamora para cumpleaños, Navidad y Día de la Madre.", "🎁"]
+  ]},
+  43: { kicker: "Por qué enamora", rutina: "La Virgen te acompaña con estilo", filas: [
+    ["Lo que lo hace único", "La Virgen de Guadalupe contigo", "La Virgen de Guadalupe, símbolo de amor de madre, esperanza y protección, en una joya hermosa para cada día.", "✨"],
+    ["Cómo lucirlo", "Todas juntas o compartidas", "Úsalas juntas en la misma muñeca para más brillo, o comparte una con alguien especial.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  44: { kicker: "Por qué enamora", rutina: "La Virgen te acompaña con estilo", filas: [
+    ["Lo que la hace única", "La Virgen de Guadalupe contigo", "La Virgen de Guadalupe, símbolo de amor de madre, esperanza y protección, en una joya hermosa para cada día.", "✨"],
+    ["Cómo lucirla", "Por fuera de la ropa", "Lúcela por fuera de la camisa o la blusa, para que se vea su diseño y lo que representa.", "💫"],
+    ["Perfecta para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálala a", "Papá, pareja o un amigo", "Papá, esposo, novio, hermano o amigo. Un regalo con estilo para cumpleaños, Navidad y Día del Padre.", "🎁"]
+  ]},
+  45: { kicker: "Por qué enamora", rutina: "La Virgen te acompaña con estilo", filas: [
+    ["Lo que lo hace único", "La Virgen de Guadalupe contigo", "La Virgen de Guadalupe, símbolo de amor de madre, esperanza y protección, en una joya hermosa para cada día.", "✨"],
+    ["Cómo lucirlo", "Por fuera de la ropa", "Lúcela por fuera de la camisa o la blusa, para que se vea su diseño y lo que representa.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  46: { kicker: "Por qué enamora", rutina: "La Virgen te acompaña con estilo", filas: [
+    ["Lo que la hace única", "La Virgen de Guadalupe contigo", "La Virgen de Guadalupe, símbolo de amor de madre, esperanza y protección, en una joya hermosa para cada día.", "✨"],
+    ["Cómo lucirla", "Por fuera de la ropa", "Lúcela por fuera de la camisa o la blusa, para que se vea su diseño y lo que representa.", "💫"],
+    ["Perfecta para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálala a", "Papá, pareja o un amigo", "Papá, esposo, novio, hermano o amigo. Un regalo con estilo para cumpleaños, Navidad y Día del Padre.", "🎁"]
+  ]},
+  47: { kicker: "Por qué enamora", rutina: "La Virgen te acompaña con estilo", filas: [
+    ["Lo que la hace única", "La Virgen de Guadalupe contigo", "La Virgen de Guadalupe, símbolo de amor de madre, esperanza y protección, en una joya hermosa para cada día.", "✨"],
+    ["Cómo lucirla", "Sola o con tu reloj", "Lúcela sola para un toque sutil o combínala con tu reloj y otras pulseras.", "💫"],
+    ["Perfecta para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálala a", "Mamá, esposa o amiga", "Mamá, esposa, novia, hija o amiga. Un detalle que enamora para cumpleaños, Navidad y Día de la Madre.", "🎁"]
+  ]},
+  48: { kicker: "Por qué enamora", rutina: "La Virgen te acompaña con estilo", filas: [
+    ["Lo que la hace única", "La Virgen de Guadalupe contigo", "La Virgen de Guadalupe, símbolo de amor de madre, esperanza y protección, en una joya hermosa para cada día.", "✨"],
+    ["Cómo lucirla", "Sobre la ropa o la piel", "Por fuera de la camisa, sobre un escote o con un buzo: el dije siempre queda a la vista.", "💫"],
+    ["Perfecta para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálala a", "Mamá, esposa o amiga", "Mamá, esposa, novia, hija o amiga. Un detalle que enamora para cumpleaños, Navidad y Día de la Madre.", "🎁"]
+  ]},
+  49: { kicker: "Por qué enamora", rutina: "La Virgen te acompaña con estilo", filas: [
+    ["Lo que lo hace único", "La Virgen de Guadalupe contigo", "La Virgen de Guadalupe, símbolo de amor de madre, esperanza y protección, en una joya hermosa para cada día.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Mamá, esposa o amiga", "Mamá, esposa, novia, hija o amiga. Un detalle que enamora para cumpleaños, Navidad y Día de la Madre.", "🎁"]
+  ]},
+  50: { kicker: "Por qué enamora", rutina: "La Virgen te acompaña con estilo", filas: [
+    ["Lo que lo hace único", "La Virgen de Guadalupe contigo", "La Virgen de Guadalupe, símbolo de amor de madre, esperanza y protección, en una joya hermosa para cada día.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  51: { kicker: "Por qué enamora", rutina: "La Virgen te acompaña con estilo", filas: [
+    ["Lo que la hace única", "La Virgen de Guadalupe contigo", "La Virgen de Guadalupe, símbolo de amor de madre, esperanza y protección, en una joya hermosa para cada día.", "✨"],
+    ["Cómo lucirla", "Sobre la ropa o la piel", "Por fuera de la camisa, sobre un escote o con un buzo: el dije siempre queda a la vista.", "💫"],
+    ["Perfecta para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálala a", "Papá, pareja o un amigo", "Papá, esposo, novio, hermano o amigo. Un regalo con estilo para cumpleaños, Navidad y Día del Padre.", "🎁"]
+  ]},
+  52: { kicker: "Por qué enamora", rutina: "La Virgen te acompaña con estilo", filas: [
+    ["Lo que la hace única", "La Virgen de Guadalupe contigo", "La Virgen de Guadalupe, símbolo de amor de madre, esperanza y protección, en una joya hermosa para cada día.", "✨"],
+    ["Cómo lucirla", "Sobre la ropa o la piel", "Por fuera de la camisa, sobre un escote o con un buzo: el dije siempre queda a la vista.", "💫"],
+    ["Perfecta para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálala a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  53: { kicker: "Por qué enamora", rutina: "La Virgen te acompaña con estilo", filas: [
+    ["Lo que lo hace único", "La Virgen de Guadalupe contigo", "La Virgen de Guadalupe, símbolo de amor de madre, esperanza y protección, en una joya hermosa para cada día.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  54: { kicker: "Por qué enamora", rutina: "La Virgen te acompaña con estilo", filas: [
+    ["Lo que la hace única", "La Virgen de Guadalupe contigo", "La Virgen de Guadalupe, símbolo de amor de madre, esperanza y protección, en una joya hermosa para cada día.", "✨"],
+    ["Cómo lucirla", "Sobre la ropa o la piel", "Por fuera de la camisa, sobre un escote o con un buzo: el dije siempre queda a la vista.", "💫"],
+    ["Perfecta para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálala a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  55: { kicker: "Por qué enamora", rutina: "La Virgen te acompaña con estilo", filas: [
+    ["Lo que lo hace único", "La Virgen de Guadalupe contigo", "La Virgen de Guadalupe, símbolo de amor de madre, esperanza y protección, en una joya hermosa para cada día.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Mamá, esposa o amiga", "Mamá, esposa, novia, hija o amiga. Un detalle que enamora para cumpleaños, Navidad y Día de la Madre.", "🎁"]
+  ]},
+  56: { kicker: "Por qué enamora", rutina: "La Virgen te acompaña con estilo", filas: [
+    ["Lo que la hace única", "La Virgen de Guadalupe contigo", "La Virgen de Guadalupe, símbolo de amor de madre, esperanza y protección, en una joya hermosa para cada día.", "✨"],
+    ["Cómo lucirla", "Sobre la ropa o la piel", "Por fuera de la camisa, sobre un escote o con un buzo: el dije siempre queda a la vista.", "💫"],
+    ["Perfecta para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálala a", "Mamá, esposa o amiga", "Mamá, esposa, novia, hija o amiga. Un detalle que enamora para cumpleaños, Navidad y Día de la Madre.", "🎁"]
+  ]},
+  57: { kicker: "Por qué enamora", rutina: "La Virgen te acompaña con estilo", filas: [
+    ["Lo que lo hace único", "La Virgen de Guadalupe contigo", "La Virgen de Guadalupe, símbolo de amor de madre, esperanza y protección, en una joya hermosa para cada día.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  58: { kicker: "Por qué enamora", rutina: "La Virgen te acompaña con estilo", filas: [
+    ["Lo que lo hace único", "La Virgen de Guadalupe contigo", "La Virgen de Guadalupe, símbolo de amor de madre, esperanza y protección, en una joya hermosa para cada día.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  59: { kicker: "Por qué enamora", rutina: "La Virgen te acompaña con estilo", filas: [
+    ["Lo que lo hace único", "La Virgen de Guadalupe contigo", "La Virgen de Guadalupe, símbolo de amor de madre, esperanza y protección, en una joya hermosa para cada día.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Papá, pareja o un amigo", "Papá, esposo, novio, hermano o amigo. Un regalo con estilo para cumpleaños, Navidad y Día del Padre.", "🎁"]
+  ]},
+  60: { kicker: "Por qué enamora", rutina: "Fe y esperanza en una joya", filas: [
+    ["Lo que lo hace único", "La Virgen Milagrosa contigo", "La Virgen Milagrosa, símbolo de fe, esperanza y protección, en una pieza delicada y elegante.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  61: { kicker: "Por qué enamora", rutina: "Protección que luce elegante", filas: [
+    ["Lo que la hace única", "La medalla de San Benito", "La medalla de San Benito, uno de los símbolos de protección más queridos, con un acabado dorado que brilla.", "✨"],
+    ["Cómo lucirla", "Sola o con tu reloj", "Lúcela sola para un toque sutil o combínala con tu reloj y otras pulseras.", "💫"],
+    ["Perfecta para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálala a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  62: { kicker: "Por qué enamora", rutina: "Protección que luce elegante", filas: [
+    ["Lo que lo hace único", "La medalla de San Benito", "La medalla de San Benito, uno de los símbolos de protección más queridos, con un acabado dorado que brilla.", "✨"],
+    ["Cómo lucirlo", "Todas juntas o compartidas", "Úsalas juntas en la misma muñeca para más brillo, o comparte una con alguien especial.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  63: { kicker: "Por qué enamora", rutina: "Protección que luce elegante", filas: [
+    ["Lo que la hace única", "La medalla de San Benito", "La medalla de San Benito, uno de los símbolos de protección más queridos, con un acabado dorado que brilla.", "✨"],
+    ["Cómo lucirla", "Sola o con tu reloj", "Lúcela sola para un toque sutil o combínala con tu reloj y otras pulseras.", "💫"],
+    ["Perfecta para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálala a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  64: { kicker: "Por qué enamora", rutina: "Protección que luce elegante", filas: [
+    ["Lo que lo hace único", "La medalla de San Benito", "La medalla de San Benito, uno de los símbolos de protección más queridos, con un acabado dorado que brilla.", "✨"],
+    ["Cómo lucirlo", "Todas juntas o compartidas", "Úsalas juntas en la misma muñeca para más brillo, o comparte una con alguien especial.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  65: { kicker: "Por qué enamora", rutina: "Protección que luce elegante", filas: [
+    ["Lo que la hace única", "La medalla de San Benito", "La medalla de San Benito, uno de los símbolos de protección más queridos, con un acabado dorado que brilla.", "✨"],
+    ["Cómo lucirla", "Sobre la ropa o la piel", "Por fuera de la camisa, sobre un escote o con un buzo: el dije siempre queda a la vista.", "💫"],
+    ["Perfecta para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálala a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  66: { kicker: "Por qué enamora", rutina: "Protección que luce elegante", filas: [
+    ["Lo que lo hace único", "La medalla de San Benito", "La medalla de San Benito, uno de los símbolos de protección más queridos, con un acabado dorado que brilla.", "✨"],
+    ["Cómo lucirlo", "Todas juntas o compartidas", "Úsalas juntas en la misma muñeca para más brillo, o comparte una con alguien especial.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Tu pareja", "Tu pareja: una para cada uno, como símbolo de amor y unión. Ideal para aniversarios y Navidad.", "🎁"]
+  ]},
+  67: { kicker: "Por qué enamora", rutina: "Protección que luce elegante", filas: [
+    ["Lo que lo hace único", "La medalla de San Benito", "La medalla de San Benito, uno de los símbolos de protección más queridos, con un acabado dorado que brilla.", "✨"],
+    ["Cómo lucirlo", "Todas juntas o compartidas", "Úsalas juntas en la misma muñeca para más brillo, o comparte una con alguien especial.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  68: { kicker: "Por qué enamora", rutina: "Protección que luce elegante", filas: [
+    ["Lo que lo hace único", "La medalla de San Benito", "La medalla de San Benito, uno de los símbolos de protección más queridos, con un acabado dorado que brilla.", "✨"],
+    ["Cómo lucirlo", "Sobre la ropa o la piel", "Por fuera de la camisa, sobre un escote o con un buzo: el dije siempre queda a la vista.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  69: { kicker: "Por qué enamora", rutina: "Protección que luce elegante", filas: [
+    ["Lo que la hace única", "La medalla de San Benito", "La medalla de San Benito, uno de los símbolos de protección más queridos, con un acabado dorado que brilla.", "✨"],
+    ["Cómo lucirla", "Sola o con tu reloj", "Lúcela sola para un toque sutil o combínala con tu reloj y otras pulseras.", "💫"],
+    ["Perfecta para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálala a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  70: { kicker: "Por qué enamora", rutina: "Protección que luce elegante", filas: [
+    ["Lo que lo hace único", "La medalla de San Benito", "La medalla de San Benito, uno de los símbolos de protección más queridos, con un acabado dorado que brilla.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Mamá, esposa o amiga", "Mamá, esposa, novia, hija o amiga. Un detalle que enamora para cumpleaños, Navidad y Día de la Madre.", "🎁"]
+  ]},
+  71: { kicker: "Por qué enamora", rutina: "Protección que luce elegante", filas: [
+    ["Lo que lo hace único", "La medalla de San Benito", "La medalla de San Benito, uno de los símbolos de protección más queridos, con un acabado dorado que brilla.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  72: { kicker: "Por qué enamora", rutina: "Protección que luce elegante", filas: [
+    ["Lo que la hace única", "La medalla de San Benito", "La medalla de San Benito, uno de los símbolos de protección más queridos, con un acabado dorado que brilla.", "✨"],
+    ["Cómo lucirla", "Sola o con tu reloj", "Lúcela sola para un toque sutil o combínala con tu reloj y otras pulseras.", "💫"],
+    ["Perfecta para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálala a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  73: { kicker: "Por qué enamora", rutina: "Protección que luce elegante", filas: [
+    ["Lo que la hace única", "La medalla de San Benito", "La medalla de San Benito, uno de los símbolos de protección más queridos, con un acabado dorado que brilla.", "✨"],
+    ["Cómo lucirla", "Sola o con tu reloj", "Lúcela sola para un toque sutil o combínala con tu reloj y otras pulseras.", "💫"],
+    ["Perfecta para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálala a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  74: { kicker: "Por qué enamora", rutina: "Protección que luce elegante", filas: [
+    ["Lo que lo hace único", "La medalla de San Benito", "La medalla de San Benito, uno de los símbolos de protección más queridos, con un acabado dorado que brilla.", "✨"],
+    ["Cómo lucirlo", "Todas juntas o compartidas", "Úsalas juntas en la misma muñeca para más brillo, o comparte una con alguien especial.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  75: { kicker: "Por qué enamora", rutina: "Protección que luce elegante", filas: [
+    ["Lo que lo hace único", "La medalla de San Benito", "La medalla de San Benito, uno de los símbolos de protección más queridos, con un acabado dorado que brilla.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  76: { kicker: "Por qué enamora", rutina: "Protección que luce elegante", filas: [
+    ["Lo que lo hace único", "La medalla de San Benito", "La medalla de San Benito, uno de los símbolos de protección más queridos, con un acabado dorado que brilla.", "✨"],
+    ["Cómo lucirlo", "Todas juntas o compartidas", "Úsalas juntas en la misma muñeca para más brillo, o comparte una con alguien especial.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  77: { kicker: "Por qué enamora", rutina: "Protección que luce elegante", filas: [
+    ["Lo que lo hace único", "La medalla de San Benito", "La medalla de San Benito, uno de los símbolos de protección más queridos, con un acabado dorado que brilla.", "✨"],
+    ["Cómo lucirlo", "Todas juntas o compartidas", "Úsalas juntas en la misma muñeca para más brillo, o comparte una con alguien especial.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  78: { kicker: "Por qué enamora", rutina: "Fe y protección que te acompañan", filas: [
+    ["Lo que la hace única", "Símbolos de fe y protección", "Medallas y símbolos de fe que llevas contigo como recordatorio de protección y fortaleza.", "✨"],
+    ["Cómo lucirla", "Sola o con tu reloj", "Lúcela sola para un toque sutil o combínala con tu reloj y otras pulseras.", "💫"],
+    ["Perfecta para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálala a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  79: { kicker: "Por qué enamora", rutina: "Fortaleza y protección en una joya", filas: [
+    ["Lo que lo hace único", "San Miguel Arcángel, el protector", "San Miguel Arcángel, símbolo de fuerza, valentía y protección, en una joya con carácter.", "✨"],
+    ["Cómo lucirlo", "En la muñeca o el tobillo", "Llévalo contigo en la muñeca, el tobillo o donde prefieras, como recordatorio de fe.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  80: { kicker: "Por qué enamora", rutina: "Fortaleza y protección en una joya", filas: [
+    ["Lo que lo hace único", "San Miguel Arcángel, el protector", "San Miguel Arcángel, símbolo de fuerza, valentía y protección, en una joya con carácter.", "✨"],
+    ["Cómo lucirlo", "Sobre la ropa o la piel", "Por fuera de la camisa, sobre un escote o con un buzo: el dije siempre queda a la vista.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  81: { kicker: "Por qué enamora", rutina: "Fe y protección que te acompañan", filas: [
+    ["Lo que la hace única", "Símbolos de fe y protección", "Medallas y símbolos de fe que llevas contigo como recordatorio de protección y fortaleza.", "✨"],
+    ["Cómo lucirla", "Sola o con tu reloj", "Lúcela sola para un toque sutil o combínala con tu reloj y otras pulseras.", "💫"],
+    ["Perfecta para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálala a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  82: { kicker: "Por qué enamora", rutina: "Fortaleza y protección en una joya", filas: [
+    ["Lo que lo hace único", "San Miguel Arcángel, el protector", "San Miguel Arcángel, símbolo de fuerza, valentía y protección, en una joya con carácter.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  83: { kicker: "Por qué enamora", rutina: "Fe y protección que te acompañan", filas: [
+    ["Lo que la hace única", "Símbolos de fe y protección", "Medallas y símbolos de fe que llevas contigo como recordatorio de protección y fortaleza.", "✨"],
+    ["Cómo lucirla", "Sobre la ropa o la piel", "Por fuera de la camisa, sobre un escote o con un buzo: el dije siempre queda a la vista.", "💫"],
+    ["Perfecta para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálala a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  84: { kicker: "Por qué enamora", rutina: "Fe y esperanza en los momentos difíciles", filas: [
+    ["Lo que lo hace único", "San Judas Tadeo contigo", "San Judas Tadeo, el santo de las causas difíciles, en una joya que te acompaña y te recuerda tener fe.", "✨"],
+    ["Cómo lucirlo", "Sobre la ropa o la piel", "Por fuera de la camisa, sobre un escote o con un buzo: el dije siempre queda a la vista.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  85: { kicker: "Por qué enamora", rutina: "Fe y protección que te acompañan", filas: [
+    ["Lo que lo hace único", "Símbolos de fe y protección", "Medallas y símbolos de fe que llevas contigo como recordatorio de protección y fortaleza.", "✨"],
+    ["Cómo lucirlo", "En la muñeca o el tobillo", "Llévalo contigo en la muñeca, el tobillo o donde prefieras, como recordatorio de fe.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  86: { kicker: "Por qué enamora", rutina: "Fe y protección que te acompañan", filas: [
+    ["Lo que la hace única", "Símbolos de fe y protección", "Medallas y símbolos de fe que llevas contigo como recordatorio de protección y fortaleza.", "✨"],
+    ["Cómo lucirla", "Sobre la ropa o la piel", "Por fuera de la camisa, sobre un escote o con un buzo: el dije siempre queda a la vista.", "💫"],
+    ["Perfecta para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálala a", "Mamá, esposa o amiga", "Mamá, esposa, novia, hija o amiga. Un detalle que enamora para cumpleaños, Navidad y Día de la Madre.", "🎁"]
+  ]},
+  87: { kicker: "Por qué enamora", rutina: "Fe y protección que te acompañan", filas: [
+    ["Lo que lo hace único", "Símbolos de fe y protección", "Medallas y símbolos de fe que llevas contigo como recordatorio de protección y fortaleza.", "✨"],
+    ["Cómo lucirlo", "Sobre la ropa o la piel", "Por fuera de la camisa, sobre un escote o con un buzo: el dije siempre queda a la vista.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Alguien con mucha fe", "Alguien de tu familia con mucha fe: un regalo con significado para bautizos, primeras comuniones y Navidad.", "🎁"]
+  ]},
+  88: { kicker: "Por qué enamora", rutina: "Fe y protección que te acompañan", filas: [
+    ["Lo que lo hace único", "Símbolos de fe y protección", "Medallas y símbolos de fe que llevas contigo como recordatorio de protección y fortaleza.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Mamá, esposa o amiga", "Mamá, esposa, novia, hija o amiga. Un detalle que enamora para cumpleaños, Navidad y Día de la Madre.", "🎁"]
+  ]},
+  89: { kicker: "Por qué enamora", rutina: "Fe y protección que te acompañan", filas: [
+    ["Lo que lo hace único", "Símbolos de fe y protección", "Medallas y símbolos de fe que llevas contigo como recordatorio de protección y fortaleza.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Tu día a día y fechas especiales", "Tu día a día, misas, bautizos, primeras comuniones y celebraciones en familia.", "🎉"],
+    ["Regálalo a", "Papá, pareja o un amigo", "Papá, esposo, novio, hermano o amigo. Un regalo con estilo para cumpleaños, Navidad y Día del Padre.", "🎁"]
+  ]},
+  90: { kicker: "Por qué enamora", rutina: "Buena suerte que se nota", filas: [
+    ["Lo que la hace única", "Un amuleto de buena suerte", "Un símbolo de buena suerte y energía positiva, con un diseño fino que combina con todo.", "✨"],
+    ["Cómo lucirla", "Sola o con tu reloj", "Lúcela sola para un toque sutil o combínala con tu reloj y otras pulseras.", "💫"],
+    ["Perfecta para", "Diario y ocasiones especiales", "Tu día a día, salidas, cenas y fechas especiales; combina con ropa casual o elegante.", "🎉"],
+    ["Regálala a", "Quien tú quieras", "Para ti o para regalar en cumpleaños, aniversarios, grados y Navidad.", "🎁"]
+  ]},
+  91: { kicker: "Por qué enamora", rutina: "Buena suerte que se nota", filas: [
+    ["Lo que lo hace único", "Un amuleto de buena suerte", "Un símbolo de buena suerte y energía positiva, con un diseño fino que combina con todo.", "✨"],
+    ["Cómo lucirlo", "Sola o con tu reloj", "Lúcela sola para un toque sutil o combínala con tu reloj y otras pulseras.", "💫"],
+    ["Perfecto para", "Diario y ocasiones especiales", "Tu día a día, salidas, cenas y fechas especiales; combina con ropa casual o elegante.", "🎉"],
+    ["Regálalo a", "Mamá, esposa o amiga", "Mamá, esposa, novia, hija o amiga. Un detalle que enamora para cumpleaños, Navidad y Día de la Madre.", "🎁"]
+  ]},
+  92: { kicker: "Por qué enamora", rutina: "Buena suerte que se nota", filas: [
+    ["Lo que lo hace único", "Un amuleto de buena suerte", "Un símbolo de buena suerte y energía positiva, con un diseño fino que combina con todo.", "✨"],
+    ["Cómo lucirlo", "En tu dedo favorito", "Elige tu talla con la guía de tallas y lúcelo en el dedo que más te guste.", "💫"],
+    ["Perfecto para", "Diario y ocasiones especiales", "Tu día a día, salidas, cenas y fechas especiales; combina con ropa casual o elegante.", "🎉"],
+    ["Regálalo a", "Quien tú quieras", "Para ti o para regalar en cumpleaños, aniversarios, grados y Navidad.", "🎁"]
+  ]},
+  93: { kicker: "Por qué enamora", rutina: "Tu letra, tu historia", filas: [
+    ["Lo que lo hace único", "Personalizada con tu inicial", "Eliges la letra: la tuya o la de esa persona especial. Una joya única, personal y con significado.", "✨"],
+    ["Cómo lucirlo", "Todas juntas o compartidas", "Úsalas juntas en la misma muñeca para más brillo, o comparte una con alguien especial.", "💫"],
+    ["Perfecto para", "Diario y ocasiones especiales", "Tu día a día, salidas, cenas y fechas especiales; combina con ropa casual o elegante.", "🎉"],
+    ["Regálalo a", "Quien tú quieras", "Para ti o para regalar en cumpleaños, aniversarios, grados y Navidad.", "🎁"]
+  ]},
+  94: { kicker: "Por qué enamora", rutina: "Tu letra, tu historia", filas: [
+    ["Lo que las hace únicas", "Personalizada con tu inicial", "Eliges la letra: la tuya o la de esa persona especial. Una joya única, personal y con significado.", "✨"],
+    ["Cómo lucirlas", "Sobre la ropa o la piel", "Por fuera de la camisa, sobre un escote o con un buzo: el dije siempre queda a la vista.", "💫"],
+    ["Perfectas para", "Diario y ocasiones especiales", "Tu día a día, salidas, cenas y fechas especiales; combina con ropa casual o elegante.", "🎉"],
+    ["Regálalas a", "Tu pareja", "Tu pareja: una para cada uno, como símbolo de amor y unión. Ideal para aniversarios y Navidad.", "🎁"]
+  ]},
+  95: { kicker: "Por qué enamora", rutina: "Tu letra, tu historia", filas: [
+    ["Lo que lo hace único", "Personalizada con tu inicial", "Eliges la letra: la tuya o la de esa persona especial. Una joya única, personal y con significado.", "✨"],
+    ["Cómo lucirlo", "Todas juntas o compartidas", "Úsalas juntas en la misma muñeca para más brillo, o comparte una con alguien especial.", "💫"],
+    ["Perfecto para", "Diario y ocasiones especiales", "Tu día a día, salidas, cenas y fechas especiales; combina con ropa casual o elegante.", "🎉"],
+    ["Regálalo a", "Quien tú quieras", "Para ti o para regalar en cumpleaños, aniversarios, grados y Navidad.", "🎁"]
+  ]},
+  96: { kicker: "Por qué enamora", rutina: "El verde que enamora", filas: [
+    ["Lo que lo hace único", "Verde esmeralda + dorado", "El verde esmeralda junto al dorado crea un contraste elegante, fresco y muy colombiano.", "✨"],
+    ["Cómo lucirlo", "Todas juntas o compartidas", "Úsalas juntas en la misma muñeca para más brillo, o comparte una con alguien especial.", "💫"],
+    ["Perfecto para", "Diario y ocasiones especiales", "Tu día a día, salidas, cenas y fechas especiales; combina con ropa casual o elegante.", "🎉"],
+    ["Regálalo a", "Quien tú quieras", "Para ti o para regalar en cumpleaños, aniversarios, grados y Navidad.", "🎁"]
+  ]},
+  97: { kicker: "Por qué enamora", rutina: "El verde que enamora", filas: [
+    ["Lo que lo hace único", "Verde esmeralda + dorado", "El verde esmeralda junto al dorado crea un contraste elegante, fresco y muy colombiano.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Diario y ocasiones especiales", "Tu día a día, salidas, cenas y fechas especiales; combina con ropa casual o elegante.", "🎉"],
+    ["Regálalo a", "Quien tú quieras", "Para ti o para regalar en cumpleaños, aniversarios, grados y Navidad.", "🎁"]
+  ]},
+  98: { kicker: "Por qué enamora", rutina: "El verde que enamora", filas: [
+    ["Lo que lo hace único", "Verde esmeralda + dorado", "El verde esmeralda junto al dorado crea un contraste elegante, fresco y muy colombiano.", "✨"],
+    ["Cómo lucirlo", "Todas juntas o compartidas", "Úsalas juntas en la misma muñeca para más brillo, o comparte una con alguien especial.", "💫"],
+    ["Perfecto para", "Diario y ocasiones especiales", "Tu día a día, salidas, cenas y fechas especiales; combina con ropa casual o elegante.", "🎉"],
+    ["Regálalo a", "Quien tú quieras", "Para ti o para regalar en cumpleaños, aniversarios, grados y Navidad.", "🎁"]
+  ]},
+  99: { kicker: "Por qué enamora", rutina: "El verde que enamora", filas: [
+    ["Lo que lo hace único", "Verde esmeralda + dorado", "El verde esmeralda junto al dorado crea un contraste elegante, fresco y muy colombiano.", "✨"],
+    ["Cómo lucirlo", "Todas juntas o compartidas", "Úsalas juntas en la misma muñeca para más brillo, o comparte una con alguien especial.", "💫"],
+    ["Perfecto para", "Diario y ocasiones especiales", "Tu día a día, salidas, cenas y fechas especiales; combina con ropa casual o elegante.", "🎉"],
+    ["Regálalo a", "Quien tú quieras", "Para ti o para regalar en cumpleaños, aniversarios, grados y Navidad.", "🎁"]
+  ]},
+  100: { kicker: "Por qué enamora", rutina: "Colombia en tu muñeca", filas: [
+    ["Lo que lo hace único", "Los colores de Colombia", "Amarillo, azul y rojo con brillo dorado: para llevar a Colombia contigo con orgullo.", "✨"],
+    ["Cómo lucirlo", "Todas juntas o compartidas", "Úsalas juntas en la misma muñeca para más brillo, o comparte una con alguien especial.", "💫"],
+    ["Perfecto para", "Partidos y fechas patrias", "Partidos de Colombia, el 20 de julio, viajes y cualquier día en que quieras mostrar tu orgullo.", "🎉"],
+    ["Regálalo a", "Quien tú quieras", "Para ti o para regalar en cumpleaños, aniversarios, grados y Navidad.", "🎁"]
+  ]},
+  101: { kicker: "Por qué enamora", rutina: "Brillo dorado para cada día", filas: [
+    ["Lo que lo hace único", "Balines dorados de alto brillo", "Sus balines dorados reflejan la luz y le dan a tu look un toque elegante y moderno.", "✨"],
+    ["Cómo lucirlo", "Todas juntas o compartidas", "Úsalas juntas en la misma muñeca para más brillo, o comparte una con alguien especial.", "💫"],
+    ["Perfecto para", "Diario y ocasiones especiales", "Tu día a día, salidas, cenas y fechas especiales; combina con ropa casual o elegante.", "🎉"],
+    ["Regálalo a", "Quien tú quieras", "Para ti o para regalar en cumpleaños, aniversarios, grados y Navidad.", "🎁"]
+  ]},
+  102: { kicker: "Por qué enamora", rutina: "Brillo dorado para cada día", filas: [
+    ["Lo que lo hace único", "Balines dorados de alto brillo", "Sus balines dorados reflejan la luz y le dan a tu look un toque elegante y moderno.", "✨"],
+    ["Cómo lucirlo", "Todas juntas o compartidas", "Úsalas juntas en la misma muñeca para más brillo, o comparte una con alguien especial.", "💫"],
+    ["Perfecto para", "Diario y ocasiones especiales", "Tu día a día, salidas, cenas y fechas especiales; combina con ropa casual o elegante.", "🎉"],
+    ["Regálalo a", "Quien tú quieras", "Para ti o para regalar en cumpleaños, aniversarios, grados y Navidad.", "🎁"]
+  ]},
+  103: { kicker: "Por qué enamora", rutina: "Brillo dorado para cada día", filas: [
+    ["Lo que lo hace único", "Balines dorados de alto brillo", "Sus balines dorados reflejan la luz y le dan a tu look un toque elegante y moderno.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Diario y ocasiones especiales", "Tu día a día, salidas, cenas y fechas especiales; combina con ropa casual o elegante.", "🎉"],
+    ["Regálalo a", "Mamá, esposa o amiga", "Mamá, esposa, novia, hija o amiga. Un detalle que enamora para cumpleaños, Navidad y Día de la Madre.", "🎁"]
+  ]},
+  104: { kicker: "Por qué enamora", rutina: "Brillo dorado para cada día", filas: [
+    ["Lo que la hace única", "Balines dorados de alto brillo", "Sus balines dorados reflejan la luz y le dan a tu look un toque elegante y moderno.", "✨"],
+    ["Cómo lucirla", "Sola o con tu reloj", "Lúcela sola para un toque sutil o combínala con tu reloj y otras pulseras.", "💫"],
+    ["Perfecta para", "Diario y ocasiones especiales", "Tu día a día, salidas, cenas y fechas especiales; combina con ropa casual o elegante.", "🎉"],
+    ["Regálala a", "Quien tú quieras", "Para ti o para regalar en cumpleaños, aniversarios, grados y Navidad.", "🎁"]
+  ]},
+  105: { kicker: "Por qué enamora", rutina: "Brillo dorado para cada día", filas: [
+    ["Lo que lo hace único", "Balines dorados de alto brillo", "Sus balines dorados reflejan la luz y le dan a tu look un toque elegante y moderno.", "✨"],
+    ["Cómo lucirlo", "Sobre la ropa o la piel", "Por fuera de la camisa, sobre un escote o con un buzo: el dije siempre queda a la vista.", "💫"],
+    ["Perfecto para", "Diario y ocasiones especiales", "Tu día a día, salidas, cenas y fechas especiales; combina con ropa casual o elegante.", "🎉"],
+    ["Regálalo a", "Mamá, esposa o amiga", "Mamá, esposa, novia, hija o amiga. Un detalle que enamora para cumpleaños, Navidad y Día de la Madre.", "🎁"]
+  ]},
+  106: { kicker: "Por qué enamora", rutina: "Brillo dorado para cada día", filas: [
+    ["Lo que la hace única", "Balines dorados de alto brillo", "Sus balines dorados reflejan la luz y le dan a tu look un toque elegante y moderno.", "✨"],
+    ["Cómo lucirla", "Por fuera de la ropa", "Lúcela por fuera de la camisa o la blusa, para que se vea su diseño y lo que representa.", "💫"],
+    ["Perfecta para", "Diario y ocasiones especiales", "Tu día a día, salidas, cenas y fechas especiales; combina con ropa casual o elegante.", "🎉"],
+    ["Regálala a", "Papá, pareja o un amigo", "Papá, esposo, novio, hermano o amigo. Un regalo con estilo para cumpleaños, Navidad y Día del Padre.", "🎁"]
+  ]},
+  107: { kicker: "Por qué enamora", rutina: "Brillo dorado para cada día", filas: [
+    ["Lo que lo hace único", "Balines dorados de alto brillo", "Sus balines dorados reflejan la luz y le dan a tu look un toque elegante y moderno.", "✨"],
+    ["Cómo lucirlo", "Juntas o por separado", "Úsalas juntas para un look completo o por separado para combinarlas con otras joyas.", "💫"],
+    ["Perfecto para", "Diario y ocasiones especiales", "Tu día a día, salidas, cenas y fechas especiales; combina con ropa casual o elegante.", "🎉"],
+    ["Regálalo a", "Papá, pareja o un amigo", "Papá, esposo, novio, hermano o amigo. Un regalo con estilo para cumpleaños, Navidad y Día del Padre.", "🎁"]
+  ]},
+  108: { kicker: "Por qué enamora", rutina: "Brillo dorado para cada día", filas: [
+    ["Lo que la hace única", "Balines dorados de alto brillo", "Sus balines dorados reflejan la luz y le dan a tu look un toque elegante y moderno.", "✨"],
+    ["Cómo lucirla", "Sola o con tu reloj", "Lúcela sola para un toque sutil o combínala con tu reloj y otras pulseras.", "💫"],
+    ["Perfecta para", "Diario y ocasiones especiales", "Tu día a día, salidas, cenas y fechas especiales; combina con ropa casual o elegante.", "🎉"],
+    ["Regálala a", "Quien tú quieras", "Para ti o para regalar en cumpleaños, aniversarios, grados y Navidad.", "🎁"]
+  ]},
+  109: { kicker: "Por qué enamora", rutina: "Brillo dorado para cada día", filas: [
+    ["Lo que lo hace único", "Balines dorados de alto brillo", "Sus balines dorados reflejan la luz y le dan a tu look un toque elegante y moderno.", "✨"],
+    ["Cómo lucirlo", "Con el cabello recogido", "Con el cabello recogido resaltan aún más; combínalos con tu cadena favorita.", "💫"],
+    ["Perfecto para", "Diario y ocasiones especiales", "Tu día a día, salidas, cenas y fechas especiales; combina con ropa casual o elegante.", "🎉"],
+    ["Regálalo a", "Mamá, esposa o amiga", "Mamá, esposa, novia, hija o amiga. Un detalle que enamora para cumpleaños, Navidad y Día de la Madre.", "🎁"]
+  ]},
+  110: { kicker: "Por qué enamora", rutina: "Brillo dorado para cada día", filas: [
+    ["Lo que la hace única", "Balines dorados de alto brillo", "Sus balines dorados reflejan la luz y le dan a tu look un toque elegante y moderno.", "✨"],
+    ["Cómo lucirla", "Sola o con tu reloj", "Lúcela sola para un toque sutil o combínala con tu reloj y otras pulseras.", "💫"],
+    ["Perfecta para", "Diario y ocasiones especiales", "Tu día a día, salidas, cenas y fechas especiales; combina con ropa casual o elegante.", "🎉"],
+    ["Regálala a", "Quien tú quieras", "Para ti o para regalar en cumpleaños, aniversarios, grados y Navidad.", "🎁"]
   ]}
 };

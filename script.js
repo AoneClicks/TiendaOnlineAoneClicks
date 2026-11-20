@@ -138,16 +138,21 @@
   // ---------- "¿Para qué sirve?" ----------
   const INFO_ICONS = { "Sirve para": "🎯", "Cómo se toma": "💧", "Cómo se usa": "👉", "Cuándo": "⏰", "Dónde": "📍", "Ideal para": "👥" };
   const getInfo = (p) => (typeof PRODUCT_INFO !== "undefined" && PRODUCT_INFO[p.id]) || null;
+  // Salud y belleza: "¿Para qué sirve?". Joyería y hogar llevan su propio título (kicker) y rótulo.
+  const infoKicker = (p) => (getInfo(p) && getInfo(p).kicker) || "¿Para qué sirve?";
+  const infoLead = (p) => (p.category === "Joyería" ? "Su estilo: " : getInfo(p) && getInfo(p).kicker ? "Lo mejor: " : "Rutina ideal: ");
+  const infoHint = (p) => (p.category === "Joyería" ? "✨ Por qué enamora ›" : getInfo(p) && getInfo(p).kicker ? "✨ Lo que lo hace especial ›" : "¿Para qué sirve? ›");
+  const infoIcon = (row) => row[3] || INFO_ICONS[row[0]] || "•";
   // Diapositiva corta (se desliza después de las fotos)
   function infoSlide(p) {
     const info = getInfo(p);
     if (!info) return null;
     return el("div", { class: "info" }, [
-      el("span", { class: "info__kicker", text: "¿Para qué sirve?" }),
+      el("span", { class: "info__kicker", text: infoKicker(p) }),
       el("strong", { class: "info__rutina", text: info.rutina }),
-      el("ul", { class: "info__list" }, info.filas.map(([k, short]) => el("li", {}, [
-        el("span", { class: "info__ic", "aria-hidden": "true", text: INFO_ICONS[k] || "•" }),
-        el("span", { class: "info__txt" }, [el("small", { text: k }), el("span", { text: short })])
+      el("ul", { class: "info__list" }, info.filas.map((row) => el("li", {}, [
+        el("span", { class: "info__ic", "aria-hidden": "true", text: infoIcon(row) }),
+        el("span", { class: "info__txt" }, [el("small", { text: row[0] }), el("span", { text: row[1] })])
       ])))
     ]);
   }
@@ -156,10 +161,10 @@
     const info = getInfo(p);
     if (!info) return null;
     return el("div", { class: "pd__uses" }, [
-      el("p", { class: "pd__rutina" }, [el("span", { text: "Rutina ideal: " }), el("strong", { text: info.rutina })]),
-      ...info.filas.map(([k, , long]) => el("p", { class: "pd__use" }, [
-        el("span", { class: "info__ic", "aria-hidden": "true", text: INFO_ICONS[k] || "•" }),
-        el("span", {}, [el("strong", { text: k + ": " }), long])
+      el("p", { class: "pd__rutina" }, [el("span", { text: infoLead(p) }), el("strong", { text: info.rutina })]),
+      ...info.filas.map((row) => el("p", { class: "pd__use" }, [
+        el("span", { class: "info__ic", "aria-hidden": "true", text: infoIcon(row) }),
+        el("span", {}, [el("strong", { text: row[0] + ": " }), row[2]])
       ]))
     ]);
   }
@@ -235,7 +240,7 @@
     });
     const info = infoSlide(p);
     const infoIndex = info ? slides.length : -1;
-    if (info) slides.push(el("div", { class: "gal__slide gal__slide--info", role: "group", "aria-label": "Para qué sirve y cómo se usa" }, [info]));
+    if (info) slides.push(el("div", { class: "gal__slide gal__slide--info", role: "group", "aria-label": infoKicker(p) }, [info]));
     const track = el("div", { class: "gal__track" }, slides);
     const wrap = el("div", { class: "gal" + (zoomable ? " gal--zoom" : "") }, [track]);
     if (slides.length < 2) return wrap;
@@ -248,7 +253,7 @@
     wrap.append(prev, next, el("div", { class: "gal__dots" }, dots));
     let hint = null;
     if (info) {
-      hint = el("button", { type: "button", class: "gal__hint", onclick: stop(() => go(infoIndex)) }, "¿Para qué sirve? ›");
+      hint = el("button", { type: "button", class: "gal__hint", onclick: stop(() => go(infoIndex)) }, infoHint(p));
       wrap.append(hint);
     }
     if (photos.length > 1) { const nv = photos.filter(isVideo).length, nf = photos.length - nv; wrap.append(el("span", { class: "gal__count", text: `📷 ${nf} ${nf === 1 ? "foto" : "fotos"}` + (nv ? ` · 🎬 ${nv} video` : "") })); }
